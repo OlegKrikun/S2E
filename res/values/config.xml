@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">S2E</string>
+    <string name="app_version">0.1.0</string>
+    <string name="app_name_full">S2E (simple2ext) 0.1.0</string>
+    <string name="app_by">©2011 Krikun.Ru (by OlegKrikun)</string>
+
+    <string name="script_version">R2</string>
+    <string name="script_version_md5">f7f3cbe77653e38693f21ff63944d9e6</string>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string-array name="targets" translatable="false">
+        <item>app</item>
+        <item>app-private</item>
+        <item>dalvik-cache</item>
+        <item>download</item>
+    </string-array>
+
+</resources>

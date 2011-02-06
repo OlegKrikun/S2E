@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="label">S2E: app2sd for CyanogenMod7</string>
+    <string name="ver">Version</string>
+    <string name="summary_pure_on">Enabled, can not be disabled</string>
+    <string name="summary_on">Enabled, can be disabled</string>
+    <string name="about">About and credits</string>
+    <string name="apps">Applications</string>
+    <string name="apps__summary">Move \"app\" from /data to /sd-ext</string>
+    <string name="private_apps">Private apps</string>
+    <string name="private_apps__summary">Move \"app-private\" from /data to /sd-ext</string>
+    <string name="dalvik_cache">Dalvik cache</string>
+    <string name="dalvik_cache__summary">Move \"dalvik-cache\" from /data to /sd-ext</string>
+    <string name="download_cache">Download cache</string>
+    <string name="download_cache__summary">Move \"download\" from /cache to /sd-ext</string>
+    <string name="script_installed">Script installed</string>
+    <string name="script_versions">Script version:</string>
+    <string name="status">Status</string>
+    <string name="setup">Setup</string>
+    <string name="credit">Credit</string>
+    <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class \"ShellInterface\")</string>
+    <string name="install_script_message">Now the script will be installed.\n\nAre you sure you want to do this?</string>
+    <string name="install_script_title">Script install</string>
+    <string name="install_script_positive">Install</string>
+    <string name="exit">Exit</string>
+    <string name="alert_script_message">Script not installed, contact the application developer.</string>
+    <string name="alert_script_title">Script not installed</string>
+    <string name="alert_cm7_message">To use this application you must have installed CyanogenMod7.</string>
+    <string name="alert_cm7_title">Need: CyanogenMod7</string>
+
+</resources>
