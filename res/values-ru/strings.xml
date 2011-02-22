@@ -24,9 +24,10 @@
     <string name="install_script_title">Установка скрипта</string>
     <string name="install_script_positive">Установить</string>
     <string name="exit">Выход</string>
+    <string name="cont">Продолжить</string>
     <string name="alert_script_message">Скрипт не установлен, свяжитесь с разработчиком приложения.</string>
     <string name="alert_script_title">Скрипт не установлен</string>
-    <string name="alert_cm7_message">Для использования этого приложения у вас должен быть установлен CyanogenMod7.</string>
+    <string name="alert_cm7_message">Приложение не смогло определить ROM. Вы уверены что запускаете приложение под CyanogenMod7?</string>
     <string name="alert_cm7_title">Нужен: CyanogenMod7</string>
 
 </resources>

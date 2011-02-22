@@ -3,8 +3,8 @@
 # Initialization and checks
 echo "S2E: Initialization..."
 
-S2E_PREF='/data/data/ru.krikun.simple2ext/shared_prefs/ru.krikun.simple2ext_preferences.xml'
-S2E_STATUS='/data/data/ru.krikun.simple2ext/status'
+S2E_PREF='/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
+S2E_STATUS='/data/data/ru.krikun.s2e/status'
 
 if [ "$SD_EXT_DIRECTORY" = "" ];
 then

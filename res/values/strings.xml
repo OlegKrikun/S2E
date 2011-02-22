@@ -20,13 +20,14 @@
     <string name="setup">Setup</string>
     <string name="credit">Credit</string>
     <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class \"ShellInterface\")</string>
-    <string name="install_script_message">Now the script will be installed.\n\nAre you sure you want to do this?</string>
+    <string name="install_script_message">Now this script will be installed.\n\nAre you sure that you want to do this?</string>
     <string name="install_script_title">Script install</string>
     <string name="install_script_positive">Install</string>
     <string name="exit">Exit</string>
-    <string name="alert_script_message">Script not installed, contact the application developer.</string>
+    <string name="cont">Continue</string>
+    <string name="alert_script_message">Script is not installed, contact the application developer.</string>
     <string name="alert_script_title">Script not installed</string>
-    <string name="alert_cm7_message">To use this application you must have installed CyanogenMod7.</string>
-    <string name="alert_cm7_title">Need: CyanogenMod7</string>
+    <string name="alert_cm7_message">Application cannot determine the ROM. Are you sure that CyanogenMod7 has installed on your device?</string>
+    <string name="alert_cm7_title">Required CM7</string>
 
 </resources>

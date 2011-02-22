@@ -1,4 +1,4 @@
-package ru.krikun.simple2ext.utils;
+package ru.krikun.s2e.utils;
 
 import android.util.Log;
 

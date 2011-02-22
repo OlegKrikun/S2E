@@ -1,4 +1,4 @@
-package ru.krikun.simple2ext;
+package ru.krikun.s2e;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import ru.krikun.simple2ext.utils.ShellInterface;
+import ru.krikun.s2e.utils.ShellInterface;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,7 +17,7 @@ public class Main extends PreferenceActivity {
 
 	private static final String BUILDPROP_DIST = "/system/build.prop";
 	private static final String SCRIPT_DIST = "/data/local/userinit.d/simple2ext";
-	private static final String S2E_DIR = "/data/data/ru.krikun.simple2ext";
+	private static final String S2E_DIR = "/data/data/ru.krikun.s2e";
 	private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
 	private static final String BASH_CHECK_CM7 = "grep -q 'ro.modversion=CyanogenMod-7' " + BUILDPROP_DIST + ";echo $?";
 	private static final String BASH_MKDIR = "if [ ! -e /data/local/userinit.d ]; then install -m 777 -o 1000 -g 1000 -d /data/local/userinit.d; fi";
@@ -41,8 +41,11 @@ public class Main extends PreferenceActivity {
 		File target = new File(SCRIPT_DIST);
 		if (target.exists()) {
 			if (ShellInterface.isSuAvailable()) {
-				String tmp_md5 = ShellInterface.getProcessOutput(BASH_MD5SUM).substring(0, 32);
-				return tmp_md5.equals(target_md5);
+				String tmp_md5 = ShellInterface.getProcessOutput(BASH_MD5SUM);
+				if (!tmp_md5.equals(null)) {
+					tmp_md5 = tmp_md5.substring(0, 32);
+					return tmp_md5.equals(target_md5);
+				}
 			}
 		}
 		return false;
@@ -78,8 +81,13 @@ public class Main extends PreferenceActivity {
 					} catch (IOException e) { throw new RuntimeException(e);}
 
 					if (!checkScript(res.getString(R.string.script_version_md5))) {
-						showAlert(res.getString(R.string.alert_script_message), res.getString(R.string.alert_script_title), res.getString(R.string.exit)); }
-					else { showMain(); }
+						showAlert(
+                                res.getString(R.string.alert_script_message),
+                                res.getString(R.string.alert_script_title),
+                                res.getString(R.string.exit)
+                        );
+                    }
+					else  showMain();
 				}
 			})
 			.setNegativeButton(res.getString(R.string.exit), new DialogInterface.OnClickListener() {
@@ -91,13 +99,32 @@ public class Main extends PreferenceActivity {
 		alert.show();
 	}
 
-	public void showAlert(String message, String title, String bottom) {
+	public void showAlert(String message, String title, String exit ) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(message)
 				.setTitle(title)
 				.setCancelable(false)
 				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setNeutralButton(bottom, new DialogInterface.OnClickListener() {
+				.setNeutralButton(exit, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						Main.this.finish();
+					}
+				});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+
+    public void showAlertCont(String message, String title, String cont, String exit ) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(message)
+				.setTitle(title)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(cont, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				})
+				.setNegativeButton(exit, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						Main.this.finish();
 					}
@@ -113,7 +140,9 @@ public class Main extends PreferenceActivity {
 
 		Preference script_status = findPreference("script_status");
 		script_status.setTitle(res.getString(R.string.script_installed));
-		script_status.setSummary(res.getString(R.string.script_versions) + " " + res.getString(R.string.script_version));
+		script_status.setSummary(
+                res.getString(R.string.script_versions) + " " + res.getString(R.string.script_version)
+        );
 		script_status.setEnabled(false);
 
 		for (String string : res.getStringArray(R.array.targets)) {
@@ -138,13 +167,18 @@ public class Main extends PreferenceActivity {
 		Resources res = getResources();
 
 		if (!checkCM()) {
-			showAlert(res.getString(R.string.alert_cm7_message), res.getString(R.string.alert_cm7_title), res.getString(R.string.exit));
-		} else {
-			if (!checkScript(res.getString(R.string.script_version_md5))) {
-				runInstallScript();
-			} else {
-				showMain();
-			}
+			showAlertCont(
+                    res.getString(R.string.alert_cm7_message),
+                    res.getString(R.string.alert_cm7_title),
+                    res.getString(R.string.cont),
+                    res.getString(R.string.exit)
+            );
 		}
+        if (!checkScript(res.getString(R.string.script_version_md5))) {
+            runInstallScript();
+        } else {
+            showMain();
+        }
+
 	}
 }
