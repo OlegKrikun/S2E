@@ -24,10 +24,7 @@
     <string name="install_script_title">Script install</string>
     <string name="install_script_positive">Install</string>
     <string name="exit">Exit</string>
-    <string name="cont">Continue</string>
     <string name="alert_script_message">Script is not installed, contact the application developer.</string>
     <string name="alert_script_title">Script not installed</string>
-    <string name="alert_cm7_message">Application cannot determine the ROM. Are you sure that CyanogenMod7 has installed on your device?</string>
-    <string name="alert_cm7_title">Required CM7</string>
 
 </resources>

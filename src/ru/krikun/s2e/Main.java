@@ -15,43 +15,30 @@ import java.io.InputStream;
 
 public class Main extends PreferenceActivity {
 
-	private static final String BUILDPROP_DIST = "/system/build.prop";
 	private static final String SCRIPT_DIST = "/data/local/userinit.d/simple2ext";
 	private static final String S2E_DIR = "/data/data/ru.krikun.s2e";
 	private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
-	private static final String BASH_CHECK_CM7 = "grep -q 'ro.modversion=CyanogenMod-7' " + BUILDPROP_DIST + ";echo $?";
 	private static final String BASH_MKDIR = "if [ ! -e /data/local/userinit.d ]; then install -m 777 -o 1000 -g 1000 -d /data/local/userinit.d; fi";
 	private static final String BASH_CP_SCRIPT = "cp " + S2E_DIR + "/files/script01.sh " + SCRIPT_DIST;
 	private static final String BASH_CHMOD_SCRIPT = "chmod 0777 " + SCRIPT_DIST;
 	private static final String BASH_MD5SUM = "md5sum " + SCRIPT_DIST;
 
-	public static boolean checkCM() {
-
-		File target = new File(BUILDPROP_DIST);
-		if (target.exists()) {
-			if (ShellInterface.isSuAvailable()) {
-				return ShellInterface.getProcessOutput(BASH_CHECK_CM7).equals("0");
-			}
-		}
-		return false;
-	}
-
-	public static boolean checkScript(String target_md5) {
+	private static boolean checkScript(String target_md5) {
 
 		File target = new File(SCRIPT_DIST);
 		if (target.exists()) {
 			if (ShellInterface.isSuAvailable()) {
 				String tmp_md5 = ShellInterface.getProcessOutput(BASH_MD5SUM);
-				if (!tmp_md5.equals(null)) {
-					tmp_md5 = tmp_md5.substring(0, 32);
-					return tmp_md5.equals(target_md5);
+                if (tmp_md5.length() >= 32) {
+                    tmp_md5 = tmp_md5.substring(0, 32);
+                    return tmp_md5.equals(target_md5);
 				}
 			}
 		}
 		return false;
 	}
 
-	public void runInstallScript() {
+	private void runInstallScript() {
 
 		final Resources res = getResources();
 
@@ -99,7 +86,7 @@ public class Main extends PreferenceActivity {
 		alert.show();
 	}
 
-	public void showAlert(String message, String title, String exit ) {
+	private void showAlert(String message, String title, String exit ) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(message)
 				.setTitle(title)
@@ -114,26 +101,7 @@ public class Main extends PreferenceActivity {
 		alert.show();
 	}
 
-    public void showAlertCont(String message, String title, String cont, String exit ) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(message)
-				.setTitle(title)
-				.setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(cont, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						dialog.cancel();
-					}
-				})
-				.setNegativeButton(exit, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						Main.this.finish();
-					}
-				});
-		AlertDialog alert = builder.create();
-		alert.show();
-	}
-
-	public void showMain() {
+	private void showMain() {
 
 		Resources res = getResources();
 		addPreferencesFromResource(R.xml.pr);
@@ -166,14 +134,6 @@ public class Main extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		Resources res = getResources();
 
-		if (!checkCM()) {
-			showAlertCont(
-                    res.getString(R.string.alert_cm7_message),
-                    res.getString(R.string.alert_cm7_title),
-                    res.getString(R.string.cont),
-                    res.getString(R.string.exit)
-            );
-		}
         if (!checkScript(res.getString(R.string.script_version_md5))) {
             runInstallScript();
         } else {
