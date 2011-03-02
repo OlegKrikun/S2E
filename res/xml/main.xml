@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/status">
+    <PreferenceScreen
+            android:key="partitions"
+            android:title="@string/spaces"
+            android:summary="Не определенно">
+        <Preference
+                android:key="space_data"
+                android:title="Data (/data)"
+                android:summary="Size: 1000Mb\nUsed: 100Mb\nFree: 1Gb"/>
+        <Preference
+                android:key="space_ext"
+                android:title="External (/sd-ext)"/>
+        <Preference
+                android:key="space_cache"
+                android:title="Cache (/cache)"/>
+
+    </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/move_to_ext">
+        <CheckBoxPreference
+                android:title="@string/apps"
+                android:defaultValue="false"
+                android:key="app"/>
+        <CheckBoxPreference
+                android:title="@string/private_apps"
+                android:defaultValue="false"
+                android:key="app-private"/>
+        <CheckBoxPreference
+                android:title="@string/dalvik_cache"
+                android:defaultValue="false"
+                android:key="dalvik-cache"/>
+        <CheckBoxPreference
+                android:title="@string/download_cache"
+                android:defaultValue="false"
+                android:key="download"/>
+    </PreferenceCategory>
+</PreferenceScreen>

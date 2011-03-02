@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!--About-->
     <string name="label">S2E: app2sd для CyanogenMod7</string>
     <string name="ver">Версия</string>
-    <string name="summary_pure_on">Включено, нельзя выключить</string>
-    <string name="summary_on">Включено, можно выключить</string>
     <string name="about">О программе</string>
-    <string name="apps">Приложения</string>
-    <string name="apps__summary">Переместить \"app\" из /data в /sd-ext</string>
-    <string name="private_apps">Приватные приложения</string>
-    <string name="private_apps__summary">Переместить \"app-private\" из /data в /sd-ext</string>
-    <string name="dalvik_cache">Кэш Dalvik</string>
-    <string name="dalvik_cache__summary">Переместить \"dalvik-cache\" из /data в /sd-ext</string>
-    <string name="download_cache">Кэш загрузок</string>
-    <string name="download_cache__summary">Переместить \"download\" из /cache в /sd-ext</string>
-    <string name="script_installed">Скрипт установлен</string>
-    <string name="script_versions">Версия скрипта:</string>
-    <string name="status">Статус</string>
-    <string name="setup">Установки</string>
-    <string name="credit">Спасибо</string>
+    <string name="credits">Спасибо</string>
     <string name="credit__summary">Большое спасибо CrazyCoder за поддержку и терпение (и класс \"ShellInterface\")</string>
-    <string name="install_script_message">Сейчас будет установлен скрипт.\n\nВы уверены что хотите это сделать?</string>
-    <string name="install_script_title">Установка скрипта</string>
-    <string name="install_script_positive">Установить</string>
+
+    <!--MainScreen-->
+    <string name="status">Статус</string>
+    <string name="spaces">Свободное место</string>
+    <string name="apps">Приложения</string>
+    <string name="private_apps">Приватные приложения</string>
+    <string name="dalvik_cache">Кэш Dalvik</string>
+    <string name="download_cache">Кэш загрузок</string>
+    <string name="script_versions">Версия скрипта:</string>
+    <string name="move_to_ext">Переместить на sd-ext...</string>
+    <string name="location">Расположение</string>
+    <string name="size">Размер</string>
+    <string name="used">Занято</string>
+    <string name="free">Свободно</string>
+    <string name="kb">Кб</string>
+    <string name="mb">Мб</string>
+
+    <!--Alerts-->
     <string name="exit">Выход</string>
     <string name="alert_script_message">Скрипт не установлен, свяжитесь с разработчиком приложения.</string>
     <string name="alert_script_title">Скрипт не установлен</string>
+
+    <!--Settings-->
+    <string name="settings">Настройки</string>
+    <string name="setting_logging">Писать лог</string>
+    <string name="setting_logging__summary">Писать лог скрипта в /sdcard/s2e.log</string>
 
 </resources>

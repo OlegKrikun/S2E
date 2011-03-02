@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="ru.krikun.s2e"
 	  android:installLocation="internalOnly"
-      android:versionCode="5"
+      android:versionCode="6"
       android:versionName="@string/app_version">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,6 +14,12 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="Settings"
+                  android:label="@string/settings">
+        </activity>
+        <activity android:name="About"
+                  android:label="@string/about">
         </activity>
     </application>
 	<uses-sdk android:maxSdkVersion="10" android:minSdkVersion="9" />

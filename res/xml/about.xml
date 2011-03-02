@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+            android:title="@string/app_name_full"
+            android:summary="@string/app_by"
+            android:enabled="true"/>
+    <Preference
+            android:key="script_status"/>
+    <PreferenceCategory android:title="@string/credits">
+        <Preference
+                android:title="CrazyCoder"
+                android:summary="@string/credit__summary"
+                android:enabled="true"/>
+    </PreferenceCategory>
+</PreferenceScreen>

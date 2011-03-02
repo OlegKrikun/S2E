@@ -9,4 +9,10 @@
         <item>download</item>
     </string-array>
 
+    <string-array name="partitions" translatable="false">
+        <item>data</item>
+        <item>sd-ext</item>
+        <item>cache</item>
+    </string-array>
+
 </resources>
