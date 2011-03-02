@@ -114,7 +114,9 @@ public class Main extends PreferenceActivity {
         if (ShellInterface.isSuAvailable()) {
             String output = ShellInterface.getProcessOutput("du -s " + path);
             String[] array = output.split("[\\s]");
-            return Integer.parseInt(array[0]);
+            if (!array[0].equals("")) {
+                return Integer.parseInt(array[0]);
+            }
         }
         return 0;
     }
@@ -139,7 +141,8 @@ public class Main extends PreferenceActivity {
     }
 
     private String convertSize(int size) {
-        if (size >= 1024) return Integer.toString(size / 1024) + res.getString(R.string.mb);
+        if (size == 0) return "--";
+        else if (size >= 1024) return Integer.toString(size / 1024) + res.getString(R.string.mb);
         else return size + res.getString(R.string.kb);
     }
 
