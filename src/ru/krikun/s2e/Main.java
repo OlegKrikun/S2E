@@ -69,7 +69,10 @@ public class Main extends PreferenceActivity {
 
     private boolean checkScriptSum() {
         String tmp_md5 = getSum(SCRIPT_DIR);
-        return !tmp_md5.equals(null) && tmp_md5.equals(res.getString(R.string.script_version_md5));
+        if (tmp_md5 != null) {
+           return tmp_md5.equals(res.getString(R.string.script_version_md5));
+        }
+        return false;
     }
 
     private boolean checkScriptExists() {
