@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--About-->
+    <string name="label">S2E: app2sd para CyanogenMod7</string>
+    <string name="ver">Versão</string>
+    <string name="about">Sobre</string>
+    <string name="credits">Créditos</string>
+    <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class \"ShellInterface\")</string>
+
+    <!--MainScreen-->
+    <string name="status">Estado</string>
+    <string name="spaces">Espaço livre</string>
+    <string name="apps">Aplicações</string>
+    <string name="private_apps">Aplicações privadas</string>
+    <string name="dalvik_cache">Cache Dalvik</string>
+    <string name="download_cache">Cache de downloads</string>
+    <string name="script_versions">Versão do script:</string>
+    <string name="move_to_ext">Mover para sd-ext...</string>
+    <string name="location">Localização</string>
+    <string name="size">Tamanho</string>
+    <string name="used">Usado</string>
+    <string name="free">Livre</string>
+    <string name="kb">Kb</string>
+    <string name="mb">Mb</string>
+
+    <!--Alerts-->
+    <string name="exit">Sair</string>
+    <string name="alert_script_message">O script não está instalado, contacte o programador da aplicação.</string>
+    <string name="alert_script_title">Script não instalado</string>
+
+    <!--Settings-->
+    <string name="settings">Definições</string>
+    <string name="setting_logging">Escrever log</string>
+    <string name="setting_logging__summary">Escrever script log para /sdcard/s2e.log</string>
+    <string name="setting_mount">Montar como ext4</string>
+
+    <!--etc-->
+    <string name="cs">brevemente</string>
+
+</resources>
