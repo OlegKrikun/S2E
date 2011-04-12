@@ -28,34 +28,13 @@ public class Main extends PreferenceActivity {
     private static final String S2E_DIR = "/data/data/ru.krikun.s2e";
     private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
 
-    private HashMap<String, Boolean> statuses;
-    private HashMap<String, Integer> sizes;
+    private HashMap<String, Integer> jobSizes;
+	private HashMap<String, Boolean> jobStatuses;
+	private HashMap<String, Boolean> jobValues;
 
     private int[] spacesData;
     private int[] spacesExt;
     private int[] spacesCache;
-
-    private void copyScript() {
-        try {
-            InputStream in = getAssets().open("script01.sh");
-            FileOutputStream out = openFileOutput("script01.sh", 0);
-            if (in != null) {
-                int size = in.available();
-                byte[] buffer = new byte[size];
-                in.read(buffer);
-                out.write(buffer, 0, size);
-                in.close();
-                out.close();
-                if (ShellInterface.isSuAvailable()) {
-                    ShellInterface.runCommand("if [ ! -e /data/local/userinit.d ]; then install -m 777 -o 1000 -g 1000 -d /data/local/userinit.d; fi");
-                    ShellInterface.runCommand("cp " + S2E_DIR + "/files/script01.sh " + SCRIPT_DIR);
-                    ShellInterface.runCommand("chmod 0777 " + SCRIPT_DIR);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private String getSum(String target) {
         if (ShellInterface.isSuAvailable()) {
@@ -82,6 +61,28 @@ public class Main extends PreferenceActivity {
 
     private boolean checkScript() {
         return checkScriptExists() && checkScriptSum();
+    }
+
+	private void copyScript() {
+        try {
+            InputStream in = getAssets().open("script01.sh");
+            FileOutputStream out = openFileOutput("script01.sh", 0);
+            if (in != null) {
+                int size = in.available();
+                byte[] buffer = new byte[size];
+                in.read(buffer);
+                out.write(buffer, 0, size);
+                in.close();
+                out.close();
+                if (ShellInterface.isSuAvailable()) {
+                    ShellInterface.runCommand("if [ ! -e /data/local/userinit.d ]; then install -m 777 -o 1000 -g 1000 -d /data/local/userinit.d; fi");
+                    ShellInterface.runCommand("cp " + S2E_DIR + "/files/script01.sh " + SCRIPT_DIR);
+                    ShellInterface.runCommand("chmod 0777 " + SCRIPT_DIR);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean installScript() {
@@ -155,18 +156,27 @@ public class Main extends PreferenceActivity {
     }
 
     private void setupStatuses() {
-        statuses = new HashMap<String, Boolean>();
+        jobStatuses = new HashMap<String, Boolean>();
 
         for (String target : res.getStringArray(R.array.targets)) {
-            statuses.put(target, checkStatus(target));
+            jobStatuses.put(target, checkStatus(target));
+        }
+    }
+
+	private void setupValues() {
+        jobValues = new HashMap<String, Boolean>();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        for (String target : res.getStringArray(R.array.targets)) {
+            jobValues.put(target, prefs.getBoolean(target, false));
         }
     }
 
     private void setupSizes() {
-        sizes = new HashMap<String, Integer>();
+        jobSizes = new HashMap<String, Integer>();
 
         for (String target : res.getStringArray(R.array.targets)) {
-            sizes.put(target, getSize(getPath(target)));
+            jobSizes.put(target, getSize(getPath(target)));
         }
     }
 
@@ -224,25 +234,113 @@ public class Main extends PreferenceActivity {
         }
     }
 
+	private boolean compareSizes( int target, int partition) {
+		return target != 0 && partition != 0 && target < partition;
+	}
+
+	private void setTargetSummary(Preference pref, String target, String partition) {
+		pref.setSummary(
+				res.getString(R.string.location) + ": /" + partition + "/" + target + "\n" +
+						res.getString(R.string.size) + ": " + convertSize(jobSizes.get(target)));
+	}
+
+	private void setMovingSummary(Preference pref, String targetPartition, String sourcesPartition) {
+		pref.setSummary(
+                String.format(res.getString(R.string.move), sourcesPartition, targetPartition) + "\n" +
+						res.getString(R.string.reboot_required));
+	}
+
+	private void setTargetState() {
+
+        setupValues();
+
+        int sumToExt = 0;
+		int sumToData = 0;
+
+		for (String target : res.getStringArray(R.array.targets)) {
+			Preference pref = findPreference(target);
+			if (!target.equals("download")) {
+				if (jobValues.get(target) && !jobStatuses.get(target)) {
+					setMovingSummary(pref, "/sd-ext", "/data");
+					sumToExt += jobSizes.get(target);
+				}
+				else if (!jobValues.get(target) && jobStatuses.get(target)) {
+					setMovingSummary(pref, "/data", "/sd-ext");
+					sumToData += jobSizes.get(target);
+				}
+			} else {
+				if (jobValues.get(target) && !jobStatuses.get(target)) setMovingSummary(pref, "/sd-ext", "/cache");
+				else if (!jobValues.get(target) && jobStatuses.get(target)) setMovingSummary(pref, "/cache", "/sd-ext");
+			}
+		}
+
+		int freeSpace;
+		for (String target : res.getStringArray(R.array.targets)) {
+			Preference pref = findPreference(target);
+			if (!target.equals("download")) {
+				if (!jobValues.get(target) && !jobStatuses.get(target)) {
+
+					setTargetSummary(pref, target, "data");
+					freeSpace = spacesExt[2] - sumToExt - 1024;
+					if (!compareSizes(jobSizes.get(target), freeSpace)) pref.setEnabled(false);
+                    else pref.setEnabled(true);
+
+				} else if (jobValues.get(target) && jobStatuses.get(target)) {
+
+					setTargetSummary(pref, target, "sd-ext");
+					freeSpace = spacesData[2] - sumToData - 1024;
+					if (!compareSizes(jobSizes.get(target), freeSpace)) pref.setEnabled(false);
+                    else pref.setEnabled(true);
+
+				}
+			} else {
+				if (!jobValues.get(target) && !jobStatuses.get(target)) setTargetSummary(pref, target, "cache");
+				else if (jobValues.get(target) && jobStatuses.get(target)) setTargetSummary(pref, target, "sd-ext");
+			}
+		}
+	}
+
+	private void setOnPreferenceChange(){
+
+		for (String target : res.getStringArray(R.array.targets)) {
+			Preference pref = findPreference(target);
+            pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+                public boolean onPreferenceClick(Preference preference) {
+                    setTargetState();
+                    return true;
+                }
+
+            });
+        }
+	}
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         res = getResources();
+        setTitle(R.string.label);
         addPreferencesFromResource(R.xml.main);
 
-        if (!checkScript() && !installScript()) showAlertScript();
-
         setupStatuses();
+
+        setOnPreferenceChange();
+
+        if (!checkScript() && !installScript()) showAlertScript();
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        setupSizes();
+
         setupPartitionsInfo();
         setupSpacePref();
+
+		setupValues();
+        setupSizes();
 
         Preference partitions = findPreference("partitions");
         partitions.setSummary(
@@ -251,22 +349,6 @@ public class Main extends PreferenceActivity {
                 "Cache: " +  convertSize(spacesCache[2])
         );
 
-        for (String target : res.getStringArray(R.array.targets)) {
-            Preference pref = findPreference(target);
-
-            if (statuses.get(target)) {
-                if (target.equals("app") || target.equals("app-private")) pref.setEnabled(false);
-                pref.setSummary(
-                        res.getString(R.string.location) + ": /sd-ext/" + target + "\n" +
-                                res.getString(R.string.size) + ": " + convertSize(sizes.get(target)));
-            } else {
-                if (target.equals("download")) pref.setSummary(
-                        res.getString(R.string.location) + ": /cache/" + target + "\n" +
-                                res.getString(R.string.size) + ": " + convertSize(sizes.get(target)));
-                else pref.setSummary(
-                        res.getString(R.string.location) + ": /data/" + target + "\n" +
-                                res.getString(R.string.size) + ": " + convertSize(sizes.get(target)));
-            }
-        }
+		setTargetState();
     }
 }

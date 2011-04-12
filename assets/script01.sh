@@ -64,6 +64,21 @@ for dir in app app-private;
         else
             echo "S2E: $SD_EXT_DIRECTORY/$dir already mount..."
         fi
+    else
+        if [ -e "$SD_EXT_DIRECTORY/$dir" ];
+        then
+            if [ ! -L "$SD_EXT_DIRECTORY/$dir" ];
+            then
+                for app in `find "$SD_EXT_DIRECTORY/$dir" -type f -iname "*.apk" -o -iname "*.zip"`;
+                do
+                    mv $app /data/$dir/
+                done
+            fi
+            if [ -L "$SD_EXT_DIRECTORY/$dir" ];
+            then
+                rm -rf $SD_EXT_DIRECTORY/$dir
+            fi
+        fi
     fi
 done
 
@@ -99,6 +114,11 @@ then
     else
         echo "S2E: $SD_EXT_DIRECTORY/dalvik-cache already mount..."
     fi
+else
+    if [ -e "$SD_EXT_DIRECTORY/dalvik-cache" ];
+    then
+        rm -rf $SD_EXT_DIRECTORY/dalvik-cache
+    fi
 fi
 
 # Download cache
@@ -120,9 +140,9 @@ then
         mkdir /cache/download
     fi
     chown system:cache $SD_EXT_DIRECTORY/download
-    chmod 0771 $SD_EXT_DIRECTORY/download
+    chmod 0777 $SD_EXT_DIRECTORY/download
     chown system:cache /cache/download
-    chmod 0771 /cache/download
+    chmod 0777 /cache/download
 
     mount -o bind $SD_EXT_DIRECTORY/download/ /cache/download
 
@@ -132,6 +152,11 @@ then
         touch $S2E_STATUS/download
     else
         echo "S2E: $SD_EXT_DIRECTORY/download not mount..."
+    fi
+else
+    if [ -e "$SD_EXT_DIRECTORY/download" ];
+    then
+        rm -rf $SD_EXT_DIRECTORY/download
     fi
 fi
 

@@ -3,12 +3,10 @@
     <PreferenceCategory android:title="@string/status">
     <PreferenceScreen
             android:key="partitions"
-            android:title="@string/spaces"
-            android:summary="Не определенно">
+            android:title="@string/spaces">
         <Preference
                 android:key="space_data"
-                android:title="Data (/data)"
-                android:summary="Size: 1000Mb\nUsed: 100Mb\nFree: 1Gb"/>
+                android:title="Data (/data)"/>
         <Preference
                 android:key="space_ext"
                 android:title="External (/sd-ext)"/>

@@ -21,8 +21,10 @@
     <string name="size">Size</string>
     <string name="used">Used</string>
     <string name="free">Free</string>
-    <string name="kb">Kb</string>
-    <string name="mb">Mb</string>
+    <string name="kb">KB</string>
+    <string name="mb">MB</string>
+    <string name="move">Moving from %1$s to %2$s</string>
+	<string name="reboot_required">Reboot is required!</string>
 
     <!--Alerts-->
     <string name="exit">Exit</string>

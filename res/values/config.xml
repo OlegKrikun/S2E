@@ -2,11 +2,11 @@
 <resources>
 
     <string name="app_name">S2E</string>
-    <string name="app_version">0.3.2</string>
-    <string name="app_name_full">S2E (simple2ext) 0.3.2</string>
+    <string name="app_version">0.4.0</string>
+    <string name="app_name_full">S2E (simple2ext) 0.4.0</string>
     <string name="app_by">©2011 Krikun.Ru (by OlegKrikun)</string>
 
-    <string name="script_version">R3.1</string>
-    <string name="script_version_md5">cfe29de5b00d721052c3474b97d796fc</string>
+    <string name="script_version">R4</string>
+    <string name="script_version_md5">ca13832a222d345dc7e455d4c58a1247</string>
 
 </resources>

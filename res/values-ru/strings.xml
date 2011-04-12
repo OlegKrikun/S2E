@@ -20,8 +20,10 @@
     <string name="size">Размер</string>
     <string name="used">Занято</string>
     <string name="free">Свободно</string>
-    <string name="kb">Кб</string>
-    <string name="mb">Мб</string>
+    <string name="kb">КБ</string>
+    <string name="mb">МБ</string>
+    <string name="move">Перемещение из %1$s в %2$s</string>
+	<string name="reboot_required">Требуется перезагрузка!</string>
 
     <!--Alerts-->
     <string name="exit">Выход</string>
