@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent"
+			  android:orientation="vertical">
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				 android:layout_width="fill_parent"
+				 android:layout_height="wrap_content"
+				 android:layout_weight="0"
+				 android:stretchColumns="4"
+				 android:background="#585858">
+		<View android:layout_height="1dip" android:background="#888"/>
+		<TableRow>
+			<View android:layout_width="1dip" android:layout_height="40dip" android:background="#888"/>
+			<TextView
+					android:text="S2E"
+					android:textColor="#FFF"
+					android:textSize="20sp"
+					android:textStyle="bold"
+					android:layout_width="wrap_content" android:layout_height="40dip"
+					android:padding="5dip"/>
+			<View android:layout_width="1dip" android:layout_height="40dip" android:background="#333"/>
+			<View android:layout_width="1dip" android:layout_height="40dip" android:background="#888"/>
+			<TextView
+					android:id="@+id/title_line"
+					android:clickable="true"
+					android:textColor="#FFF"
+					android:gravity="right"
+					android:textSize="15sp"
+					android:textStyle="bold"
+					android:layout_width="wrap_content"
+					android:padding="3dip"/>
+			<View android:layout_width="1dip" android:layout_height="40dip" android:background="#333"/>
+		</TableRow>
+		<View android:layout_height="1dip" android:background="#333"/>
+	</TableLayout>
+
+	<ListView android:id="@android:id/list"
+			  android:layout_weight="1"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent"/>
+	<View android:layout_height="1dip" android:layout_width="fill_parent" android:background="#888"/>
+	<View android:layout_height="3dip" android:layout_width="fill_parent" android:background="#585858"/>
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:background="#585858"
+			android:gravity="center"
+			android:padding="2dip">
+		<Button android:text="@string/refresh"
+				android:id="@+id/refresh_button"
+				android:focusable="true"
+				android:enabled="true"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="1"/>
+		<Button android:text="@string/info"
+				android:id="@+id/info_button"
+				android:focusable="true"
+				android:enabled="true"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="1"/>
+		<Button android:text="@string/reboot"
+				android:id="@+id/reboot_button"
+				android:focusable="true"
+				android:enabled="true"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="1"/>
+	</LinearLayout>
+</LinearLayout>

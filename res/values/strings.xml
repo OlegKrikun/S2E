@@ -3,20 +3,20 @@
 
     <!--About-->
     <string name="label">S2E: app2sd for CyanogenMod7</string>
-    <string name="ver">Version</string>
     <string name="about">About</string>
     <string name="credits">Credits</string>
     <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class \"ShellInterface\")</string>
+    <string name="credit__cm_summary">Many thanks to CyanogenMod team for great ROM and especially Alexander Hofbauer for supporting HTC Legend</string>
+    <string name="credit__pv_summary">Many thanks to Pavel Volkov for testing S2E</string>
+    <string name="translators">Translators</string>
 
     <!--MainScreen-->
-    <string name="status">Status</string>
-    <string name="spaces">Free space</string>
     <string name="apps">Applications</string>
     <string name="private_apps">Private apps</string>
+    <string name="app_data">Application Data</string>
+    <string name="caches">Caches</string>
     <string name="dalvik_cache">Dalvik cache</string>
     <string name="download_cache">Download cache</string>
-    <string name="script_versions">Script version:</string>
-    <string name="move_to_ext">Move to sd-ext...</string>
     <string name="location">Location</string>
     <string name="size">Size</string>
     <string name="used">Used</string>
@@ -25,19 +25,21 @@
     <string name="mb">MB</string>
     <string name="move">Moving from %1$s to %2$s</string>
 	<string name="reboot_required">Reboot is required!</string>
+    <string name="reboot">Reboot</string>
+	<string name="refresh">Refresh</string>
+	<string name="info">Info</string>
 
     <!--Alerts-->
     <string name="exit">Exit</string>
-    <string name="alert_script_message">Script is not installed, contact the application developer.</string>
     <string name="alert_script_title">Script not installed</string>
 
     <!--Settings-->
     <string name="settings">Settings</string>
-    <string name="setting_logging">Write log</string>
-    <string name="setting_logging__summary">Write script log to /sdcard/s2e.log</string>
-    <string name="setting_mount">Mount as ext4</string>
-
-    <!--etc-->
-    <string name="cs">coming soon</string>
+    <string name="general_options">General options</string>
+    <string name="ui_not_recommended_title">Advanced mode</string>
+    <string name="ui_not_recommended_summary">Enable NOT recommended item for moving to sd-ext</string>
+	<string name="mount_options">Mount options</string>
+	<string name="setting_mount">Mount as ext4</string>
+	<string name="setting_mount_summary">Mount sd-ext as ext4 without journaling</string>
 
 </resources>

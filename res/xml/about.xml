@@ -4,12 +4,24 @@
             android:title="@string/app_name_full"
             android:summary="@string/app_by"
             android:enabled="true"/>
-    <Preference
-            android:key="script_status"/>
     <PreferenceCategory android:title="@string/credits">
+        <Preference
+                android:title="CyanogenMod"
+                android:summary="@string/credit__cm_summary"
+                android:enabled="true"/>
         <Preference
                 android:title="CrazyCoder"
                 android:summary="@string/credit__summary"
+                android:enabled="true"/>
+        <Preference
+                android:title="Pavel Volkov"
+                android:summary="@string/credit__pv_summary"
+                android:enabled="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/translators">
+        <Preference
+                android:title="AntonioPT"
+                android:summary="Portuguese"
                 android:enabled="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

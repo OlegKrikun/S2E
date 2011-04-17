@@ -1,22 +1,56 @@
 #!/system/bin/sh
 
-# Initialization and checks
-echo "S2E: Initialization..."
+# Initialization, checks and mounts ####################################################################################
 
-S2E_PREF='/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
-S2E_STATUS='/data/data/ru.krikun.s2e/status'
-LOGGING_CHECK=`grep -q "name=\"advanced_log\" value=\"true\"" $S2E_PREF;echo $?`
-LOG='/sdcard/s2e.log'
+# Initialization
+echo "S2E: Initialization..."
 
 if [ "$SD_EXT_DIRECTORY" = "" ];
 then
 	SD_EXT_DIRECTORY=/sd-ext
 fi
+
+S2E_CONFIG_DIR='/data/local/s2e_config/'
+EXTPART='/dev/block/mmcblk0p2'
+
+if [ -e "$S2E_CONFIG_DIR.mounts_ext4" ]
+then
+    if [ "`egrep -q $SD_EXT_DIRECTORY /proc/mounts;echo $?`" = "0" ];
+    then
+        umount $SD_EXT_DIRECTORY
+    fi
+    tune2fs -O extents,uninit_bg,dir_index $EXTPART
+    e2fsck -yf $EXTPART
+    tune2fs -o journal_data_writeback $EXTPART
+    tune2fs -O ^has_journal $EXTPART
+    mount -t ext4 -o nobh,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev,data=writeback $EXTPART $SD_EXT_DIRECTORY
+
+fi
+
 if [ "`egrep -q $SD_EXT_DIRECTORY /proc/mounts;echo $?`" != "0" ];
 then
-	echo "S2E: $SD_EXT_DIRECTORY not mounted... Exit!"
-	exit
+    echo "S2E: $SD_EXT_DIRECTORY not mounted... Exit!"
+    exit
 fi
+
+
+if [ -e '/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml' ];
+then
+    S2E_PREF='/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
+    S2E_STATUS='/data/data/ru.krikun.s2e/status'
+    echo "S2E: Config found on /data/data"
+else
+    if [ -e '/sd-ext/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml' ];
+    then
+        S2E_PREF='/sd-ext/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
+        S2E_STATUS='/sd-ext/data/ru.krikun.s2e/status'
+        echo "S2E: Config found on /sd-ext/data"
+    else
+        echo "S2E: Config not found... Exit!"
+	    exit
+    fi
+fi
+
 if [ ! -e $S2E_STATUS ];
 then
     mkdir  $S2E_STATUS
@@ -25,6 +59,8 @@ if [ ! -L $S2E_STATUS ];
 then
     rm -rf $S2E_STATUS/*
 fi
+
+# Moving items #########################################################################################################
 
 # Apps and Private Apps
 for dir in app app-private;
@@ -81,6 +117,56 @@ for dir in app app-private;
         fi
     fi
 done
+
+# Data
+CONFIG=`grep -q "name=\"data\" value=\"true\"" $S2E_PREF;echo $?`
+if [ "$CONFIG" = "0" ];
+then
+    if [ "`egrep -q \"/data/data\" /proc/mounts;echo $?`" != "0" ];
+    then
+        if [ ! -e "$SD_EXT_DIRECTORY/data" ];
+        then
+            mkdir $SD_EXT_DIRECTORY/data
+            chown system:system $SD_EXT_DIRECTORY/data
+            chmod 0771 $SD_EXT_DIRECTORY/data
+        fi
+        if [ ! -L "/data/data" ];
+        then
+            mv /data/data/* $SD_EXT_DIRECTORY/data
+            rm -rf /data/data/*
+        fi
+
+        chown system:system /data/data
+        chmod 0771 /data/data
+        mount -o bind $SD_EXT_DIRECTORY/data/ /data/data
+
+        if [ "`egrep -q \"/data/data\" /proc/mounts;echo $?`" = "0" ];
+        then
+
+            echo "S2E: $SD_EXT_DIRECTORY/data mount as /data/data"
+            touch $S2E_STATUS/data
+        else
+            echo "S2E: $SD_EXT_DIRECTORY/data not mount..."
+        fi
+    else
+        echo "S2E: $SD_EXT_DIRECTORY/data already mount..."
+    fi
+else
+    if [ -e "$SD_EXT_DIRECTORY/data" ];
+    then
+        if [ ! -L "$SD_EXT_DIRECTORY/data" ];
+        then
+            mv $SD_EXT_DIRECTORY/data/* /data/data/
+            rm -rf $SD_EXT_DIRECTORY/data
+        fi
+        if [ -e '/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml' ];
+        then
+            S2E_PREF='/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
+            S2E_STATUS='/data/data/ru.krikun.s2e/status'
+            echo "S2E: Config now on /data/data"
+        fi
+    fi
+fi
 
 # Dalvik-Cache
 CONFIG=`grep -q "name=\"dalvik-cache\" value=\"true\"" $S2E_PREF;echo $?`
@@ -160,5 +246,5 @@ else
     fi
 fi
 
-# Finish
+# Finish ###############################################################################################################
 echo "S2E: Done!"

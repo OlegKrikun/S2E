@@ -2,20 +2,20 @@
 <resources>
     <!--About-->
     <string name="label">S2E: app2sd для CyanogenMod7</string>
-    <string name="ver">Версия</string>
     <string name="about">О программе</string>
     <string name="credits">Спасибо</string>
     <string name="credit__summary">Большое спасибо CrazyCoder за поддержку и терпение (и класс \"ShellInterface\")</string>
+    <string name="credit__cm_summary">Большое спасибо команде CyanogenMod за замечательную прошивку и отдельно Alexander Hofbauer за поддержку HTC Legend</string>
+    <string name="credit__pv_summary">Спасибо большое Паше Волкову за тестирование S2E</string>
+    <string name="translators">Переводчики</string>
 
     <!--MainScreen-->
-    <string name="status">Статус</string>
-    <string name="spaces">Свободное место</string>
     <string name="apps">Приложения</string>
     <string name="private_apps">Приватные приложения</string>
+    <string name="app_data">Данные приложений</string>
+    <string name="caches">Кэшы</string>
     <string name="dalvik_cache">Кэш Dalvik</string>
     <string name="download_cache">Кэш загрузок</string>
-    <string name="script_versions">Версия скрипта:</string>
-    <string name="move_to_ext">Переместить на sd-ext...</string>
     <string name="location">Расположение</string>
     <string name="size">Размер</string>
     <string name="used">Занято</string>
@@ -24,15 +24,21 @@
     <string name="mb">МБ</string>
     <string name="move">Перемещение из %1$s в %2$s</string>
 	<string name="reboot_required">Требуется перезагрузка!</string>
+    <string name="reboot">Перезагрузить</string>
+	<string name="refresh">Обновить</string>
+	<string name="info">Инфо</string>
 
     <!--Alerts-->
     <string name="exit">Выход</string>
-    <string name="alert_script_message">Скрипт не установлен, свяжитесь с разработчиком приложения.</string>
     <string name="alert_script_title">Скрипт не установлен</string>
 
     <!--Settings-->
     <string name="settings">Настройки</string>
-    <string name="setting_logging">Писать лог</string>
-    <string name="setting_logging__summary">Писать лог скрипта в /sdcard/s2e.log</string>
+    <string name="general_options">Основные настройки</string>
+	<string name="ui_not_recommended_title">Расширенный режим</string>
+    <string name="ui_not_recommended_summary">Включить НЕ рекомендованые пункты для перемещения на sd-ext</string>
+    <string name="mount_options">Настройки монтирования</string>
+	<string name="setting_mount">Монтировать как ext4</string>
+	<string name="setting_mount_summary">Монтировать sd-ext как ext4 без журналирования</string>
 
 </resources>

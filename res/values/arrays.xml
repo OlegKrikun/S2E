@@ -5,6 +5,7 @@
     <string-array name="targets" translatable="false">
         <item>app</item>
         <item>app-private</item>
+        <item>data</item>
         <item>dalvik-cache</item>
         <item>download</item>
     </string-array>
@@ -13,6 +14,20 @@
         <item>data</item>
         <item>sd-ext</item>
         <item>cache</item>
+    </string-array>
+
+    <string-array name="mounts">
+        <item>System mount</item>
+        <item>ext2</item>
+        <item>ext4</item>
+        <item>ext4: disable journaling</item>
+    </string-array>
+
+    <string-array name="mountsValues" translatable="false">
+        <item>mounts_disable</item>
+        <item>mounts_ext2</item>
+        <item>mounts_ext4</item>
+        <item>mounts_ext4_not_journal</item>
     </string-array>
 
 </resources>
