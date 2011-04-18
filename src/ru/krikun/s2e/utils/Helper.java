@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Helper {
 
-    private static final String MD5 = "24207dbfcc69356ac4decd57679ae255";
+    private static final String MD5 = "bd449b15419aba74806202a2253d9f53";
     private static final String SCRIPT_DIST = "/data/local/userinit.d/simple2ext";
     private static final String S2E_CONFIG_DIR = "/data/local/s2e_config";
     private static final String S2E_DIR = "/data/data/ru.krikun.s2e";
@@ -110,15 +110,44 @@ public class Helper {
         } else return true;
     }
 
+    private static void createFile(String filePath) {
+        if (ShellInterface.isSuAvailable()) ShellInterface.runCommand("touch " + filePath);
+    }
+
+    private static void deleteFile(String filePath) {
+        if (checkFileExists(filePath)) {
+            if (ShellInterface.isSuAvailable()) ShellInterface.runCommand("rm " + filePath);
+        }
+    }
+
+    private static void writeToFile(String filePath, String string) {
+        if (checkFileExists(filePath)) {
+            if (ShellInterface.isSuAvailable()) ShellInterface.runCommand("echo " + string + " > " + filePath);
+        }
+    }
+
     public static void createMountFile(String fileName) {
         String mountFile = S2E_CONFIG_DIR + "/." + fileName;
-        if (ShellInterface.isSuAvailable()) ShellInterface.runCommand("touch " + mountFile);
+        createFile(mountFile);
     }
 
     public static void deleteMountFile(String fileName) {
         String mountFile = S2E_CONFIG_DIR + "/." + fileName;
-        if (checkFileExists(mountFile)) {
-            if (ShellInterface.isSuAvailable()) ShellInterface.runCommand("rm " + mountFile);
-        }
+        deleteFile(mountFile);
+    }
+
+    public static void createReadAheadFile() {
+        String readAheadFile = S2E_CONFIG_DIR + "/.read_ahead";
+        createFile(readAheadFile);
+    }
+
+    public static void deleteReadAheadFile() {
+        String readAheadFile = S2E_CONFIG_DIR + "/.read_ahead";
+        deleteFile(readAheadFile);
+    }
+
+    public static void writeReadAheadValue(String value) {
+        String readAheadFile = S2E_CONFIG_DIR + "/.read_ahead";
+        writeToFile(readAheadFile, value);
     }
 }

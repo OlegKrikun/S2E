@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--<PreferenceCategory android:title="@string/status">-->
-        <!--<PreferenceScreen-->
-                <!--android:key="partitions"-->
-                <!--android:title="@string/spaces">-->
-            <!--<Preference-->
-                    <!--android:key="space_data"-->
-                    <!--android:title="Data (/data)"/>-->
-            <!--<Preference-->
-                    <!--android:key="space_ext"-->
-                    <!--android:title="External (/sd-ext)"/>-->
-            <!--<Preference-->
-                    <!--android:key="space_cache"-->
-                    <!--android:title="Cache (/cache)"/>-->
-        <!--</PreferenceScreen>-->
-    <!--</PreferenceCategory>-->
     <PreferenceCategory android:title="@string/apps">
         <CheckBoxPreference
                 android:title="@string/apps"

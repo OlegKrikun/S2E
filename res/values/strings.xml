@@ -38,8 +38,12 @@
     <string name="general_options">General options</string>
     <string name="ui_not_recommended_title">Advanced mode</string>
     <string name="ui_not_recommended_summary">Enable NOT recommended item for moving to sd-ext</string>
-	<string name="mount_options">Mount options</string>
+	<string name="boot_options">Boot options</string>
 	<string name="setting_mount">Mount as ext4</string>
 	<string name="setting_mount_summary">Mount sd-ext as ext4 without journaling</string>
+    <string name="set_read_ahead">Set read buffer</string>
+    <string name="set_read_ahead_summary">Set read buffer for SD card</string>
+    <string name="read_ahead_values">Buffer size</string>
+    <string name="read_ahead_values_symmary">A value of 2MB is the best practice</string>
 
 </resources>

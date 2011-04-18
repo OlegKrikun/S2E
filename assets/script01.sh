@@ -13,6 +13,12 @@ fi
 S2E_CONFIG_DIR='/data/local/s2e_config/'
 EXTPART='/dev/block/mmcblk0p2'
 
+
+if [ -e "$S2E_CONFIG_DIR.read_ahead" ]
+then
+    cat $S2E_CONFIG_DIR.read_ahead > /sys/devices/virtual/bdi/179:0/read_ahead_kb
+fi
+
 if [ -e "$S2E_CONFIG_DIR.mounts_ext4" ]
 then
     if [ "`egrep -q $SD_EXT_DIRECTORY /proc/mounts;echo $?`" = "0" ];
@@ -23,7 +29,7 @@ then
     e2fsck -yf $EXTPART
     tune2fs -o journal_data_writeback $EXTPART
     tune2fs -O ^has_journal $EXTPART
-    mount -t ext4 -o nobh,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev,data=writeback $EXTPART $SD_EXT_DIRECTORY
+    mount -t ext4 -o commit=19,barrier=0,nobh,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev,data=writeback $EXTPART $SD_EXT_DIRECTORY
 
 fi
 

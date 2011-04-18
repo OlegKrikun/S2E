@@ -8,11 +8,24 @@
 				android:key="not_recommended"/>
 	</PreferenceCategory>
 
-	<PreferenceCategory android:title="@string/mount_options">
+	<PreferenceCategory android:title="@string/boot_options">
 		<CheckBoxPreference
 				android:title="@string/setting_mount"
 				android:defaultValue="false"
 				android:summary="@string/setting_mount_summary"
 				android:key="mounts_ext4"/>
+        <CheckBoxPreference
+				android:title="@string/set_read_ahead"
+				android:defaultValue="false"
+				android:summary="@string/set_read_ahead_summary"
+				android:key="set_read_ahead"/>
+        <ListPreference
+                        android:title="@string/read_ahead_values"
+                        android:summary="@string/read_ahead_values_symmary"
+                        android:dependency="set_read_ahead"
+                        android:defaultValue="2048"
+                        android:key="read_ahead_values"
+                        android:entries="@array/read_ahead"
+                        android:entryValues="@array/read_ahead_Values" />
 	</PreferenceCategory>
 </PreferenceScreen>

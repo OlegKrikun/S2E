@@ -37,8 +37,12 @@
     <string name="general_options">Основные настройки</string>
 	<string name="ui_not_recommended_title">Расширенный режим</string>
     <string name="ui_not_recommended_summary">Включить НЕ рекомендованые пункты для перемещения на sd-ext</string>
-    <string name="mount_options">Настройки монтирования</string>
+    <string name="mount_options">Настройки загрузки</string>
 	<string name="setting_mount">Монтировать как ext4</string>
 	<string name="setting_mount_summary">Монтировать sd-ext как ext4 без журналирования</string>
+    <string name="set_read_ahead">Установить буфер чтения</string>
+    <string name="set_read_ahead_summary">Установить буфер чтения SD карты</string>
+    <string name="read_ahead_values">Размер буфера</string>
+    <string name="read_ahead_values_symmary">Значение в 2MБ является наилучшей практикой</string>
 
 </resources>
