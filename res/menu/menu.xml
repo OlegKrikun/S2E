@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+	<item android:id="@+id/refresh"
+		  android:icon="@drawable/ic_menu_refresh"
+		  android:title="@string/refresh"/>
+	<item android:id="@+id/info"
+		  android:icon="@android:drawable/ic_menu_sort_by_size"
+		  android:title="@string/info"/>
+	<item android:id="@+id/reboot"
+		  android:icon="@drawable/ic_lock_reboot"
+		  android:title="@string/reboot"/>
 	<item android:id="@+id/settings"
-          android:icon="@android:drawable/ic_menu_preferences"
-          android:title="@string/settings" />
-    <item android:id="@+id/about"
-          android:icon="@android:drawable/ic_menu_info_details"
-          android:title="@string/about" />
+		  android:icon="@android:drawable/ic_menu_preferences"
+		  android:title="@string/settings"/>
+	<item android:id="@+id/myapps"
+		  android:icon="@drawable/ic_menu_star"
+		  android:title="@string/myapps"/>
+	<item android:id="@+id/about"
+		  android:icon="@android:drawable/ic_menu_info_details"
+		  android:title="@string/about"/>
 
 </menu>

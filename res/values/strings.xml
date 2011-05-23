@@ -5,8 +5,12 @@
     <string name="label">S2E: app2sd for CyanogenMod7</string>
     <string name="about">About</string>
     <string name="credits">Credits</string>
-    <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class \"ShellInterface\")</string>
-    <string name="credit__cm_summary">Many thanks to CyanogenMod team for great ROM and especially Alexander Hofbauer for supporting HTC Legend</string>
+    <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class
+        \"ShellInterface\")
+    </string>
+    <string name="credit__cm_summary">Many thanks to CyanogenMod team for great ROM and especially Alexander Hofbauer
+        for supporting HTC Legend
+    </string>
     <string name="credit__pv_summary">Many thanks to Pavel Volkov for testing S2E</string>
     <string name="translators">Translators</string>
 
@@ -24,10 +28,16 @@
     <string name="kb">KB</string>
     <string name="mb">MB</string>
     <string name="move">Moving from %1$s to %2$s</string>
-	<string name="reboot_required">Reboot is required!</string>
+    <string name="reboot_required">Reboot is required!</string>
     <string name="reboot">Reboot</string>
-	<string name="refresh">Refresh</string>
-	<string name="info">Info</string>
+    <string name="refresh">Refresh</string>
+    <string name="info">Information</string>
+    <string name="myapps">My Apps</string>
+    <string name="refreshing">Refreshing...</string>
+    <string name="fs_title">FreeSpace not found</string>
+    <string name="fs_msg">S2E can show detailed information about partitions usage.\n\nTo do this you need to install\nFreeSpace or FreeSpace Plus.</string>
+    <string name="fs_install">Install FreeSpace</string>
+    <string name="fs_dont">Don\'t ask more</string>
 
     <!--Alerts-->
     <string name="exit">Exit</string>
@@ -38,12 +48,14 @@
     <string name="general_options">General options</string>
     <string name="ui_not_recommended_title">Advanced mode</string>
     <string name="ui_not_recommended_summary">Enable NOT recommended item for moving to sd-ext</string>
-	<string name="boot_options">Boot options</string>
-	<string name="setting_mount">Mount as ext4</string>
-	<string name="setting_mount_summary">Mount sd-ext as ext4 without journaling</string>
+    <string name="boot_options">Boot options</string>
+    <string name="setting_mount">Mount as ext4</string>
+    <string name="setting_mount_summary">Mount sd-ext as ext4 without journaling</string>
     <string name="set_read_ahead">Set read buffer</string>
     <string name="set_read_ahead_summary">Set read buffer for SD card</string>
     <string name="read_ahead_values">Buffer size</string>
     <string name="read_ahead_values_symmary">A value of 2MB is the best practice</string>
+    <string name="fs_pref">Extended partitions info</string>
+    <string name="fs_pref_summary">Launch FreeSpace instead of integrated information</string>
 
 </resources>

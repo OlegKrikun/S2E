@@ -23,5 +23,9 @@
                 android:title="AntonioPT"
                 android:summary="Portuguese"
                 android:enabled="true"/>
+        <Preference
+                android:title="ZercosZ"
+                android:summary="Spanish"
+                android:enabled="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

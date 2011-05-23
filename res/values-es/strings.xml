@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--About-->
+    <string name="label">S2E: app2sd para CyanogenMod7</string>
+    <string name="about">Acerca de</string>
+    <string name="credits">Creditos</string>
+    <string name="credit__summary">Muchas gracias a CrazyCoder por su apoyo y paciencia (y explicacion del \"ShellInterface\")</string>
+    <string name="credit__cm_summary">Muchas gracias al equipo de CyanogenMod por su gran ROM y especialmente a Alexander Hofbauer por ayudar con el HTC Legend</string>
+    <string name="credit__pv_summary">Muchas gracias a Pavel Volkov por testear S2E</string>
+    <string name="translators">Traductores</string>
+
+    <!--MainScreen-->
+    <string name="apps">Aplicaciones</string>
+    <string name="private_apps">Aplicaciones Privadas</string>
+    <string name="app_data">Datos de aplicaciones</string>
+    <string name="caches">Caches</string>
+    <string name="dalvik_cache">Dalvik Cache</string>
+    <string name="download_cache">Cache de Descargas</string>
+    <string name="location">Localizacion</string>
+    <string name="size">Tamaño</string>
+    <string name="used">Usado</string>
+    <string name="free">Libre</string>
+    <string name="kb">KB</string>
+    <string name="mb">MB</string>
+    <string name="move">Moviendo de %1$s a %2$s</string>
+	<string name="reboot_required">¡Reiniciar es necesario!</string>
+    <string name="reboot">Reiniciar</string>
+	<string name="refresh">Actualizar</string>
+	<string name="info">Info</string>
+
+    <!--Alerts-->
+    <string name="exit">Salir</string>
+    <string name="alert_script_title">El Script no esta instalado</string>
+
+    <!--Settings-->
+    <string name="settings">Configuracion</string>
+    <string name="general_options">Opciones generales</string>
+    <string name="ui_not_recommended_title">Modo avanzado</string>
+    <string name="ui_not_recommended_summary">Activacion NO recomendada. Mover datos de aplicacion a sd-ext.</string>
+	<string name="boot_options">Opciones de arranque</string>
+	<string name="setting_mount">Montar como ext4</string>
+	<string name="setting_mount_summary">Montar sd-ext como ext4 sin journaling</string>
+    <string name="set_read_ahead">Establecer buffer de lectura</string>
+    <string name="set_read_ahead_summary">Establecer buffer de lectura para tarjeta SD</string>
+    <string name="read_ahead_values">Tamaño del Buffer</string>
+    <string name="read_ahead_values_symmary">Un valor de 2 MB es la mejor eleccion</string>
+
+</resources>

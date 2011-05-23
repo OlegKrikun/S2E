@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">S2E</string>
-    <string name="app_version">0.5.5</string>
-    <string name="app_name_full">S2E (simple2ext) 0.5.5</string>
-    <string name="app_by">©2011 Krikun.Ru (by OlegKrikun)</string>
+    <string name="app_version">1.0.0</string>
+    <string name="app_name_full">S2E (simple2ext) 1.0.0</string>
+    <string name="app_by">©2011 OlegKrikun</string>
 
 </resources>
