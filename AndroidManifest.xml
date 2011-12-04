@@ -5,7 +5,7 @@
       android:versionCode="11"
       android:versionName="@string/app_version">
 
-    <application android:label="S2E" android:icon="@drawable/icon">
+    <application android:label="S2E" android:icon="@drawable/ic_launcher">
         <activity android:name="Main" android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
