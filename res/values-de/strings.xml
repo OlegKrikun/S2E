@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--About-->
+    <string name="label">S2E: app2sd für CyanogenMod7</string>
+    <string name="about">Über</string>
+    <string name="credits">Credits</string>
+    <string name="credit__summary">Vielen Dank an CrazyCoder für seine Unterstützung und Geduld (und die \"ShellInterface\"-Klasse)
+    </string>
+    <string name="credit__cm_summary">Vielen Dank an das CyanogenMod-Team für ein großartiges ROM und besonders Alexander Hofbauer
+        für den HTC Legend Support
+    </string>
+    <string name="credit__pv_summary">Vielen Dank an für das Testen von S2E an Pavel Volkov</string>
+    <string name="translators">Übersetzer</string>
+
+    <!--MainScreen-->
+    <string name="apps">Anwendungen</string>
+    <string name="private_apps">Private Apps</string>
+    <string name="app_data">Anwendungsdaten</string>
+    <string name="caches">Cache</string>
+    <string name="dalvik_cache">Dalvik Cache</string>
+    <string name="download_cache">Download Cache</string>
+    <string name="location">Location</string>
+    <string name="size">Größe</string>
+    <string name="used">Benutzt</string>
+    <string name="free">Frei</string>
+    <string name="kb">KB</string>
+    <string name="mb">MB</string>
+    <string name="move">Verschiebeg von %1$s nach %2$s</string>
+    <string name="reboot_required">Neustart erforderlich!!</string>
+    <string name="reboot">Neustart</string>
+    <string name="refresh">Neu laden</string>
+    <string name="info">Informationen</string>
+    <string name="myapps">Mehr Apps</string>
+    <string name="refreshing">...</string>
+    <string name="fs_title">FreeSpace nicht gefunden</string>
+    <string name="fs_msg">S2E kann detailierte Informationen über die Partitionen anzeigen.\n\nUm dies nutzen zu können müssen Sie FreeSpace oder FreeSpace Plus installieren.</string>
+    <string name="fs_install">FreeSpace installieren</string>
+    <string name="fs_dont">Nicht wieder fragen</string>
+
+    <!--Alerts-->
+    <string name="exit">Beenden</string>
+    <string name="alert_script_title">Skript nicht installiert</string>
+
+    <!--Settings-->
+    <string name="settings">Einstellungen</string>
+    <string name="general_options">Allgemeine Optionen</string>
+    <string name="ui_not_recommended_title">Experten Optionen</string>
+    <string name="ui_not_recommended_summary">Awendungsdaten auf sd-ext verschieben. (NICHT empfohlen)</string>
+    <string name="boot_options">Boot Optionen</string>
+    <string name="setting_mount">Als ext4 mounten</string>
+    <string name="setting_mount_summary">sd-ext als ext4 ohne Journaling mounten</string>
+    <string name="set_read_ahead">Lesepuffer aktivieren</string>
+    <string name="set_read_ahead_summary">Lesepuffer für die SD-Karte aktivieren</string>
+    <string name="read_ahead_values">Puffergröße</string>
+    <string name="read_ahead_values_symmary">Die empfohlene Größe ist 2MB</string>
+    <string name="fs_pref">Erweiterte Partitionsinfo</string>
+    <string name="fs_pref_summary">Starte FreeSpace anstatt die integrierten Informationen anzuzeigen</string>
+
+</resources>
