@@ -38,8 +38,8 @@
     <string name="fs_dont">Не спрашивать больше</string>
 
     <!--Alerts-->
-    <string name="exit">Выход</string>
     <string name="alert_script_title">Скрипт не установлен</string>
+	<string name="alert_root">Нету Root или не получен доступ</string>
 
     <!--Settings-->
     <string name="settings">Настройки</string>
@@ -55,5 +55,8 @@
     <string name="read_ahead_values_symmary">Значение в 2MБ является наилучшей практикой</string>
     <string name="fs_pref">Расширенная информация</string>
     <string name="fs_pref_summary">Запускать FreeSpace вместо показа встроенной информации</string>
+	<string name="import_title">Импорт</string>
+	<string name="import_symmary">Импорт данных из других скриптов app2sd. Тестировалось с Darktremor</string>
+	<string name="import_done">Импорт завершён! Перепрошейте CM7 для удаления других app2sd скриптов</string>
 
 </resources>

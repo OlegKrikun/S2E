@@ -66,6 +66,17 @@ then
     ${BB} rm -rf ${S2E_STATUS}/*
 fi
 
+for dir in app app-private data dalvik-cache;
+    do
+    RESULT=`${BB} readlink /data/${dir} | ${BB} grep ${SD_EXT_DIRECTORY}`
+    if [ ${RESULT} = "${SD_EXT_DIRECTORY}/${dir}" ]
+        then
+	        ${BB} rm -rf /data/${dir}
+	        ${BB} mkdir /data/${dir}
+    fi
+done
+
+
 # Moving items #########################################################################################################
 
 # Apps and Private Apps
