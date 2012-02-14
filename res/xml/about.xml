@@ -27,5 +27,9 @@
                 android:title="ZercosZ"
                 android:summary="Spanish"
                 android:enabled="true"/>
+        <Preference
+                android:title="Dolanor"
+                android:summary="French"
+                android:enabled="true"/>
     </PreferenceCategory>
 </PreferenceScreen>
