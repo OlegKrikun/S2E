@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!--About-->
+    <string name="label">S2E: CyanogenMod7 专用app2sd工具</string>
+    <string name="about">关於</string>
+    <string name="credits">鸣谢</string>
+    <string name="credit__summary">感谢CrazyCoder的支持与忍耐 (and class \"ShellInterface\")</string>
+    <string name="credit__cm_summary">感谢CyanogenMod开发团队的精心制作.特别感激 Alexander Hofbauer 对 HTC Legend开发和支持的贡献</string>
+    <string name="credit__pv_summary">感谢 Pavel Volkov 协助测试</string>
+    <string name="translators">翻译者</string>
+
+    <!--MainScreen-->
+    <string name="apps">应用程序</string>
+    <string name="private_apps">专用程序</string>
+    <string name="app_data">应用程序数据</string>
+    <string name="caches">系统缓存</string>
+    <string name="dalvik_cache">Dalvik 虚拟机缓存</string>
+    <string name="download_cache">下载缓存</string>
+    <string name="location">目的地</string>
+    <string name="size">尺寸</string>
+    <string name="used">使用中</string>
+    <string name="free">剩下</string>
+    <string name="kb">KB</string>
+    <string name="mb">MB</string>
+    <string name="move">由 %1$s 转到 %2$s</string>
+    <string name="reboot_required">请重启手机!</string>
+    <string name="reboot">重启</string>
+    <string name="refresh">刷新</string>
+    <string name="info">空间信息</string>
+    <string name="myapps">其它作品</string>
+    <string name="refreshing">刷新中...</string>
+    <string name="fs_title">FreeSpace 未安装</string>
+    <string name="fs_msg">S2E 可显示分区使用详细数据.\n\n使用相关功能需要安装\nFreeSpace 或 FreeSpace Plus.</string>
+    <string name="fs_install">安装 FreeSpace</string>
+    <string name="fs_dont">不要深究了</string>
+
+    <!--Alerts-->
+    <string name="alert_script_title">运行程序未安装到SD卡上</string>
+    <string name="alert_root">未取得ROOT权限</string>
+
+    <!--Settings-->
+    <string name="settings">设置</string>
+    <string name="general_options">一般设置</string>
+    <string name="ui_not_recommended_title">高级模式</string>
+    <string name="ui_not_recommended_summary">容许非预定数据(data/data)移到SD-EXT内</string>
+    <string name="boot_options">引导功能</string>
+    <string name="setting_mount">挂载为ext4</string>
+    <string name="setting_mount_summary">挂载为ext4(不带日志功能)</string>
+    <string name="set_read_ahead">预读缓存</string>
+    <string name="set_read_ahead_summary">设置sd卡缓读缓存</string>
+    <string name="read_ahead_values">缓存尺寸</string>
+    <string name="read_ahead_values_symmary">推荐使用2MB(能获得最佳性能)</string>
+    <string name="fs_pref">EXT 分区消息</string>
+    <string name="fs_pref_summary">使用Freespace代替内置功能</string>
+    <string name="import_title">导入</string>
+    <string name="import_symmary">从其它A2SD脚本导入数据.(通过测试:Darktremor) </string>
+    <string name="import_done">导入完成! 请重刷CM7以清除原本使用的A2SD脚本</string>
+</resources>
