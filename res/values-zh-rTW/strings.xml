@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name">S2E</string>
-    <string name="app_version">1.1.0</string>
-    <string name="app_name_full">S2E (simple2ext) 1.1.0</string>
-    <string name="app_by">©2011 OlegKrikun</string>
-    <string name="label">S2E: CyanogenMod 專用app2sd工具</string>
+
+    <!--About-->
+    <string name="label">S2E: CyanogenMod7 專用app2sd工具</string>
     <string name="about">關於</string>
     <string name="credits">鳴謝</string>
     <string name="credit__summary">感謝CrazyCoder的支持與忍耐 (and class \"ShellInterface\")</string>
     <string name="credit__cm_summary">感謝CyanogenMod開發團隊的精心制作.特別感激 Alexander Hofbauer 對 HTC Legend開發和支援的貢獻</string>
     <string name="credit__pv_summary">感謝 Pavel Volkov 協助測試</string>
     <string name="translators">介面翻譯者</string>
+
+    <!--MainScreen-->
     <string name="apps">應用程序</string>
     <string name="private_apps">專用程序</string>
     <string name="app_data">應用程序資料</string>
-    <string name="caches">緩存</string>
-    <string name="dalvik_cache">Dalvik cache</string>
+    <string name="caches">系統緩存</string>
+    <string name="dalvik_cache">Dalvik 虛擬機緩存</string>
     <string name="download_cache">下載緩存</string>
     <string name="location">目的地</string>
     <string name="size">大小</string>
@@ -30,12 +30,16 @@
     <string name="info">空間資訊</string>
     <string name="myapps">其他作品</string>
     <string name="refreshing">刷新中...</string>
-    <string name="fs_title">沒有發現任何可用空間</string>
+    <string name="fs_title">FreeSpace 未安裝</string>
     <string name="fs_msg">S2E 可顯示分區使用詳細資料.\n\n使用相關功能需要安裝\nFreeSpace 或 FreeSpace Plus.</string>
     <string name="fs_install">安裝 FreeSpace</string>
     <string name="fs_dont">不要深究了</string>
+
+    <!--Alerts-->
     <string name="alert_script_title">運行程序未安裝到SD卡上</string>
     <string name="alert_root">未取得ROOT權限</string>
+
+    <!--Settings-->
     <string name="settings">設定</string>
     <string name="general_options">一般設定</string>
     <string name="ui_not_recommended_title">進階模式</string>
@@ -49,4 +53,7 @@
     <string name="read_ahead_values_symmary">建議使用2MB(能獲得最佳效能)</string>
     <string name="fs_pref">EXT 分區訊息</string>
     <string name="fs_pref_summary">使用Freespace代替內置功能</string>
+    <string name="import_title">導入</string>
+    <string name="import_symmary">從其他A2SD腳本導入資料.(通過測試:Darktremor) </string>
+    <string name="import_done">導入完成! 請重刷CM7以清除原本使用的A2SD腳本</string>
 </resources>
