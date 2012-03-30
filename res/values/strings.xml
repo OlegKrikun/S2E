@@ -40,8 +40,8 @@
     <string name="fs_dont">Don\'t ask more</string>
 
     <!--Alerts-->
-    <string name="exit">Exit</string>
     <string name="alert_script_title">Script not installed</string>
+	<string name="alert_root">Root not available or access not given</string>
 
     <!--Settings-->
     <string name="settings">Settings</string>
@@ -57,5 +57,8 @@
     <string name="read_ahead_values_symmary">A value of 2MB is the best practice</string>
     <string name="fs_pref">Extended partitions info</string>
     <string name="fs_pref_summary">Launch FreeSpace instead of integrated information</string>
+	<string name="import_title">Import</string>
+	<string name="import_symmary">Import datas from other app2sd script. Tested with Darktremor</string>
+	<string name="import_done">Import done! Reflash CM7 to remove other app2sd scripts</string>
 
 </resources>

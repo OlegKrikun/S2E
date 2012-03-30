@@ -27,5 +27,13 @@
                 android:title="ZercosZ"
                 android:summary="Spanish"
                 android:enabled="true"/>
+        <Preference
+                android:title="Burst Lam"
+                android:summary="Traditional Chinese"
+                android:enabled="true"/>
+        <Preference
+                android:title="Max Liebkies"
+                android:summary="German"
+                android:enabled="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -12,4 +12,5 @@ public class About extends PreferenceActivity {
 
         addPreferencesFromResource(R.xml.about);
 	}
+
 }
