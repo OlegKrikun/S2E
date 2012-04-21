@@ -5,6 +5,8 @@
       android:versionCode="15"
       android:versionName="@string/app_version">
 
+    <uses-sdk android:maxSdkVersion="17" android:minSdkVersion="9" android:targetSdkVersion="14" />
+
     <application android:label="S2E" android:icon="@drawable/ic_launcher">
         <activity android:name="Main" android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
@@ -19,5 +21,4 @@
                   android:label="@string/about">
         </activity>
     </application>
-	<uses-sdk android:maxSdkVersion="10" android:minSdkVersion="9" />
-</manifest> 
+</manifest>
