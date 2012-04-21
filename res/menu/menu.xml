@@ -7,9 +7,6 @@
 	<item android:id="@+id/info"
 		  android:icon="@android:drawable/ic_menu_sort_by_size"
 		  android:title="@string/info"/>
-	<item android:id="@+id/reboot"
-		  android:icon="@drawable/ic_lock_reboot"
-		  android:title="@string/reboot"/>
 	<item android:id="@+id/settings"
 		  android:icon="@android:drawable/ic_menu_preferences"
 		  android:title="@string/settings"/>

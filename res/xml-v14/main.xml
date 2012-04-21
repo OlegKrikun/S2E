@@ -21,9 +21,5 @@
                 android:title="@string/dalvik_cache"
                 android:defaultValue="false"
                 android:key="dalvik-cache"/>
-        <CheckBoxPreference
-                android:title="@string/download_cache"
-                android:defaultValue="false"
-                android:key="download"/>
     </PreferenceCategory>
 </PreferenceScreen>

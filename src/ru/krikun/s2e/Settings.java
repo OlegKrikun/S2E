@@ -7,7 +7,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
-import ru.krikun.s2e.utils.Helper;
+import ru.krikun.s2e.Helper;
 
 public class Settings extends PreferenceActivity {
 

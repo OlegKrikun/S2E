@@ -33,7 +33,7 @@
     <string name="refresh">Refresh</string>
     <string name="info">Information</string>
     <string name="myapps">My Apps</string>
-    <string name="refreshing">Refreshing...</string>
+    <string name="refreshing">Refreshing…</string>
     <string name="fs_title">FreeSpace not found</string>
     <string name="fs_msg">S2E can show detailed information about partitions usage.\n\nTo do this you need to install\nFreeSpace or FreeSpace Plus.</string>
     <string name="fs_install">Install FreeSpace</string>
@@ -42,6 +42,7 @@
     <!--Alerts-->
     <string name="alert_script_title">Script not installed</string>
 	<string name="alert_root">Root not available or access not given</string>
+    <string name="alert_version">This android version not supported</string>
 
     <!--Settings-->
     <string name="settings">Settings</string>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/info"
+    android:icon="@android:drawable/ic_menu_info_details"
+    android:title="@string/info"
+    android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/refresh"
+          android:title="@string/refresh" />
+    <item android:id="@+id/settings"
+          android:title="@string/settings" />
+    <item android:id="@+id/myapps"
+          android:title="@string/myapps"/>
+    <item android:id="@+id/about"
+          android:title="@string/about"/>
+
+</menu>
