@@ -53,7 +53,7 @@
     <string name="fs_pref">EXT 分區訊息</string>
     <string name="fs_pref_summary">使用Freespace代替內置功能</string>
     <string name="import_title">導入</string>
-    <string name="import_symmary">從其他A2SD腳本導入資料.(通過測試:Darktremor) </string>
+    <string name="import_symmary">從其他A2SD腳本導入資料.(通過測試:Darktremor)</string>
     <string name="import_done">導入完成! 請重刷CM7以清除原本使用的A2SD腳本</string>
 
     <!--translate it-->

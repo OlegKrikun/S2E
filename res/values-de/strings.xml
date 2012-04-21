@@ -5,9 +5,11 @@
     <string name="label">S2E: app2sd für CyanogenMod7</string>
     <string name="about">Über</string>
     <string name="credits">Credits</string>
-    <string name="credit__summary">Vielen Dank an CrazyCoder für seine Unterstützung und Geduld (und die \"ShellInterface\"-Klasse)
+    <string name="credit__summary">Vielen Dank an CrazyCoder für seine Unterstützung und Geduld (und die
+        \"ShellInterface\"-Klasse)
     </string>
-    <string name="credit__cm_summary">Vielen Dank an das CyanogenMod-Team für ein großartiges ROM und besonders Alexander Hofbauer
+    <string name="credit__cm_summary">Vielen Dank an das CyanogenMod-Team für ein großartiges ROM und besonders
+        Alexander Hofbauer
         für den HTC Legend Support
     </string>
     <string name="credit__pv_summary">Vielen Dank an für das Testen von S2E an Pavel Volkov</string>
@@ -33,7 +35,9 @@
     <string name="info">Informationen</string>
     <string name="myapps">Mehr Apps</string>
     <string name="fs_title">FreeSpace nicht gefunden</string>
-    <string name="fs_msg">S2E kann detailierte Informationen über die Partitionen anzeigen.\n\nUm dies nutzen zu können müssen Sie FreeSpace oder FreeSpace Plus installieren.</string>
+    <string name="fs_msg">S2E kann detailierte Informationen über die Partitionen anzeigen.\n\nUm dies nutzen zu können
+        müssen Sie FreeSpace oder FreeSpace Plus installieren.
+    </string>
     <string name="fs_install">FreeSpace installieren</string>
     <string name="fs_dont">Nicht wieder fragen</string>
 

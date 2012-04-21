@@ -3,7 +3,6 @@ package ru.krikun.s2e;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import ru.krikun.s2e.Helper;
 
 import java.util.List;
 
@@ -78,7 +77,7 @@ public class Target {
 
     private int loadSize() {
         List<String> output = Helper.sendShell("busybox du -s " + path);
-        if(output != null) {
+        if (output != null) {
             String[] array = output.get(0).split("\\s");
             if (!array[0].equals("")) return Integer.parseInt(array[0]);
         }
@@ -92,10 +91,10 @@ public class Target {
 
     private int loadTargetStatus() {
 
-        boolean move =  prefs.getBoolean(targetName, false);
+        boolean move = prefs.getBoolean(targetName, false);
 
         // Если на INT и надо переместить на EXT
-        if (move && !displaced){
+        if (move && !displaced) {
             return TARGET_MOVE_TO_EXT;
         }
         // Если на EXT и надо переместить на INT
@@ -114,7 +113,7 @@ public class Target {
         }
     }
 
-    private String loadInternalPartition(){
+    private String loadInternalPartition() {
         if (targetName.equals("download")) return "/cache";
         else return "/data";
     }

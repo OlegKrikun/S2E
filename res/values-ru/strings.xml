@@ -33,7 +33,9 @@
     <string name="myapps">Мои прилож.</string>
     <string name="refreshing">Обновление…</string>
     <string name="fs_title">FreeSpace не найдена</string>
-    <string name="fs_msg">S2E может показывать расширенную информацию об использовании разделов.\n\nДля этого вам необходимо установить \nFreeSpace или FreeSpace Plus.</string>
+    <string name="fs_msg">S2E может показывать расширенную информацию об использовании разделов.\n\nДля этого вам
+        необходимо установить \nFreeSpace или FreeSpace Plus.
+    </string>
     <string name="fs_install">Установить FreeSpace</string>
     <string name="fs_dont">Не спрашивать больше</string>
 

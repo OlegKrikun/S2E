@@ -6,7 +6,9 @@
     <string name="ver">Versão</string>
     <string name="about">Sobre</string>
     <string name="credits">Créditos</string>
-    <string name="credit__summary">Muito obrigado CrazyCoder pela ajuda e pela paciência (e pela classe \"ShellInterface\")</string>
+    <string name="credit__summary">Muito obrigado CrazyCoder pela ajuda e pela paciência (e pela classe
+        \"ShellInterface\")
+    </string>
 
     <!--MainScreen-->
     <string name="status">Estado</string>

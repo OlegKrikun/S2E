@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -86,7 +85,7 @@ public class Main extends PreferenceActivity {
                 res.getString(R.string.reboot_required);
     }
 
-    private boolean checkFreeSpace(Target target, Partition partition, int sizeToPartition){
+    private boolean checkFreeSpace(Target target, Partition partition, int sizeToPartition) {
         int freeSpace = (int) (partition.getFree() - sizeToPartition - 1024);
         return Helper.compareSizes(target.getSize(), freeSpace);
     }
@@ -111,8 +110,8 @@ public class Main extends PreferenceActivity {
             }
             if (target.getStatus() == Target.TARGET_MOVE_TO_DATA)
                 sizeToData += target.getSize();
-                Log.d(Helper.TAG, "Found target: " + target.getTargetName() + " for move to DATA; Target size: "
-                        + String.valueOf(target.getSize()) + "; All size to EXT: " + String.valueOf(sizeToData));
+            Log.d(Helper.TAG, "Found target: " + target.getTargetName() + " for move to DATA; Target size: "
+                    + String.valueOf(target.getSize()) + "; All size to EXT: " + String.valueOf(sizeToData));
         }
     }
 

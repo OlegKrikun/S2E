@@ -2,7 +2,6 @@ package ru.krikun.s2e;
 
 import android.os.StatFs;
 import android.util.Log;
-import ru.krikun.s2e.Helper;
 
 import java.util.List;
 
