@@ -32,7 +32,6 @@
     <string name="refresh">Neu laden</string>
     <string name="info">Informationen</string>
     <string name="myapps">Mehr Apps</string>
-    <string name="refreshing">...</string>
     <string name="fs_title">FreeSpace nicht gefunden</string>
     <string name="fs_msg">S2E kann detailierte Informationen über die Partitionen anzeigen.\n\nUm dies nutzen zu können müssen Sie FreeSpace oder FreeSpace Plus installieren.</string>
     <string name="fs_install">FreeSpace installieren</string>

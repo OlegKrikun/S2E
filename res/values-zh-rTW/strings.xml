@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-
     <!--About-->
     <string name="label">S2E: CyanogenMod7 專用app2sd工具</string>
     <string name="about">關於</string>
@@ -29,7 +28,7 @@
     <string name="refresh">刷新</string>
     <string name="info">空間資訊</string>
     <string name="myapps">其他作品</string>
-    <string name="refreshing">刷新中...</string>
+    <string name="refreshing">刷新中…</string>
     <string name="fs_title">FreeSpace 未安裝</string>
     <string name="fs_msg">S2E 可顯示分區使用詳細資料.\n\n使用相關功能需要安裝\nFreeSpace 或 FreeSpace Plus.</string>
     <string name="fs_install">安裝 FreeSpace</string>
@@ -56,4 +55,7 @@
     <string name="import_title">導入</string>
     <string name="import_symmary">從其他A2SD腳本導入資料.(通過測試:Darktremor) </string>
     <string name="import_done">導入完成! 請重刷CM7以清除原本使用的A2SD腳本</string>
+
+    <!--translate it-->
+    <string name="alert_version">This android version not supported</string>
 </resources>

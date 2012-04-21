@@ -16,7 +16,7 @@
     <string name="dalvik_cache">Cache Dalvik</string>
     <string name="download_cache">Cache de downloads</string>
     <string name="script_versions">Versão do script:</string>
-    <string name="move_to_ext">Mover para sd-ext...</string>
+    <string name="move_to_ext">Mover para sd-ext…</string>
     <string name="location">Localização</string>
     <string name="size">Tamanho</string>
     <string name="used">Usado</string>
