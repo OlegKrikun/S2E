@@ -32,20 +32,20 @@ public class Partition {
     private long free = 0;
     private long used = 0;
 
-    public boolean isLoaded() {
-        return loaded;
+    public long getFree() {
+        return free;
     }
 
     public long getSize() {
         return size;
     }
 
-    public long getFree() {
-        return free;
-    }
-
     public long getUsed() {
         return used;
+    }
+
+    public boolean isLoaded() {
+        return loaded;
     }
 
     public Partition(String path) {
@@ -72,6 +72,20 @@ public class Partition {
         else loadOverAPI();
     }
 
+    private void loadOverAPI() {
+        try {
+            StatFs statFs = new StatFs(path);
+
+            long blockSize = statFs.getBlockSize();
+            size = (statFs.getBlockCount() * blockSize) / 1024L;
+            free = (statFs.getAvailableBlocks() * blockSize) / 1024L;
+            used = size - free;
+            loaded = true;
+        } catch (IllegalArgumentException er) {
+            Log.e(Helper.TAG, "IllegalArgumentException");
+        }
+    }
+
     private void loadOverShell() {
         List<String> output = Helper.sendShell("busybox df " + path);
 
@@ -84,20 +98,6 @@ public class Partition {
                 used = size - free;
                 loaded = true;
             }
-        }
-    }
-
-    private void loadOverAPI() {
-        try {
-            StatFs statFs = new StatFs(path);
-
-            long blockSize = statFs.getBlockSize();
-            size = (statFs.getBlockCount() * blockSize) / 1024L;
-            free = (statFs.getAvailableBlocks() * blockSize) / 1024L;
-            used = size - free;
-            loaded = true;
-        } catch (IllegalArgumentException er) {
-            Log.e(Helper.TAG, "IllegalArgumentException");
         }
     }
 }

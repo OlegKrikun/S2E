@@ -23,7 +23,7 @@
 
     <uses-sdk android:maxSdkVersion="17" android:minSdkVersion="9" android:targetSdkVersion="14"/>
 
-    <application android:label="S2E" android:icon="@drawable/ic_launcher">
+    <application android:label="S2E" android:icon="@drawable/ic_launcher" android:name=".App">
         <activity android:name="Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

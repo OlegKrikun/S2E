@@ -59,7 +59,7 @@
 
     <!--Alerts-->
     <string name="alert_script_title">Script not installed</string>
-    <string name="alert_root">Root not available or access not given</string>
+    <string name="alert_root">Root, busybox not available or access not given</string>
     <string name="alert_version">This android version not supported</string>
 
     <!--Settings-->

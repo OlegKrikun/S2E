@@ -52,10 +52,6 @@ public class Target {
         return internal;
     }
 
-    public String getTargetName() {
-        return targetName;
-    }
-
     public String getPath() {
         return path;
     }
@@ -66,6 +62,10 @@ public class Target {
 
     public int getStatus() {
         return status;
+    }
+
+    public String getTargetName() {
+        return targetName;
     }
 
     public Target(Context context, String target) {
@@ -80,11 +80,20 @@ public class Target {
 
         status = loadTargetStatus();
         size = loadSize();
-
     }
 
     public void updateStatus() {
         status = loadTargetStatus();
+    }
+
+    private String getPath(String target) {
+        if (target.equals("download")) return "/cache/" + target;
+        else return "/data/" + target;
+    }
+
+    private String loadInternalPartition() {
+        if (targetName.equals("download")) return "/cache";
+        else return "/data";
     }
 
     private boolean isDisplaced() {
@@ -100,13 +109,7 @@ public class Target {
         return 0;
     }
 
-    private String getPath(String target) {
-        if (target.equals("download")) return "/cache/" + target;
-        else return "/data/" + target;
-    }
-
     private int loadTargetStatus() {
-
         boolean move = prefs.getBoolean(targetName, false);
 
         // Если на INT и надо переместить на EXT
@@ -127,10 +130,5 @@ public class Target {
             if (targetName.equals("download")) return TARGET_ON_CACHE;
             else return TARGET_ON_DATA;
         }
-    }
-
-    private String loadInternalPartition() {
-        if (targetName.equals("download")) return "/cache";
-        else return "/data";
     }
 }

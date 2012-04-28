@@ -26,22 +26,12 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 public class Helper {
-    private static final String MD5 = "329fa77b73a113193342c5a6e46f0241";
-    private static final String SCRIPT_DIST = "/data/local/userinit.d/simple2ext";
-    private static final String S2E_CONFIG_DIR = "/data/local/s2e_config";
-    private static final String S2E_DIR = "/data/data/ru.krikun.s2e";
-    private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
 
     public static final String TAG = "S2E";
+    public static final String S2E_DIR = "/data/data/ru.krikun.s2e";
 
-    //Check root and busybox
-    public static boolean checkRoot() {
-        try {
-            return RootTools.isRootAvailable() && RootTools.isBusyboxAvailable() && RootTools.isAccessGiven();
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
+    private static final String S2E_CONFIG_DIR = "/data/local/s2e_config";
+    private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
 
     //Send command to shell
     //if return code equals 1, return null
@@ -71,40 +61,6 @@ public class Helper {
     public static boolean checkFileExists(String filePath) {
         File file = new File(filePath);
         return file.exists();
-    }
-
-    //Return md5sum of path
-    private static String getSum(String path) {
-        List<String> output = sendShell("busybox md5sum " + path);
-        if (output != null) {
-            if (output.get(0).length() >= 32) return output.get(0).substring(0, 32);
-        }
-        return null;
-    }
-
-    //Compare md5sum
-    private static boolean checkScriptSum() {
-        String tmp_md5 = getSum(SCRIPT_DIST);
-        return tmp_md5 != null && tmp_md5.equals(MD5);
-    }
-
-    //Check script exists
-    private static boolean checkScriptExists() {
-        return checkFileExists(SCRIPT_DIST);
-    }
-
-    //Check script exists and control md5
-    public static boolean checkScript() {
-        return checkScriptExists() && checkScriptSum();
-    }
-
-    //Final actions of script installation
-    //Check /data/local/userinit.d exists and create this if needed
-    //Copy script and set permission
-    public static void copyScriptFinal() {
-        sendShell("if [ ! -e /data/local/userinit.d ]; then busybox install -m 777 -o 1000 -g 1000 -d /data/local/userinit.d; fi");
-        sendShell("busybox cp " + S2E_DIR + "/files/script01.sh " + SCRIPT_DIST);
-        sendShell("busybox chmod 0777 " + SCRIPT_DIST);
     }
 
     //Compare sizes of partitions and dir
