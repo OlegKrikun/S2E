@@ -27,9 +27,9 @@
     </string-array>
 
     <string-array name="partitions" translatable="false">
+        <item>cache</item>
         <item>data</item>
         <item>sd-ext</item>
-        <item>cache</item>
     </string-array>
 
     <string-array name="read_ahead">

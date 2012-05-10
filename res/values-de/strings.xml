@@ -18,7 +18,6 @@
 <resources>
 
     <!--About-->
-    <string name="label">S2E: app2sd für CyanogenMod7</string>
     <string name="about">Über</string>
     <string name="credits">Credits</string>
     <string name="credit__summary">Vielen Dank an CrazyCoder für seine Unterstützung und Geduld (und die
@@ -46,7 +45,6 @@
     <string name="mb">MB</string>
     <string name="move">Verschiebeg von %1$s nach %2$s</string>
     <string name="reboot_required">Neustart erforderlich!!</string>
-    <string name="reboot">Neustart</string>
     <string name="refresh">Neu laden</string>
     <string name="info">Informationen</string>
     <string name="myapps">Mehr Apps</string>
@@ -58,14 +56,11 @@
     <string name="fs_dont">Nicht wieder fragen</string>
 
     <!--Alerts-->
-    <string name="exit">Beenden</string>
     <string name="alert_script_title">Skript nicht installiert</string>
 
     <!--Settings-->
     <string name="settings">Einstellungen</string>
     <string name="general_options">Allgemeine Optionen</string>
-    <string name="ui_not_recommended_title">Experten Optionen</string>
-    <string name="ui_not_recommended_summary">Awendungsdaten auf sd-ext verschieben. (NICHT empfohlen)</string>
     <string name="boot_options">Boot Optionen</string>
     <string name="setting_mount">Als ext4 mounten</string>
     <string name="setting_mount_summary">sd-ext als ext4 ohne Journaling mounten</string>

@@ -37,13 +37,6 @@
                 android:entries="@array/read_ahead"
                 android:entryValues="@array/read_ahead_Values"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/import_title">
-        <Preference
-                android:key="import"
-                android:title="@string/import_title"
-                android:summary="@string/import_symmary"
-                android:enabled="true"/>
-    </PreferenceCategory>
     <PreferenceCategory android:title="@string/general_options">
         <CheckBoxPreference
                 android:title="@string/fs_pref"

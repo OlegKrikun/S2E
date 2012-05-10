@@ -17,7 +17,6 @@
 
 <resources>
     <!--About-->
-    <string name="label">S2E: CyanogenMod7 專用app2sd工具</string>
     <string name="about">關於</string>
     <string name="credits">鳴謝</string>
     <string name="credit__summary">感謝CrazyCoder的支持與忍耐 (and class \"ShellInterface\")</string>
@@ -40,7 +39,6 @@
     <string name="mb">MB</string>
     <string name="move">由 %1$s 移至 %2$s</string>
     <string name="reboot_required">請重啟手機!</string>
-    <string name="reboot">重啟</string>
     <string name="refresh">刷新</string>
     <string name="info">空間資訊</string>
     <string name="myapps">其他作品</string>
@@ -57,8 +55,6 @@
     <!--Settings-->
     <string name="settings">設定</string>
     <string name="general_options">一般設定</string>
-    <string name="ui_not_recommended_title">進階模式</string>
-    <string name="ui_not_recommended_summary">容許非預定資料(data/data)移到SD-EXT內</string>
     <string name="boot_options">啟動功能</string>
     <string name="setting_mount">掛載為ext4</string>
     <string name="setting_mount_summary">掛載為ext4(不帶日誌功能)</string>
@@ -68,9 +64,6 @@
     <string name="read_ahead_values_symmary">建議使用2MB(能獲得最佳效能)</string>
     <string name="fs_pref">EXT 分區訊息</string>
     <string name="fs_pref_summary">使用Freespace代替內置功能</string>
-    <string name="import_title">導入</string>
-    <string name="import_symmary">從其他A2SD腳本導入資料.(通過測試:Darktremor)</string>
-    <string name="import_done">導入完成! 請重刷CM7以清除原本使用的A2SD腳本</string>
 
     <!--translate it-->
     <string name="alert_version">This android version not supported</string>

@@ -16,13 +16,9 @@
 
 package ru.krikun.s2e;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import java.util.List;
 
-public class Target {
+class Target {
 
     public static final int TARGET_ON_DATA = 0;
     public static final int TARGET_ON_CACHE = 1;
@@ -31,18 +27,16 @@ public class Target {
     public static final int TARGET_MOVE_TO_CACHE = 4;
     public static final int TARGET_MOVE_TO_EXT = 5;
 
-    private SharedPreferences prefs;
-
-    private String path;
-    private String targetName;
+    private final String path;
+    private final String targetName;
 
     private int size;
     private int status;
 
-    private boolean displaced = false;
+    private final boolean displaced;
 
-    private String external;
-    private String internal;
+    private final String external;
+    private final String internal;
 
     public String getExternal() {
         return external;
@@ -50,10 +44,6 @@ public class Target {
 
     public String getInternal() {
         return internal;
-    }
-
-    public String getPath() {
-        return path;
     }
 
     public int getSize() {
@@ -68,10 +58,9 @@ public class Target {
         return targetName;
     }
 
-    public Target(Context context, String target) {
+    public Target(String target) {
         this.targetName = target;
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(context);
         path = getPath(target);
         external = "/sd-ext";
         internal = loadInternalPartition();
@@ -84,6 +73,10 @@ public class Target {
 
     public void updateStatus() {
         status = loadTargetStatus();
+    }
+
+    public void updateSizes() {
+        size = loadSize();
     }
 
     private String getPath(String target) {
@@ -110,7 +103,7 @@ public class Target {
     }
 
     private int loadTargetStatus() {
-        boolean move = prefs.getBoolean(targetName, false);
+        boolean move = App.getPrefs().getBoolean(targetName, false);
 
         // Если на INT и надо переместить на EXT
         if (move && !displaced) {

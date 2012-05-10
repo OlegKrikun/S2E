@@ -18,6 +18,7 @@ package ru.krikun.s2e;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import com.stericson.RootTools.RootTools;
@@ -27,39 +28,69 @@ import java.util.concurrent.TimeoutException;
 public class App extends Application {
 
     public static final String PREFERENCE_NAME_EXTENDED_INFORMATION = "show_extended_information";
-    public static final String PREFERENCE_NAME_BUSYBOX = "busybox";
+    private static final String PREFERENCE_NAME_BUSYBOX = "busybox";
 
     private static App instance;
-    
+    private TargetSet targets;
+    private PartitionsSet partitions;
 
-    private SharedPreferences prefs;
+    private static SharedPreferences prefs;
+    private static Resources res;
 
     private boolean root;
     private boolean ICS;
     private boolean supportedOS;
     private boolean scriptInstalled;
 
-    public static App getInstance() {
+    static App getInstance() {
         return instance;
     }
 
-    public SharedPreferences getPrefs() {
+    static SharedPreferences getPrefs() {
         return prefs;
     }
 
-    public boolean isRoot() {
+    static Resources getRes() {
+        return res;
+    }
+
+    TargetSet getTargets() {
+        return targets;
+    }
+
+    PartitionsSet getPartitions() {
+        return partitions;
+    }
+
+    boolean isRoot() {
         return root;
     }
 
-    public boolean isScriptInstalled() {
+    void setRoot(boolean root) {
+        this.root = root;
+    }
+
+    boolean isScriptInstalled() {
         return scriptInstalled;
     }
 
-    public boolean isSupportedOS() {
+    void setScriptInstalled(boolean scriptInstalled) {
+        this.scriptInstalled = scriptInstalled;
+    }
+
+    boolean isSupportedOS() {
         return supportedOS;
     }
 
-    public boolean isICS() {
+    void setSupportedOS(boolean supportedOS) {
+        this.supportedOS = supportedOS;
+    }
+
+    void setICS(boolean ICS) {
+        this.ICS = ICS;
+    }
+
+    boolean isICS() {
         return ICS;
     }
 
@@ -68,12 +99,34 @@ public class App extends Application {
         super.onCreate();
 
         instance = this;
-
+        res = getResources();
         prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+    }
 
-        setRoot();
-        setAPI();
-        installScript();
+    public void loadAPI() {
+        if (android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.GINGERBREAD
+                || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.GINGERBREAD_MR1) {
+            setSupportedOS(true);
+        } else if (android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.ICE_CREAM_SANDWICH
+                || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            setICS(true);
+            setSupportedOS(true);
+        }
+    }
+
+    //Check access to root and busybox
+    public void loadShell() {
+        setRoot(isAccessGiven() && isBusyboxAvailable());
+    }
+
+    public void loadTargets() {
+        targets = new TargetSet();
+        targets.loadTargets(res.getStringArray(R.array.targets));
+    }
+
+    public void loadPartitions() {
+        partitions = new PartitionsSet();
+        partitions.loadPartitions(res.getStringArray(R.array.partitions), isICS());
     }
 
     //Save Boolean SharedPreference
@@ -94,34 +147,12 @@ public class App extends Application {
 
     //Get busybox available
     private boolean isBusyboxAvailable() {
-        if(prefs.contains(PREFERENCE_NAME_BUSYBOX)) return prefs.getBoolean(PREFERENCE_NAME_BUSYBOX,false);
-        else {
+        if(prefs.contains(App.PREFERENCE_NAME_BUSYBOX)) {
+            return prefs.getBoolean(App.PREFERENCE_NAME_BUSYBOX,false);
+        } else {
             boolean isBusyboxAvailable = RootTools.isBusyboxAvailable();
-            if(isBusyboxAvailable) saveBooleanPreference(PREFERENCE_NAME_BUSYBOX, isBusyboxAvailable);
+            if(isBusyboxAvailable) saveBooleanPreference(App.PREFERENCE_NAME_BUSYBOX, isBusyboxAvailable);
             return isBusyboxAvailable;
-        }
-    }
-
-    private void setAPI() {
-        if (android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.GINGERBREAD
-                || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.GINGERBREAD_MR1) {
-            ICS = false;
-            supportedOS = true;
-        } else if (android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.ICE_CREAM_SANDWICH
-                || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            ICS = true;
-            supportedOS = true;
-        }
-    }
-
-    private void setRoot() {
-        root =  isAccessGiven() && isBusyboxAvailable();
-    }
-
-    private void installScript() {
-        if(root) {
-            Installer installer = new Installer();
-            scriptInstalled = installer.isInstalled();
         }
     }
 }

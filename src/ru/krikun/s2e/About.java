@@ -17,16 +17,23 @@
 package ru.krikun.s2e;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 
-public class About extends PreferenceActivity {
+public class About extends SherlockPreferenceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.about);
+        getSupportActionBar().setTitle(
+                App.getRes().getString(R.string.app_name) + ": " +
+                App.getRes().getString(R.string.app_label) + " - " +
+                App.getRes().getString(R.string.app_version)
+        );
+        getSupportActionBar().setSubtitle(R.string.app_by);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 
 }

@@ -27,17 +27,22 @@ import java.util.concurrent.TimeoutException;
 
 public class Helper {
 
+    //Tag for logs
     public static final String TAG = "S2E";
+    //App home dir
     public static final String S2E_DIR = "/data/data/ru.krikun.s2e";
-
+    //Path to S2E config dir (for ReadAhead and Mount feature)
     private static final String S2E_CONFIG_DIR = "/data/local/s2e_config";
+    //Path to dir with status files
     private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
+    //Timeout for shell request
+    private static final int SHELL_TIMEOUT = 5000;
 
     //Send command to shell
     //if return code equals 1, return null
     public static List<String> sendShell(String str) {
         try {
-            List<String> output = RootTools.sendShell(str, 5000);
+            List<String> output = RootTools.sendShell(str, SHELL_TIMEOUT);
             if (!output.get(output.size() - 1).equals("1")) return output;
             else Log.e(TAG, "Error in shell: " + str + "; return code '1'");
         } catch (IOException e) {
@@ -68,6 +73,52 @@ public class Helper {
         return size != 0 && free != 0 && size < free;
     }
 
+    //Create status file
+    //if status file dir not exists, then create this dir
+    public static void createStatusFile(String target) {
+        if (!checkFileExists(SCRIPT_STATUS_DIR)) createDir(SCRIPT_STATUS_DIR);
+        createFile(SCRIPT_STATUS_DIR + "/" + target);
+    }
+
+    //Check config dir exists and create this if needed
+    public static boolean checkConfigDir() {
+        if (!checkFileExists(S2E_CONFIG_DIR)) {
+            createDir(S2E_CONFIG_DIR);
+            return checkFileExists(S2E_CONFIG_DIR);
+        } else return true;
+    }
+
+    //Create mount file
+    public static void createMountFile() {
+        createFile(S2E_CONFIG_DIR + "/.mounts_ext4");
+    }
+
+    //Delete mount file
+    public static void deleteMountFile() {
+        deleteFile(S2E_CONFIG_DIR + "/.mounts_ext4");
+    }
+
+    //Create ReadAhead file
+    public static void createReadAheadFile() {
+        createFile(S2E_CONFIG_DIR + "/.read_ahead");
+    }
+
+    //Delete ReadAhead file
+    public static void deleteReadAheadFile() {
+        deleteFile(S2E_CONFIG_DIR + "/.read_ahead");
+    }
+
+    //Write value to ReadAhead file
+    public static void writeReadAheadValue(String value) {
+        writeToFile(S2E_CONFIG_DIR + "/.read_ahead", value);
+    }
+
+    //Check status file
+    public static boolean checkStatusFileExists(String target) {
+        File status = new File(Helper.SCRIPT_STATUS_DIR, target);
+        return status.exists();
+    }
+
     //Create file
     private static void createFile(String filePath) {
         sendShell("busybox touch " + filePath);
@@ -86,50 +137,5 @@ public class Helper {
     //Create dir
     private static void createDir(String path) {
         sendShell("busybox mkdir " + path);
-    }
-
-    //Create status file
-    //if status file dir not exists, then create this dir
-    public static void createStatusFile(String target) {
-        if (!checkFileExists(SCRIPT_STATUS_DIR)) createDir(SCRIPT_STATUS_DIR);
-        createFile(SCRIPT_STATUS_DIR + "/" + target);
-    }
-
-    //Check config dir exists and create this if needed
-    public static boolean checkConfigDir() {
-        if (!checkFileExists(S2E_CONFIG_DIR)) {
-            createDir(S2E_CONFIG_DIR);
-            return checkFileExists(S2E_CONFIG_DIR);
-        } else return true;
-    }
-
-    //Create mount file
-    public static void createMountFile(String fileName) {
-        createFile(S2E_CONFIG_DIR + "/." + fileName);
-    }
-
-    //Delete mount file
-    public static void deleteMountFile(String fileName) {
-        deleteFile(S2E_CONFIG_DIR + "/." + fileName);
-    }
-
-    //Create ReadAhead file
-    public static void createReadAheadFile() {
-        createFile(S2E_CONFIG_DIR + "/.read_ahead");
-    }
-
-    //Delete ReadAhead file
-    public static void deleteReadAheadFile() {
-        deleteFile(S2E_CONFIG_DIR + "/.read_ahead");
-    }
-
-    //Write value to ReadAhead file
-    public static void writeReadAheadValue(String value) {
-        writeToFile(S2E_CONFIG_DIR + "/.read_ahead", value);
-    }
-
-    public static boolean checkStatusFileExists(String target) {
-        File status = new File(Helper.SCRIPT_STATUS_DIR, target);
-        return status.exists();
     }
 }

@@ -21,41 +21,10 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                 android:layout_width="fill_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_weight="0"
-                 android:stretchColumns="4"
-                 android:background="#585858">
-        <View android:layout_height="1dip" android:background="#888"/>
-        <TableRow>
-            <View android:layout_width="1dip" android:layout_height="40dip" android:background="#888"/>
-            <TextView
-                    android:text="S2E"
-                    android:textColor="#FFF"
-                    android:textSize="20dip"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content" android:layout_height="40dip"
-                    android:padding="5dip"/>
-            <View android:layout_width="1dip" android:layout_height="40dip" android:background="#333"/>
-            <View android:layout_width="1dip" android:layout_height="40dip" android:background="#888"/>
-            <TextView
-                    android:id="@+id/title_line"
-                    android:clickable="true"
-                    android:textColor="#FFF"
-                    android:gravity="right"
-                    android:textSize="16dip"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:padding="8dip"/>
-            <View android:layout_width="1dip" android:layout_height="40dip" android:background="#333"/>
-        </TableRow>
-        <View android:layout_height="1dip" android:background="#333"/>
-    </TableLayout>
-
     <ListView android:id="@android:id/list"
+              android:paddingLeft="5dp"
               android:layout_weight="1"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"/>
+              android:layout_height="0dp"/>
 
 </LinearLayout>

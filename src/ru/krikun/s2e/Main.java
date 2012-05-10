@@ -20,59 +20,40 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
-import java.util.HashMap;
 import java.util.List;
 
-public class Main extends PreferenceActivity {
+public class Main extends SherlockPreferenceActivity {
 
     private App app;
 
-    private HashMap<String, Target> targets;
-
-    private Partition partitionData;
-    private Partition partitionCache;
-    private Partition partitionExt;
-
     private int sizeToExt;
     private int sizeToData;
-
-    private Resources res;
 
     private boolean showExtendedInformation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        res = getResources();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_screen);
+
         app = App.getInstance();
 
-        setTheme();
-        super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setTitle(R.string.app_label);
+        getSupportActionBar().setSubtitle("DATA: --  EXT: --");
 
-        //Exit if OS not supported
-        if (!app.isSupportedOS()) showAlert(res.getString(R.string.alert_version));
-        //Exit if access to root not given or busybox not found
-        else if (!app.isRoot()) showAlert(res.getString(R.string.alert_root));
-        //Exit if script not installed
-        else if (!app.isScriptInstalled()) showAlert(res.getString(R.string.alert_script_title));
+        new Loader(this).execute();
 
-
-        setContentView(R.layout.main_screen);
-        addPreferencesFromResource(R.xml.main);
-        setOnPreferenceClick();
-
-        refresh();
     }
 
     @Override
@@ -81,16 +62,10 @@ public class Main extends PreferenceActivity {
         loadExtendedInformationPref();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        new MenuInflater(getApplication())
-                .inflate(R.menu.menu, menu);
-        return (super.onPrepareOptionsMenu(menu));
-    }
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh:
-                Toast.makeText(Main.this, res.getString(R.string.refreshing), 5).show();
+                Toast.makeText(Main.this, App.getRes().getString(R.string.refreshing), 10).show();
                 refresh();
                 break;
             case R.id.info:
@@ -113,28 +88,55 @@ public class Main extends PreferenceActivity {
         return (super.onOptionsItemSelected(item));
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        new MenuInflater(getApplication())
+                .inflate(R.menu.menu, menu);
+
+        return (super.onPrepareOptionsMenu(menu));
+    }
+
+    public void onTaskFinished() {
+        addPreferencesFromResource(R.xml.main);
+        setOnPreferenceClick();
+        updateView();
+    }
+
+    public void showAlert(String text) {
+        Toast.makeText(this, text, 15).show();
+        Log.e(Helper.TAG, text);
+        this.finish();
+    }
+
     private String formatSummaryMoving(String targetPartition, String sourcesPartition) {
-        return String.format(res.getString(R.string.move), sourcesPartition, targetPartition) + "\n" +
-                res.getString(R.string.reboot_required);
+        return String.format(App.getRes().getString(R.string.move), sourcesPartition, targetPartition) + "\n" +
+                App.getRes().getString(R.string.reboot_required);
     }
 
     private String formatSummaryStatic(String target, String partition) {
-        return res.getString(R.string.location) + ": " + partition + "/" + target + "\n" +
-                res.getString(R.string.size) + ": " +
-                Helper.convertSize(targets.get(target).getSize(), res.getString(R.string.kb), res.getString(R.string.mb));
+        return App.getRes().getString(R.string.location) + ": " + partition + "/" + target + "\n" +
+                App.getRes().getString(R.string.size) + ": " +
+                Helper.convertSize(app.getTargets().get(target).getSize(),
+                        App.getRes().getString(R.string.kb),
+                        App.getRes().getString(R.string.mb));
     }
 
     private String getPartitionString(Partition partition) {
-        return "\n\t" + res.getString(R.string.size) + ": " +
-                Helper.convertSize((int) partition.getSize(), res.getString(R.string.kb), res.getString(R.string.mb)) +
-                "\n\t" + res.getString(R.string.used) + ": " +
-                Helper.convertSize((int) partition.getUsed(), res.getString(R.string.kb), res.getString(R.string.mb)) +
-                "\n\t" + res.getString(R.string.free) + ": " +
-                Helper.convertSize((int) partition.getFree(), res.getString(R.string.kb), res.getString(R.string.mb));
+        return "\n\t" + App.getRes().getString(R.string.size) + ": " +
+                Helper.convertSize(partition.getSize(),
+                        App.getRes().getString(R.string.kb),
+                        App.getRes().getString(R.string.mb)) +
+                "\n\t" + App.getRes().getString(R.string.used) + ": " +
+                Helper.convertSize(partition.getUsed(),
+                        App.getRes().getString(R.string.kb),
+                        App.getRes().getString(R.string.mb)) +
+                "\n\t" + App.getRes().getString(R.string.free) + ": " +
+                Helper.convertSize(partition.getFree(),
+                        App.getRes().getString(R.string.kb),
+                        App.getRes().getString(R.string.mb));
     }
 
     private boolean checkFreeSpace(Target target, Partition partition, int sizeToPartition) {
-        int freeSpace = (int) (partition.getFree() - sizeToPartition - 1024);
+        int freeSpace = (partition.getFree() - sizeToPartition - 1024);
         return Helper.compareSizes(target.getSize(), freeSpace);
     }
 
@@ -148,7 +150,7 @@ public class Main extends PreferenceActivity {
         sizeToExt = 0;
         sizeToData = 0;
 
-        for (Target target : targets.values()) {
+        for (Target target : app.getTargets().values()) {
             target.updateStatus();
 
             if (target.getStatus() == Target.TARGET_MOVE_TO_EXT) {
@@ -164,33 +166,19 @@ public class Main extends PreferenceActivity {
     }
 
     private void loadExtendedInformationPref() {
-        showExtendedInformation = app.getPrefs().getBoolean("show_extended_information", true);
-    }
-
-    private void loadPartitionsSizes() {
-        partitionData = new Partition("/data");
-        partitionCache = new Partition("/cache");
-        if (app.isICS()) partitionExt = new Partition("/sd-ext");
-        else partitionExt = new Partition("/sd-ext", true);
-    }
-
-    private void loadTargets() {
-        targets = new HashMap<String, Target>();
-
-        for (String target : res.getStringArray(R.array.targets)) {
-            targets.put(target, new Target(getBaseContext(), target));
-        }
+        showExtendedInformation = App.getPrefs().getBoolean("show_extended_information", true);
     }
 
     private void refresh() {
-        loadTargets();
-        loadPartitionsSizes();
-        setTargetsState();
-        setTitle();
+        app.getPartitions().update();
+        app.getTargets().updateSizes();
+        app.getTargets().updateStatuses();
+
+        updateView();
     }
 
     private void setOnPreferenceClick() {
-        for (String target : res.getStringArray(R.array.targets)) {
+        for (String target : App.getRes().getStringArray(R.array.targets)) {
             Preference pref = findPreference(target);
             pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
@@ -203,7 +191,7 @@ public class Main extends PreferenceActivity {
     }
 
     private void setPreferenceOptions() {
-        for (Target target : targets.values()) {
+        for (Target target : app.getTargets().values()) {
             Preference pref = findPreference(target.getTargetName());
 
             switch (target.getStatus()) {
@@ -218,11 +206,11 @@ public class Main extends PreferenceActivity {
                     break;
                 case Target.TARGET_ON_EXT:
                     pref.setSummary(formatSummaryStatic(target.getTargetName(), target.getExternal()));
-                    pref.setEnabled(checkFreeSpace(target, partitionData, sizeToData));
+                    pref.setEnabled(checkFreeSpace(target, app.getPartitions().get("data"), sizeToData));
                     break;
                 case Target.TARGET_ON_DATA:
                     pref.setSummary(formatSummaryStatic(target.getTargetName(), target.getInternal()));
-                    pref.setEnabled(checkFreeSpace(target, partitionExt, sizeToExt));
+                    pref.setEnabled(checkFreeSpace(target, app.getPartitions().get("sd-ext"), sizeToExt));
                     break;
                 case Target.TARGET_ON_CACHE:
                     pref.setSummary(formatSummaryStatic(target.getTargetName(), target.getInternal()));
@@ -236,31 +224,19 @@ public class Main extends PreferenceActivity {
         setPreferenceOptions();
     }
 
-    private void setTheme() {
-        if (!app.isICS()) {
-            setTheme(android.R.style.Theme_NoTitleBar);
-        } else {
-            setTheme(android.R.style.Theme_Holo);
-            getActionBar().setDisplayShowHomeEnabled(false);
-        }
-    }
-
     private void setTitle() {
         String label =
-                "DATA: " + Helper.convertSize((int) partitionData.getFree(), res.getString(R.string.kb), res.getString(R.string.mb)) + "  " +
-                        "EXT: " + Helper.convertSize((int) partitionExt.getFree(), res.getString(R.string.kb), res.getString(R.string.mb));
-        if (app.isICS()) {
-            getActionBar().setTitle(label);
-        } else {
-            TextView title_line = (TextView) findViewById(R.id.title_line);
-            title_line.setText(label);
-        }
-    }
+                "DATA: " + Helper.convertSize(
+                        app.getPartitions().get("data").getFree(),
+                        App.getRes().getString(R.string.kb),
+                        App.getRes().getString(R.string.mb)
+                ) + "  " + "EXT: " + Helper.convertSize(
+                        app.getPartitions().get("sd-ext").getFree(),
+                        App.getRes().getString(R.string.kb),
+                        App.getRes().getString(R.string.mb)
+                );
 
-    private void showAlert(String text) {
-        Toast.makeText(this, text, 10).show();
-        Log.e(Helper.TAG, text);
-        Main.this.finish();
+        getSupportActionBar().setSubtitle(label);
     }
 
     private void showInformation() {
@@ -278,23 +254,23 @@ public class Main extends PreferenceActivity {
 
     private void showInformationProviderQuestion() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(res.getString(R.string.fs_title))
-                .setMessage(res.getString(R.string.fs_msg))
+        builder.setTitle(App.getRes().getString(R.string.fs_title))
+                .setMessage(App.getRes().getString(R.string.fs_msg))
                 .setCancelable(true)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(res.getString(R.string.fs_install), new DialogInterface.OnClickListener() {
+                .setPositiveButton(App.getRes().getString(R.string.fs_install), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent fs = new Intent(Intent.ACTION_VIEW);
                         fs.setData(Uri.parse("https://play.google.com/store/apps/details?id=ru.krikun.freespace"));
                         startActivity(fs);
                     }
                 })
-                .setNegativeButton(res.getString(R.string.fs_dont), new DialogInterface.OnClickListener() {
+                .setNegativeButton(App.getRes().getString(R.string.fs_dont), new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int id) {
                         showExtendedInformation = false;
                         app.saveBooleanPreference(
-                                App.PREFERENCE_NAME_EXTENDED_INFORMATION,showExtendedInformation);
+                                App.PREFERENCE_NAME_EXTENDED_INFORMATION, showExtendedInformation);
                         showPartitionsSpaces();
                     }
                 });
@@ -304,13 +280,18 @@ public class Main extends PreferenceActivity {
 
     private void showPartitionsSpaces() {
         String message =
-                "DATA:" + getPartitionString(partitionData) +
-                        "\n\nSD-EXT:" + getPartitionString(partitionExt) +
-                        "\n\nCACHE:" + getPartitionString(partitionCache);
+                "DATA:" + getPartitionString(app.getPartitions().get("data")) +
+                        "\n\nSD-EXT:" + getPartitionString(app.getPartitions().get("sd-ext")) +
+                        "\n\nCACHE:" + getPartitionString(app.getPartitions().get("cache"));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message).setCancelable(true);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void updateView() {
+        setTargetsState();
+        setTitle();
     }
 }

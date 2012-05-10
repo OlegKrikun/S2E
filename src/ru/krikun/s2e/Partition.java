@@ -21,49 +21,43 @@ import android.util.Log;
 
 import java.util.List;
 
-public class Partition {
+class Partition {
 
-    private String path;
+    private final String path;
 
-    private boolean root = false;
-    private boolean loaded = false;
+    private boolean root;
 
-    private long size = 0;
-    private long free = 0;
-    private long used = 0;
+    private int size = 0;
+    private int free = 0;
+    private int used = 0;
 
-    public long getFree() {
+    int getFree() {
         return free;
     }
 
-    public long getSize() {
+    int getSize() {
         return size;
     }
 
-    public long getUsed() {
+    int getUsed() {
         return used;
     }
 
-    public boolean isLoaded() {
-        return loaded;
-    }
-
-    public Partition(String path) {
-        this.path = path;
+    public Partition(String name) {
+        path = "/" + name;
         load();
     }
 
-    public Partition(String path, boolean root) {
+    public Partition(String name, boolean root) {
         this.root = root;
-        this.path = path;
+        path = "/" + name;
         load();
     }
 
-    public void refresh() {
+    void refresh() {
         size = 0;
         free = 0;
         used = 0;
-        loaded = false;
         load();
     }
 
@@ -76,11 +70,10 @@ public class Partition {
         try {
             StatFs statFs = new StatFs(path);
 
-            long blockSize = statFs.getBlockSize();
-            size = (statFs.getBlockCount() * blockSize) / 1024L;
-            free = (statFs.getAvailableBlocks() * blockSize) / 1024L;
+            int blockSize = statFs.getBlockSize();
+            size = (statFs.getBlockCount() * blockSize) / 1024;
+            free = (statFs.getAvailableBlocks() * blockSize) / 1024;
             used = size - free;
-            loaded = true;
         } catch (IllegalArgumentException er) {
             Log.e(Helper.TAG, "IllegalArgumentException");
         }
@@ -96,7 +89,6 @@ public class Partition {
                 size = Integer.parseInt(array[1]);
                 free = Integer.parseInt(array[3]);
                 used = size - free;
-                loaded = true;
             }
         }
     }

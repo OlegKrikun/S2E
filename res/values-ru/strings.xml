@@ -17,7 +17,6 @@
 
 <resources>
     <!--About-->
-    <string name="label">S2E: app2sd для CyanogenMod7</string>
     <string name="about">О программе</string>
     <string name="credits">Спасибо</string>
     <string name="credit__summary">Большое спасибо CrazyCoder за поддержку и терпение (и класс \"ShellInterface\")
@@ -43,10 +42,9 @@
     <string name="mb">МБ</string>
     <string name="move">Перемещение из %1$s в %2$s</string>
     <string name="reboot_required">Требуется перезагрузка!</string>
-    <string name="reboot">Перезагрузить</string>
     <string name="refresh">Обновить</string>
     <string name="info">Информация</string>
-    <string name="myapps">Мои прилож.</string>
+    <string name="myapps">Мои приложения</string>
     <string name="refreshing">Обновление…</string>
     <string name="fs_title">FreeSpace не найдена</string>
     <string name="fs_msg">S2E может показывать расширенную информацию об использовании разделов.\n\nДля этого вам
@@ -54,6 +52,7 @@
     </string>
     <string name="fs_install">Установить FreeSpace</string>
     <string name="fs_dont">Не спрашивать больше</string>
+    <string name="loading">Загрузка…</string>
 
     <!--Alerts-->
     <string name="alert_script_title">Скрипт не установлен</string>
@@ -63,9 +62,6 @@
     <!--Settings-->
     <string name="settings">Настройки</string>
     <string name="general_options">Основные настройки</string>
-    <string name="ui_not_recommended_title">Расширенный режим</string>
-    <string name="ui_not_recommended_summary">Включить НЕ рекомендованые пункты для перемещения на sd-ext</string>
-    <string name="mount_options">Настройки загрузки</string>
     <string name="setting_mount">Монтировать как ext4</string>
     <string name="setting_mount_summary">Монтировать sd-ext как ext4 без журналирования</string>
     <string name="set_read_ahead">Установить буфер чтения</string>
@@ -74,8 +70,6 @@
     <string name="read_ahead_values_symmary">Значение в 2MБ является наилучшей практикой</string>
     <string name="fs_pref">Расширенная информация</string>
     <string name="fs_pref_summary">Запускать FreeSpace вместо показа встроенной информации</string>
-    <string name="import_title">Импорт</string>
-    <string name="import_symmary">Импорт данных из других скриптов app2sd. Тестировалось с Darktremor</string>
-    <string name="import_done">Импорт завершён! Перепрошейте CM7 для удаления других app2sd скриптов</string>
+    <string name="boot_options">Настройки загрузки</string>
 
 </resources>
