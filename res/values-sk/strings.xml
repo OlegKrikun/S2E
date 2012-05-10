@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2012 OlegKrikun
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+
+    <!--About-->
+    <string name="about">O aplikácii</string>
+    <string name="credits">Poďakovanie</string>
+    <string name="credit__summary">Vrelá vďaka pre CrazyCoder za podporu a trpezlivosť (a triedu
+        \"ShellInterface\")
+    </string>
+    <string name="credit__cm_summary">Vrelá vďaka pre CyanogenMod tím za skvelú ROMku a speciálne pre Alexandra Hofbauera
+        za podporu HTC Legend
+    </string>
+    <string name="credit__pv_summary">Vrelá vďaka pre Pavla Volkova za testovanie S2E</string>
+    <string name="translators">Preklady</string>
+
+    <!--MainScreen-->
+    <string name="apps">Aplikácie</string>
+    <string name="private_apps">Private aplikácie</string>
+    <string name="app_data">Dáta aplikácií</string>
+    <string name="caches">Cache</string>
+    <string name="dalvik_cache">Dalvik cache</string>
+    <string name="download_cache">Download cache</string>
+    <string name="location">Umiestnenie</string>
+    <string name="size">Veľkosť</string>
+    <string name="used">Použité</string>
+    <string name="free">Voľné</string>
+    <string name="kb">KB</string>
+    <string name="mb">MB</string>
+    <string name="move">Presúvanie z %1$s do %2$s</string>
+    <string name="reboot_required">Reštart je potrebný!</string>
+    <string name="refresh">Obnoviť</string>
+    <string name="info">Informácie</string>
+    <string name="myapps">Moje aplikácie</string>
+    <string name="refreshing">Obnovovanie…</string>
+    <string name="fs_title">FreeSpace sa nenašiel</string>
+    <string name="fs_msg">S2E môže zobraziť detailné informácie o využití partícii.\n\nPre ich zobrazenie 
+        je potrebné nainštalovať\nFreeSpace alebo FreeSpace Plus.
+    </string>
+    <string name="fs_install">Inštalovať FreeSpace</string>
+    <string name="fs_dont">Viac sa nepýtať</string>
+    <string name="loading">Načítavam…</string>
+
+    <!--Alerts-->
+    <string name="alert_script_title">Skript nie je nainštalovaný</string>
+    <string name="alert_root">Root, busybox nie je dostupný alebo prístup nebol povolený</string>
+    <string name="alert_version">Táto verzia androidu nie je podporovaná</string>
+
+    <!--Settings-->
+    <string name="settings">Nastavenia</string>
+    <string name="general_options">Základné nastavenia</string>
+    <string name="boot_options">Nastavenia pri bootovaní</string>
+    <string name="setting_mount">Pripojiť ako ext4</string>
+    <string name="setting_mount_summary">Pripojiť sd-ext ako ext4 bez denníka</string>
+    <string name="set_read_ahead">Zapnúť vyrovnávaciu pamäť pre čitanie</string>
+    <string name="set_read_ahead_summary">Zapne vyrovnávaciu pamäť pre čitanie z SD karty</string>
+    <string name="read_ahead_values">Veľkosť vyrovnávacej pamäte</string>
+    <string name="read_ahead_values_symmary">Veľkosť 2MB je odporúčaná</string>
+    <string name="fs_pref">Detailné informácie o partíciach</string>
+    <string name="fs_pref_summary">Spustí FreeSpace namiesto vstavaných informácií</string>
+
+</resources>
