@@ -47,5 +47,9 @@
                 android:title="Max Liebkies"
                 android:summary="German"
                 android:enabled="true"/>
+        <Preference
+                android:title="Casso"
+                android:summary="Slovak"
+                android:enabled="true"/>
     </PreferenceCategory>
 </PreferenceScreen>
