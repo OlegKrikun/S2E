@@ -40,7 +40,7 @@
     <string name="move">由 %1$s 移至 %2$s</string>
     <string name="reboot_required">請重啟手機!</string>
     <string name="refresh">刷新</string>
-    <string name="info">空間資訊</string>
+    <string name="info">存取空間資訊</string>
     <string name="myapps">其他作品</string>
     <string name="refreshing">刷新中…</string>
     <string name="fs_title">FreeSpace 未安裝</string>
@@ -59,12 +59,12 @@
     <string name="setting_mount">掛載為ext4</string>
     <string name="setting_mount_summary">掛載為ext4(不帶日誌功能)</string>
     <string name="set_read_ahead">預讀緩存</string>
-    <string name="set_read_ahead_summary">設定sd卡緩讀緩存</string>
-    <string name="read_ahead_values">緩存大小</string>
+    <string name="set_read_ahead_summary">設定sd卡預讀緩存</string>
+    <string name="read_ahead_values">設定預讀緩存大小</string>
     <string name="read_ahead_values_symmary">建議使用2MB(能獲得最佳效能)</string>
     <string name="fs_pref">EXT 分區訊息</string>
     <string name="fs_pref_summary">使用Freespace代替內置功能</string>
 
     <!--translate it-->
-    <string name="alert_version">This android version not supported</string>
+    <string name="alert_version">軟件不支援此安卓系統版本</string>
 </resources>
