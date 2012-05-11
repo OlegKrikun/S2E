@@ -51,6 +51,7 @@
     <!--Alerts-->
     <string name="alert_script_title">運行程序未安裝到SD卡上</string>
     <string name="alert_root">未取得ROOT權限</string>
+    <string name="alert_version">軟件不支援此安卓系統版本</string>
 
     <!--Settings-->
     <string name="settings">設定</string>
@@ -65,6 +66,4 @@
     <string name="fs_pref">EXT 分區訊息</string>
     <string name="fs_pref_summary">使用Freespace代替內置功能</string>
 
-    <!--translate it-->
-    <string name="alert_version">軟件不支援此安卓系統版本</string>
 </resources>
