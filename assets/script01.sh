@@ -1,6 +1,6 @@
 #!/system/bin/sh
 
-# Initialization, checks and mounts ####################################################################################
+# Initialization, checks and mounts
 BB='busybox'
 
 # Initialization
@@ -8,7 +8,7 @@ ${BB} echo "S2E: Initialization..."
 
 if [ "${SD_EXT_DIRECTORY}" = "" ];
 then
-	SD_EXT_DIRECTORY=/sd-ext
+    SD_EXT_DIRECTORY=/sd-ext
 fi
 
 S2E_CONFIG_DIR='/data/local/s2e_config/'
@@ -39,7 +39,6 @@ then
     tune2fs -o journal_data_writeback ${EXTPART}
     tune2fs -O ^has_journal ${EXTPART}
     ${BB} mount -t ext4 -o commit=19,barrier=0,nobh,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev,data=writeback ${EXTPART} ${SD_EXT_DIRECTORY}
-
 fi
 
 if [ "`${BB} egrep -q ${SD_EXT_DIRECTORY} /proc/mounts; ${BB} echo $?`" != "0" ];
@@ -62,7 +61,7 @@ else
         ${BB} echo "S2E: Config found on /sd-ext/data"
     else
         ${BB} echo "S2E: Config not found... Exit!"
-	    exit
+        exit
     fi
 fi
 
@@ -79,18 +78,15 @@ for dir in app app-private data dalvik-cache;
     do
     RESULT=`${BB} readlink /data/${dir} | ${BB} grep ${SD_EXT_DIRECTORY}`
     if [ ${RESULT} = "${SD_EXT_DIRECTORY}/${dir}" ]
-        then
-	        ${BB} rm -rf /data/${dir}
-	        ${BB} mkdir /data/${dir}
+    then
+        ${BB} rm -rf /data/${dir}
+        ${BB} mkdir /data/${dir}
     fi
 done
 
-
-# Moving items #########################################################################################################
-
 # Apps and Private Apps
 for dir in app app-private;
-    do
+do
     CONFIG=`${BB} grep -q "name=\"${dir}\" value=\"true\"" ${S2E_PREF}; ${BB} echo $?`
     if [ "${CONFIG}" = "0" ];
     then
@@ -107,7 +103,6 @@ for dir in app app-private;
                 ${BB} chown system:system /data/${dir}
                 ${BB} chmod 0771 /data/${dir}
             fi
-
             for app in `${BB} find "/data/${dir}" -type f -iname "*.apk" -o -iname "*.zip"`;
             do
                 ${BB} mv ${app} ${SD_EXT_DIRECTORY}/${dir}/
@@ -117,7 +112,6 @@ for dir in app app-private;
 
             if [ "`${BB} egrep -q \"/data/${dir}\" /proc/mounts; ${BB} echo $?`" = "0" ];
             then
-
                 ${BB} echo "S2E: ${SD_EXT_DIRECTORY}/${dir} mount as /data/${dir}"
                 ${BB} touch ${S2E_STATUS}/${dir}
             else
@@ -168,7 +162,6 @@ then
 
         if [ "`${BB} egrep -q \"/data/data\" /proc/mounts; ${BB} echo $?`" = "0" ];
         then
-
             ${BB} echo "S2E: ${SD_EXT_DIRECTORY}/data mount as /data/data"
             ${BB} touch ${S2E_STATUS}/data
         else
@@ -272,5 +265,5 @@ else
     fi
 fi
 
-# Finish ###############################################################################################################
+# Finish
 ${BB} echo "S2E: Done!"
