@@ -18,7 +18,8 @@
 <resources>
 
     <!--About-->
-    <string name="about">About</string>
+    <string name="about">A riguardo</string>
+    <!--Non tradotte-->
     <string name="credits">Credits</string>
     <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class
         \"ShellInterface\")
