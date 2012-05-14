@@ -27,20 +27,29 @@ import java.util.List;
 class Loader extends AsyncTask<Void, Void, Void> {
 
     //Path to installed script
-    private static final String SCRIPT_DIST =
+    private static final String PATH_SCRIPT =
             "/data/local/userinit.d/simple2ext";
+    //Path to tune2fs
+    private static final String PATH_TUNE2FS =
+            "/data/local/bin/tune2fs";
     //Shell command for make userinit dir
     private static final String SHELL_MAKE_USERINIT_DIR =
             "if [ ! -e /data/local/userinit.d ]; then busybox install -m 777 -o 1000 -g 1000 -d /data/local/userinit.d; fi";
+    //Shell command for make bin dir
+    private static final String SHELL_MAKE_BIN_DIR =
+            "if [ ! -e /data/local/bin ]; then busybox install -m 777 -o 1000 -g 1000 -d /data/local/bin; fi";
     //Shell command for copy script from app home to userinit.d
     private static final String SHELL_COPY_SCRIPT_TO_USERINIT_DIR =
-            "busybox cp " + Helper.S2E_DIR + "/files/script01.sh " + SCRIPT_DIST;
+            "busybox cp " + Helper.S2E_DIR + "/files/script01.sh " + PATH_SCRIPT;
+    //Shell command for copy tune2fs from app home to bin
+    private static final String SHELL_COPY_TUNE2FS_TO_BIN_DIR =
+            "busybox cp " + Helper.S2E_DIR + "/files/tune2fs " + PATH_TUNE2FS;
     //Shell command for set permission to script
     private static final String SHELL_SET_PERMISSION =
-            "busybox chmod 0777 " + SCRIPT_DIST;
+            "busybox chmod 0777 ";
     //Shell command for get md5 sum
     private static final String SHELL_GET_MD5 =
-            "busybox md5sum " + SCRIPT_DIST;
+            "busybox md5sum " + PATH_SCRIPT;
 
     private final App app;
     private final ProgressDialog dialog;
@@ -78,7 +87,7 @@ class Loader extends AsyncTask<Void, Void, Void> {
                 if (!checkScript()) {
 
                     //Installing script
-                    copyScriptToHome();
+                    copyFileToHome("script01.sh");
                     copyScriptToUserInit();
 
                     //Check script, again
@@ -91,6 +100,12 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
                     //Set "Script Installed"
                     app.setScriptInstalled(true);
+                }
+
+                if (!Helper.checkFileExists(PATH_TUNE2FS)) {
+                    //Install tune2fs
+                    copyFileToHome("tune2fs");
+                    copyTune2FsToBin();
                 }
 
                 //Load targets set (sizes, statuses and etc)
@@ -138,7 +153,16 @@ class Loader extends AsyncTask<Void, Void, Void> {
     private void copyScriptToUserInit() {
         Helper.sendShell(SHELL_MAKE_USERINIT_DIR);
         Helper.sendShell(SHELL_COPY_SCRIPT_TO_USERINIT_DIR);
-        Helper.sendShell(SHELL_SET_PERMISSION);
+        Helper.sendShell(SHELL_SET_PERMISSION  + PATH_SCRIPT);
+    }
+
+    //Final actions of tune2fs installation
+    //Check /data/local/bin exists and create this if needed
+    //Copy tune2fs and set permission
+    private void copyTune2FsToBin() {
+        Helper.sendShell(SHELL_MAKE_BIN_DIR);
+        Helper.sendShell(SHELL_COPY_TUNE2FS_TO_BIN_DIR);
+        Helper.sendShell(SHELL_SET_PERMISSION  + PATH_TUNE2FS);
     }
 
     //Return md5sum of path
@@ -152,7 +176,7 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
     //Check script exists
     private boolean checkScriptExists() {
-        return Helper.checkFileExists(SCRIPT_DIST);
+        return Helper.checkFileExists(PATH_SCRIPT);
     }
 
     //Compare md5sum
@@ -161,11 +185,11 @@ class Loader extends AsyncTask<Void, Void, Void> {
         return tmp_md5 != null && tmp_md5.equals(md5);
     }
 
-    //Extract script and copy to app home dir
-    private void copyScriptToHome() {
+    //Extract file and copy to app home dir
+    private void copyFileToHome(String fileName) {
         try {
-            InputStream in = App.getRes().getAssets().open("script01.sh");
-            FileOutputStream out = app.openFileOutput("script01.sh", 0);
+            InputStream in = App.getRes().getAssets().open(fileName);
+            FileOutputStream out = app.openFileOutput(fileName, 0);
             if (in != null) {
                 int size = in.available();
                 byte[] buffer = new byte[size];
