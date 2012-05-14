@@ -19,19 +19,19 @@
 
     <!--About-->
     <string name="about">A riguardo</string>
-    <!--Non tradotte-->
-    <string name="credits">Credits</string>
-    <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class
+    <string name="credits">Ringraziamenti</string>
+    <string name="credit__summary">Numerosi ringraziamenti a CrazyCoder per il suo aiuto e la sua pazienza (e la classe
         \"ShellInterface\")
     </string>
-    <string name="credit__cm_summary">Many thanks to CyanogenMod team for great ROM and especially Alexander Hofbauer
-        for supporting HTC Legend
+    <string name="credit__cm_summary">Numerosi ringraziamenti al team CyanogenMod per la fantastica ROM e specialmente a Alexander Hofbauer
+        per il supporto a HTC Legend
     </string>
-    <string name="credit__pv_summary">Many thanks to Pavel Volkov for testing S2E</string>
+    <string name="credit__pv_summary">Numerosi ringraziamenti a Pavel Volkov per aver testato S2E</string>
     <string name="translators">Translators</string>
 
     <!--MainScreen-->
-    <string name="apps">Applications</string>
+    <string name="apps">Applicazioni</string>
+    <!--Da tradurre-->
     <string name="private_apps">Private apps</string>
     <string name="app_data">Application Data</string>
     <string name="caches">Caches</string>
