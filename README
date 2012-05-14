@@ -1,24 +1,29 @@
 S2E works only with CyanogenMod7 and CyanogenMod9!
 
-ONLY USE AT YOUR OWN RISK!
-BEFORE USING MAKE A FULL BACKUP, THE APPLICATION CAN HARM YOUR DEVICE.
+USE AT YOUR OWN RISK ONLY!  MAKE A FULL BACKUP BEFORE INSTALLING, THE APPLICATION CAN DAMAGE YOUR DEVICE.
 
 *****
-CM9 USERS: App may not work, if your cm9 device not support userinit from /data/local/userinit.d/
+CM9 USERS: App may not work, if your cm9 device does not support userinit from /data/local/userinit.d/
 
 Tested on:
-HTC Legend (zeubea cm9 UNOFFICIAL)
+- HTC Legend (zeubea cm9 UNOFFICIAL)
+- Samsung Galaxy Gio GT-S5660 (GalaxyICS cm9 UNOFFICIAL)
+- ZTE Blade (ColdFusionX ROM - CM9 UNOFFICIAL)
+- P500
+- HTC Wildfire S (CyanogenMod 9.0.0 UNOFFICIAL)
 
-if app working on your device with cm9, plz email me =)
+Please email me if the application is working on your device with cm9 
 *****
 
-The application install a script, that allows you to move applications, data and some cache in sd-ext partition and back. In application can specify what needs to be moved. 
+The application installs a script, that allows you to move applications, data and some cache to sd-ext partition and back. You can specify what needs to be moved from within the application
 
-Support moving to sd-ext:
-1. App and Private app
-2. Applications data
-3. Dalvik and download cache
+Supports moving to sd-ext:
+- App and Private app
+- Applications data
+- Dalvik and download cache
 
-Support mounting sd-ext as ext4
+Supports mounting sd-ext as ext4
 
 Moving Applications data (/data/data) to sd-ext - Lower performance!!!
+
+Translated to: English, Russian, Spanish, Portuguese, German, Chinese and Slovak
