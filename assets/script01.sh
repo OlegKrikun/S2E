@@ -25,6 +25,15 @@ then
     then
         ${BB} umount ${SD_EXT_DIRECTORY}
     fi
+    if [ ! -d ${SD_EXT_DIRECTORY} ]
+    then
+        ${BB} echo "S2E: ${SD_EXT_DIRECTORY} not exists, making..."
+        ${BB} mount -o remount,rw /
+        ${BB} mkdir ${SD_EXT_DIRECTORY}
+        ${BB} chown system:system ${SD_EXT_DIRECTORY}
+        ${BB} chmod 0771 ${SD_EXT_DIRECTORY}
+        ${BB} mount -o remount,ro
+    fi
     tune2fs -O extents,uninit_bg,dir_index ${EXTPART}
     e2fsck -yf ${EXTPART}
     tune2fs -o journal_data_writeback ${EXTPART}
