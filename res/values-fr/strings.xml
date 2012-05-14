@@ -49,8 +49,8 @@
     <string name="myapps">Mes applis</string>
     <string name="refreshing">Actualisation …</string>
     <string name="fs_title">FreeSpace introuvable</string>
-    <string name="fs_msg">S2E peut afficher des informations détaillées sur l\'utilisation des partitions.\n\n
-        Pour cela vous devez installer \nFreeSpace ou FreeSpace Plus.
+    <string name="fs_msg">S2E peut afficher des informations détaillées sur l\'utilisation des partitions.\n
+        \nPour cela vous devez installer \nFreeSpace ou FreeSpace Plus.
     </string>
     <string name="fs_install">Installer FreeSpace</string>
     <string name="fs_dont">Ne plus demander</string>
