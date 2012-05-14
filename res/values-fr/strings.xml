@@ -67,11 +67,11 @@
     <string name="boot_options">Options de démarrage</string>
     <string name="setting_mount">Monter en ext4</string>
     <string name="setting_mount_summary">Monte sd-ext en ext4 sans journalisation</string>
-    <string name="set_read_ahead">Définir le tampon en lecture</string>
-    <string name="set_read_ahead_summary">Défini la taille du tampon en lecture pour la carte SD</string>
+    <string name="set_read_ahead">Modifier tampon carte SD</string>
+    <string name="set_read_ahead_summary">Défini la taille du tampon en prélecture pour la carte SD</string>
     <string name="read_ahead_values">Taille du tampon</string>
     <string name="read_ahead_values_symmary">Une valeur de 2Mo est un bon choix</string>
-    <string name="fs_pref">Informations de partition étendues</string>
+    <string name="fs_pref">Infos de partitions étendues</string>
     <string name="fs_pref_summary">Utiliser FreeSpace à la place des informations internes</string>
 
 </resources>
