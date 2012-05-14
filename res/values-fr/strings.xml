@@ -18,60 +18,60 @@
 <resources>
 
     <!--About-->
-    <string name="about">About</string>
-    <string name="credits">Credits</string>
-    <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class
+    <string name="about">À propos de</string>
+    <string name="credits">Remerciements</string>
+    <string name="credit__summary">Merci beaucoup à CrazyCoder pour son support, sa patience (et sa class
         \"ShellInterface\")
     </string>
-    <string name="credit__cm_summary">Many thanks to CyanogenMod team for great ROM and especially Alexander Hofbauer
-        for supporting HTC Legend
+    <string name="credit__cm_summary">Merci beaucoup à l\'équipe CyanogenMod pour leur excellente ROM et plus
+        particilièrement Alexander Hofbauer pour le support du HTC Legend
     </string>
-    <string name="credit__pv_summary">Many thanks to Pavel Volkov for testing S2E</string>
-    <string name="translators">Translators</string>
+    <string name="credit__pv_summary">Merci beaucoup à Pavel Volkov pour ses tests</string>
+    <string name="translators">Traducteurs</string>
 
     <!--MainScreen-->
     <string name="apps">Applications</string>
-    <string name="private_apps">Private apps</string>
-    <string name="app_data">Application Data</string>
+    <string name="private_apps">Applications protégées</string>
+    <string name="app_data">Données d\'applications</string>
     <string name="caches">Caches</string>
-    <string name="dalvik_cache">Dalvik cache</string>
-    <string name="download_cache">Download cache</string>
-    <string name="location">Location</string>
-    <string name="size">Size</string>
-    <string name="used">Used</string>
-    <string name="free">Free</string>
-    <string name="kb">KB</string>
-    <string name="mb">MB</string>
-    <string name="move">Moving from %1$s to %2$s</string>
-    <string name="reboot_required">Reboot is required!</string>
-    <string name="refresh">Refresh</string>
+    <string name="dalvik_cache">Cache Dalvik</string>
+    <string name="download_cache">Cache téléchargement</string>
+    <string name="location">Emplacement</string>
+    <string name="size">Taille</string>
+    <string name="used">Utilisé</string>
+    <string name="free">Libre</string>
+    <string name="kb">Ko</string>
+    <string name="mb">Mo</string>
+    <string name="move">Déplacement depuis %1$s vers %2$s</string>
+    <string name="reboot_required">Un redémarrage est necessaire !</string>
+    <string name="refresh">Actualiser</string>
     <string name="info">Information</string>
-    <string name="myapps">My Apps</string>
-    <string name="refreshing">Refreshing…</string>
-    <string name="fs_title">FreeSpace not found</string>
-    <string name="fs_msg">S2E can show detailed information about partitions usage.\n\nTo do this you need to
-        install\nFreeSpace or FreeSpace Plus.
+    <string name="myapps">Mes applis</string>
+    <string name="refreshing">Actualisation …</string>
+    <string name="fs_title">FreeSpace introuvable</string>
+    <string name="fs_msg">S2E peut afficher des informations détaillées sur l\'utilisation des partitions.\n\n
+        Pour cela vous devez installer \nFreeSpace ou FreeSpace Plus.
     </string>
-    <string name="fs_install">Install FreeSpace</string>
-    <string name="fs_dont">Don\'t ask more</string>
-    <string name="loading">Loading…</string>
+    <string name="fs_install">Installer FreeSpace</string>
+    <string name="fs_dont">Ne plus demander</string>
+    <string name="loading">Chargement…</string>
 
     <!--Alerts-->
-    <string name="alert_script_title">Script not installed</string>
-    <string name="alert_root">Root, busybox not available or access not given</string>
-    <string name="alert_version">This android version not supported</string>
+    <string name="alert_script_title">Script non installé</string>
+    <string name="alert_root">Root/BusyBox non présent ou accès refusé</string>
+    <string name="alert_version">Cette version d\'Android n\'est pas supportée</string>
 
     <!--Settings-->
-    <string name="settings">Settings</string>
-    <string name="general_options">General options</string>
-    <string name="boot_options">Boot options</string>
-    <string name="setting_mount">Mount as ext4</string>
-    <string name="setting_mount_summary">Mount sd-ext as ext4 without journaling</string>
-    <string name="set_read_ahead">Set read buffer</string>
-    <string name="set_read_ahead_summary">Set read buffer for SD card</string>
-    <string name="read_ahead_values">Buffer size</string>
-    <string name="read_ahead_values_symmary">A value of 2MB is the best practice</string>
-    <string name="fs_pref">Extended partitions info</string>
-    <string name="fs_pref_summary">Launch FreeSpace instead of integrated information</string>
+    <string name="settings">Paramètres</string>
+    <string name="general_options">Options générales</string>
+    <string name="boot_options">Options de démarrage</string>
+    <string name="setting_mount">Monter en ext4</string>
+    <string name="setting_mount_summary">Monte sd-ext en ext4 sans journalisation</string>
+    <string name="set_read_ahead">Définir le tampon en lecture</string>
+    <string name="set_read_ahead_summary">Défini la taille du tampon en lecture pour la carte SD</string>
+    <string name="read_ahead_values">Taille du tampon</string>
+    <string name="read_ahead_values_symmary">Une valeur de 2Mo est un bon choix</string>
+    <string name="fs_pref">Informations de partition étendues</string>
+    <string name="fs_pref_summary">Utiliser FreeSpace à la place des informations internes</string>
 
 </resources>
