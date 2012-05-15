@@ -18,60 +18,60 @@
 <resources>
 
     <!--About-->
-    <string name="about">About</string>
-    <string name="credits">Credits</string>
-    <string name="credit__summary">Many thanks to CrazyCoder for his support and patience (and class
-        \"ShellInterface\")
+    <string name="about">O programu</string>
+    <string name="credits">Zasluge</string>
+    <string name="credit__summary">Puno hvala CrazyCoder-u na njegovoj potpori i strpljivosti (i izvrsnom
+        \"ShellInterface-u\")
     </string>
-    <string name="credit__cm_summary">Many thanks to CyanogenMod team for great ROM and especially Alexander Hofbauer
-        for supporting HTC Legend
+    <string name="credit__cm_summary">Puno hvala CyanogenMod timu na sjajnom ROM-u i posebno Alexanderu Hofbaueru
+        za podršku za HTC Legend
     </string>
-    <string name="credit__pv_summary">Many thanks to Pavel Volkov for testing S2E</string>
-    <string name="translators">Translators</string>
+    <string name="credit__pv_summary">Puno hvala Pavelu Volkovu na testiranju S2E</string>
+    <string name="translators">Prevoditelji</string>
 
     <!--MainScreen-->
-    <string name="apps">Applications</string>
-    <string name="private_apps">Private apps</string>
-    <string name="app_data">Application Data</string>
-    <string name="caches">Caches</string>
-    <string name="dalvik_cache">Dalvik cache</string>
-    <string name="download_cache">Download cache</string>
-    <string name="location">Location</string>
-    <string name="size">Size</string>
-    <string name="used">Used</string>
-    <string name="free">Free</string>
+    <string name="apps">Aplikacije</string>
+    <string name="private_apps">Privatne aplikacije</string>
+    <string name="app_data">Podaci Aplikacije</string>
+    <string name="caches">Predmemorija</string>
+    <string name="dalvik_cache">Dalvik predmemorija</string>
+    <string name="download_cache">Predmemorija preuzimanja</string>
+    <string name="location">Lokacija</string>
+    <string name="size">Veličina</string>
+    <string name="used">Iskorišteno</string>
+    <string name="free">Slobodno</string>
     <string name="kb">KB</string>
     <string name="mb">MB</string>
-    <string name="move">Moving from %1$s to %2$s</string>
-    <string name="reboot_required">Reboot is required!</string>
-    <string name="refresh">Refresh</string>
-    <string name="info">Information</string>
-    <string name="myapps">My Apps</string>
-    <string name="refreshing">Refreshing…</string>
-    <string name="fs_title">FreeSpace not found</string>
-    <string name="fs_msg">S2E can show detailed information about partitions usage.\n\nTo do this you need to
-        install\nFreeSpace or FreeSpace Plus.
+    <string name="move">Premještanje iz %1$s u %2$s</string>
+    <string name="reboot_required">Ponovno pokretanje je obavezno!</string>
+    <string name="refresh">Osvježi</string>
+    <string name="info">Informacije</string>
+    <string name="myapps">Moje Aplikacije</string>
+    <string name="refreshing">Osvježavanje…</string>
+    <string name="fs_title">FreeSpace nije pronađen</string>
+    <string name="fs_msg">S2E može prikazati detaljnije informacije o korištenju particija.\n\nDa biste to učinili 
+            trebate instalirati \nFreeSpace ili FreeSpace Plus.
     </string>
-    <string name="fs_install">Install FreeSpace</string>
-    <string name="fs_dont">Don\'t ask more</string>
-    <string name="loading">Loading…</string>
+    <string name="fs_install">Instaliraj FreeSpace</string>
+    <string name="fs_dont">Ne pitaj više</string>
+    <string name="loading">Učitavanje…</string>
 
     <!--Alerts-->
-    <string name="alert_script_title">Script not installed</string>
-    <string name="alert_root">Root, busybox not available or access not given</string>
-    <string name="alert_version">This android version not supported</string>
+    <string name="alert_script_title">Skripta nije instalirana</string>
+    <string name="alert_root">Root, busybox nisu dostupni ili im nije dozvoljen pristup</string>
+    <string name="alert_version">Ova verzija Androida nije podržana</string>
 
     <!--Settings-->
-    <string name="settings">Settings</string>
-    <string name="general_options">General options</string>
-    <string name="boot_options">Boot options</string>
-    <string name="setting_mount">Mount as ext4</string>
-    <string name="setting_mount_summary">Mount sd-ext as ext4 without journaling</string>
-    <string name="set_read_ahead">Set read buffer</string>
-    <string name="set_read_ahead_summary">Set read buffer for SD card</string>
-    <string name="read_ahead_values">Buffer size</string>
-    <string name="read_ahead_values_symmary">A value of 2MB is the best practice</string>
-    <string name="fs_pref">Extended partitions info</string>
-    <string name="fs_pref_summary">Launch FreeSpace instead of integrated information</string>
+    <string name="settings">Postavke</string>
+    <string name="general_options">Opće postavke</string>
+    <string name="boot_options">Boot postavke</string>
+    <string name="setting_mount">Montiraj kao ext4</string>
+    <string name="setting_mount_summary">Montiraj sd-ext kao ext4 bez journaling-a</string>
+    <string name="set_read_ahead">Postavi buffer čitač</string>
+    <string name="set_read_ahead_summary">Postavite buffer čitač za SD karticu</string>
+    <string name="read_ahead_values">Veličina buffera</string>
+    <string name="read_ahead_values_symmary">Vrijednost od 2MB je najbolja praksa</string>
+    <string name="fs_pref">Proširene informacije o particijama</string>
+    <string name="fs_pref_summary">Pokreni FreeSpace umjesto ugrađenih informacija</string>
 
 </resources>
