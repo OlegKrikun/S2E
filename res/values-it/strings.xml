@@ -35,13 +35,13 @@
     <string name="used">Usati</string>
     <string name="free">Liberi</string>
     <string name="move">Spostando da %1$s a %2$s</string>
-    <string name="reboot_required">E' necessario riavviare!</string>
+    <string name="reboot_required">E\' necessario riavviare!</string>
     <string name="refresh">Aggiorna</string>
     <string name="info">Informazione</string>
     <string name="myapps">Mie applicazioni</string>
     <string name="refreshing">Aggiornando…</string>
     <string name="fs_title">FreeSpace non trovato</string>
-    <string name="fs_msg">S2E può mostrare informazioni dettagliate sull'uso delle partizioni.\n\nPer far ciò devi installare\nFreeSpace o FreeSpace Plus.</string>
+    <string name="fs_msg">S2E può mostrare informazioni dettagliate sull\'uso delle partizioni.\n\nPer far ciò devi installare\nFreeSpace o FreeSpace Plus.</string>
     <string name="fs_install">Installa FreeSpace</string>
     <string name="fs_dont">Non chiedere più</string>
     <string name="loading">Caricando…</string>
@@ -52,7 +52,7 @@
     <!--Settings-->
     <string name="settings">Impostazioni</string>
     <string name="general_options">Opzioni generali</string>
-    <string name="boot_options">Opzioni d'avvio</string>
+    <string name="boot_options">Opzioni d\'avvio</string>
     <string name="setting_mount">Monta come ext4</string>
     <string name="setting_mount_summary">Monta sd-ext come ext4 senza journaling</string>
     <string name="set_read_ahead">Imposta read buffer</string>
