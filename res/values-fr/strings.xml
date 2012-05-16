@@ -21,7 +21,7 @@
     <string name="about">À propos de</string>
     <string name="credits">Remerciements</string>
     <string name="credit__summary">Merci beaucoup à CrazyCoder pour son support, sa patience</string>
-    <string name="credit__cm_summary">Merci beaucoup à l\'équipe CyanogenMod pour leur excellente ROM et plus particilièrement Alexander Hofbauer pour le support du HTC Legend</string>
+    <string name="credit__cm_summary">Merci beaucoup à l\'équipe CyanogenMod pour leur excellente ROM et plus particulièrement à Alexander Hofbauer pour le support du HTC Legend</string>
     <string name="credit__pv_summary">Merci beaucoup à Pavel Volkov pour ses tests</string>
     <string name="translators">Traducteurs</string>
     <!--MainScreen-->
@@ -59,7 +59,7 @@
     <string name="setting_mount">Monter en ext4</string>
     <string name="setting_mount_summary">Monte sd-ext en ext4 sans journalisation</string>
     <string name="set_read_ahead">Modifier tampon carte SD</string>
-    <string name="set_read_ahead_summary">Défini la taille du tampon en prélecture pour la carte SD</string>
+    <string name="set_read_ahead_summary">Défini la taille du tampon de prélecture pour la carte SD</string>
     <string name="read_ahead_values">Taille du tampon</string>
     <string name="read_ahead_values_symmary">Une valeur de 2Mo est un bon choix</string>
     <string name="fs_pref">Infos de partitions étendues</string>
