@@ -51,5 +51,17 @@
                 android:title="Casso"
                 android:summary="Slovak"
                 android:enabled="true"/>
+        <Preference
+                android:title="Alexandre Levavasseur"
+                android:summary="French"
+                android:enabled="true"/>
+        <Preference
+                android:title="Giovanni Santini"
+                android:summary="Italian"
+                android:enabled="true"/>
+        <Preference
+                android:title="Toni Grubisic"
+                android:summary="Croatian"
+                android:enabled="true"/>
     </PreferenceCategory>
 </PreferenceScreen>
