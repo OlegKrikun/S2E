@@ -17,7 +17,6 @@
   -->
 
 <resources>
-
     <string-array name="read_ahead">
         <item>128 Ko</item>
         <item>256 Ko</item>
@@ -27,5 +26,4 @@
         <item>3 Mo</item>
         <item>4 Mo</item>
     </string-array>
-
 </resources>

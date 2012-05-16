@@ -16,19 +16,13 @@
   -->
 
 <resources>
-
     <!--About-->
     <string name="about">Acerca de</string>
     <string name="credits">Creditos</string>
-    <string name="credit__summary">Muchas gracias a CrazyCoder por su apoyo y paciencia (y explicacion del
-        \"ShellInterface\")
-    </string>
-    <string name="credit__cm_summary">Muchas gracias al equipo de CyanogenMod por su gran ROM y especialmente a
-        Alexander Hofbauer por ayudar con el HTC Legend
-    </string>
+    <string name="credit__summary">Muchas gracias a CrazyCoder por su apoyo y paciencia</string>
+    <string name="credit__cm_summary">Muchas gracias al equipo de CyanogenMod por su gran ROM y especialmente a Alexander Hofbauer por ayudar con el HTC Legend</string>
     <string name="credit__pv_summary">Muchas gracias a Pavel Volkov por testear S2E</string>
     <string name="translators">Traductores</string>
-
     <!--MainScreen-->
     <string name="apps">Aplicaciones</string>
     <string name="private_apps">Aplicaciones Privadas</string>
@@ -40,16 +34,12 @@
     <string name="size">Tamaño</string>
     <string name="used">Usado</string>
     <string name="free">Libre</string>
-    <string name="kb">KB</string>
-    <string name="mb">MB</string>
     <string name="move">Moviendo de %1$s a %2$s</string>
     <string name="reboot_required">¡Reiniciar es necesario!</string>
     <string name="refresh">Actualizar</string>
     <string name="info">Info</string>
-
     <!--Alerts-->
     <string name="alert_script_title">El Script no esta instalado</string>
-
     <!--Settings-->
     <string name="settings">Configuracion</string>
     <string name="general_options">Opciones generales</string>
@@ -60,5 +50,4 @@
     <string name="set_read_ahead_summary">Establecer buffer de lectura para tarjeta SD</string>
     <string name="read_ahead_values">Tamaño del Buffer</string>
     <string name="read_ahead_values_symmary">Un valor de 2 MB es la mejor eleccion</string>
-
 </resources>

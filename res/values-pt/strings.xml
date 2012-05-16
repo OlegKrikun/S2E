@@ -16,14 +16,10 @@
   -->
 
 <resources>
-
     <!--About-->
     <string name="about">Sobre</string>
     <string name="credits">Créditos</string>
-    <string name="credit__summary">Muito obrigado CrazyCoder pela ajuda e pela paciência (e pela classe
-        \"ShellInterface\")
-    </string>
-
+    <string name="credit__summary">Muito obrigado CrazyCoder pela ajuda e pela paciência</string>
     <!--MainScreen-->
     <string name="apps">Aplicações</string>
     <string name="private_apps">Aplicações privadas</string>
@@ -33,14 +29,9 @@
     <string name="size">Tamanho</string>
     <string name="used">Usado</string>
     <string name="free">Livre</string>
-    <string name="kb">Kb</string>
-    <string name="mb">Mb</string>
-
     <!--Alerts-->
     <string name="alert_script_title">Script não instalado</string>
-
     <!--Settings-->
     <string name="settings">Definições</string>
     <string name="setting_mount">Montar como ext4</string>
-
 </resources>

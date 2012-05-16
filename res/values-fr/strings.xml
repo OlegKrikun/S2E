@@ -20,15 +20,10 @@
     <!--About-->
     <string name="about">À propos de</string>
     <string name="credits">Remerciements</string>
-    <string name="credit__summary">Merci beaucoup à CrazyCoder pour son support, sa patience (et sa class
-        \"ShellInterface\")
-    </string>
-    <string name="credit__cm_summary">Merci beaucoup à l\'équipe CyanogenMod pour leur excellente ROM et plus
-        particilièrement Alexander Hofbauer pour le support du HTC Legend
-    </string>
+    <string name="credit__summary">Merci beaucoup à CrazyCoder pour son support, sa patience</string>
+    <string name="credit__cm_summary">Merci beaucoup à l\'équipe CyanogenMod pour leur excellente ROM et plus particilièrement Alexander Hofbauer pour le support du HTC Legend</string>
     <string name="credit__pv_summary">Merci beaucoup à Pavel Volkov pour ses tests</string>
     <string name="translators">Traducteurs</string>
-
     <!--MainScreen-->
     <string name="apps">Applications</string>
     <string name="private_apps">Applications protégées</string>
@@ -49,18 +44,14 @@
     <string name="myapps">Mes applis</string>
     <string name="refreshing">Actualisation …</string>
     <string name="fs_title">FreeSpace introuvable</string>
-    <string name="fs_msg">S2E peut afficher des informations détaillées sur l\'utilisation des partitions.\n
-        \nPour cela vous devez installer \nFreeSpace ou FreeSpace Plus.
-    </string>
+    <string name="fs_msg">S2E peut afficher des informations détaillées sur l\'utilisation des partitions.\n\nPour cela vous devez installer \nFreeSpace ou FreeSpace Plus.</string>
     <string name="fs_install">Installer FreeSpace</string>
     <string name="fs_dont">Ne plus demander</string>
     <string name="loading">Chargement…</string>
-
     <!--Alerts-->
     <string name="alert_script_title">Script non installé</string>
     <string name="alert_root">Root/BusyBox non présent ou accès refusé</string>
     <string name="alert_version">Cette version d\'Android n\'est pas supportée</string>
-
     <!--Settings-->
     <string name="settings">Paramètres</string>
     <string name="general_options">Options générales</string>
@@ -73,5 +64,4 @@
     <string name="read_ahead_values_symmary">Une valeur de 2Mo est un bon choix</string>
     <string name="fs_pref">Infos de partitions étendues</string>
     <string name="fs_pref_summary">Utiliser FreeSpace à la place des informations internes</string>
-
 </resources>

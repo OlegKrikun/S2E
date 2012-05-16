@@ -19,14 +19,10 @@
     <!--About-->
     <string name="about">О программе</string>
     <string name="credits">Спасибо</string>
-    <string name="credit__summary">Большое спасибо CrazyCoder за поддержку и терпение (и класс \"ShellInterface\")
-    </string>
-    <string name="credit__cm_summary">Большое спасибо команде CyanogenMod за замечательную прошивку и отдельно Alexander
-        Hofbauer за поддержку HTC Legend
-    </string>
+    <string name="credit__summary">Большое спасибо CrazyCoder за поддержку и терпение</string>
+    <string name="credit__cm_summary">Большое спасибо команде CyanogenMod за замечательную прошивку и отдельно Alexander Hofbauer за поддержку HTC Legend</string>
     <string name="credit__pv_summary">Спасибо большое Паше Волкову за тестирование S2E</string>
     <string name="translators">Переводчики</string>
-
     <!--MainScreen-->
     <string name="apps">Приложения</string>
     <string name="private_apps">Приватные приложения</string>
@@ -47,18 +43,14 @@
     <string name="myapps">Мои приложения</string>
     <string name="refreshing">Обновление…</string>
     <string name="fs_title">FreeSpace не найдена</string>
-    <string name="fs_msg">S2E может показывать расширенную информацию об использовании разделов.\n\nДля этого вам
-        необходимо установить \nFreeSpace или FreeSpace Plus.
-    </string>
+    <string name="fs_msg">S2E может показывать расширенную информацию об использовании разделов.\n\nДля этого вам необходимо установить \nFreeSpace или FreeSpace Plus.</string>
     <string name="fs_install">Установить FreeSpace</string>
     <string name="fs_dont">Не спрашивать больше</string>
     <string name="loading">Загрузка…</string>
-
     <!--Alerts-->
     <string name="alert_script_title">Скрипт не установлен</string>
     <string name="alert_root">Нету Root или не получен доступ</string>
     <string name="alert_version">Эта версия андроида не поддерживается</string>
-
     <!--Settings-->
     <string name="settings">Настройки</string>
     <string name="general_options">Основные настройки</string>
@@ -71,5 +63,4 @@
     <string name="fs_pref">Расширенная информация</string>
     <string name="fs_pref_summary">Запускать FreeSpace вместо показа встроенной информации</string>
     <string name="boot_options">Настройки загрузки</string>
-
 </resources>

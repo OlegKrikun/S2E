@@ -17,7 +17,6 @@
   -->
 
 <resources>
-
     <string-array name="read_ahead">
         <item>128 КБ</item>
         <item>256 КБ</item>
@@ -27,5 +26,4 @@
         <item>3 МБ</item>
         <item>4 МБ</item>
     </string-array>
-
 </resources>

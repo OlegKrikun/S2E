@@ -16,15 +16,13 @@
   -->
 
 <resources>
-
     <!--About-->
     <string name="about">O programu</string>
     <string name="credits">Zasluge</string>
-    <string name="credit__summary">Puno hvala CrazyCoder-u na njegovoj potpori i strpljivosti (i izvrsnom \"ShellInterface-u\")</string>
+    <string name="credit__summary">Puno hvala CrazyCoder-u na njegovoj potpori i strpljivosti</string>
     <string name="credit__cm_summary">Puno hvala CyanogenMod timu na sjajnom ROM-u i posebno Alexanderu Hofbaueru za podršku za HTC Legend</string>
     <string name="credit__pv_summary">Puno hvala Pavelu Volkovu na testiranju S2E</string>
     <string name="translators">Prevoditelji</string>
-
     <!--MainScreen-->
     <string name="apps">Aplikacije</string>
     <string name="private_apps">Privatne aplikacije</string>
@@ -36,8 +34,6 @@
     <string name="size">Veličina</string>
     <string name="used">Iskorišteno</string>
     <string name="free">Slobodno</string>
-    <string name="kb">KB</string>
-    <string name="mb">MB</string>
     <string name="move">Premještanje iz %1$s u %2$s</string>
     <string name="reboot_required">Ponovno pokretanje je obavezno!</string>
     <string name="refresh">Osvježi</string>
@@ -49,12 +45,10 @@
     <string name="fs_install">Instaliraj FreeSpace</string>
     <string name="fs_dont">Ne pitaj više</string>
     <string name="loading">Učitavanje…</string>
-
     <!--Alerts-->
     <string name="alert_script_title">Skripta nije instalirana</string>
     <string name="alert_root">Root, busybox nisu dostupni ili im nije dozvoljen pristup</string>
     <string name="alert_version">Ova verzija Androida nije podržana</string>
-
     <!--Settings-->
     <string name="settings">Postavke</string>
     <string name="general_options">Opće postavke</string>
@@ -67,5 +61,4 @@
     <string name="read_ahead_values_symmary">Vrijednost od 2MB je najbolja praksa</string>
     <string name="fs_pref">Proširene informacije o particijama</string>
     <string name="fs_pref_summary">Pokreni FreeSpace umjesto ugrađenih informacija</string>
-
 </resources>

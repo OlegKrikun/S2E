@@ -19,11 +19,10 @@
     <!--About-->
     <string name="about">關於</string>
     <string name="credits">鳴謝</string>
-    <string name="credit__summary">感謝CrazyCoder的支持與忍耐 (and class \"ShellInterface\")</string>
+    <string name="credit__summary">感謝CrazyCoder的支持與忍耐</string>
     <string name="credit__cm_summary">感謝CyanogenMod開發團隊的精心制作.特別感激 Alexander Hofbauer 對 HTC Legend開發和支援的貢獻</string>
     <string name="credit__pv_summary">感謝 Pavel Volkov 協助測試</string>
     <string name="translators">介面翻譯者</string>
-
     <!--MainScreen-->
     <string name="apps">應用程序</string>
     <string name="private_apps">專用程序</string>
@@ -35,8 +34,6 @@
     <string name="size">大小</string>
     <string name="used">使用中</string>
     <string name="free">剩餘</string>
-    <string name="kb">KB</string>
-    <string name="mb">MB</string>
     <string name="move">由 %1$s 移至 %2$s</string>
     <string name="reboot_required">請重啟手機!</string>
     <string name="refresh">刷新</string>
@@ -47,12 +44,10 @@
     <string name="fs_msg">S2E 可顯示分區使用詳細資料.\n\n使用相關功能需要安裝\nFreeSpace 或 FreeSpace Plus.</string>
     <string name="fs_install">安裝 FreeSpace</string>
     <string name="fs_dont">不要深究了</string>
-
     <!--Alerts-->
     <string name="alert_script_title">運行程序未安裝到SD卡上</string>
     <string name="alert_root">未取得ROOT權限</string>
     <string name="alert_version">軟件不支援此安卓系統版本</string>
-
     <!--Settings-->
     <string name="settings">設定</string>
     <string name="general_options">一般設定</string>
@@ -65,5 +60,4 @@
     <string name="read_ahead_values_symmary">建議使用2MB(能獲得最佳效能)</string>
     <string name="fs_pref">EXT 分區訊息</string>
     <string name="fs_pref_summary">使用Freespace代替內置功能</string>
-
 </resources>

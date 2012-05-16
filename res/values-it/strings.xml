@@ -16,19 +16,13 @@
   -->
 
 <resources>
-
     <!--About-->
     <string name="about">A riguardo</string>
     <string name="credits">Ringraziamenti</string>
-    <string name="credit__summary">Numerosi ringraziamenti a CrazyCoder per il suo aiuto e la sua pazienza (e la classe
-        \"ShellInterface\")
-    </string>
-    <string name="credit__cm_summary">Numerosi ringraziamenti al team CyanogenMod per la fantastica ROM e specialmente a Alexander Hofbauer
-        per il supporto a HTC Legend
-    </string>
+    <string name="credit__summary">Numerosi ringraziamenti a CrazyCoder per il suo aiuto e la sua pazienza</string>
+    <string name="credit__cm_summary">Numerosi ringraziamenti al team CyanogenMod per la fantastica ROM e specialmente a Alexander Hofbauer per il supporto a HTC Legend</string>
     <string name="credit__pv_summary">Numerosi ringraziamenti a Pavel Volkov per aver testato S2E</string>
     <string name="translators">Traduttori</string>
-
     <!--MainScreen-->
     <string name="apps">Applicazioni</string>
     <string name="private_apps">Applicazioni private</string>
@@ -40,8 +34,6 @@
     <string name="size">Grandezza</string>
     <string name="used">Usati</string>
     <string name="free">Liberi</string>
-    <string name="kb">KB</string>
-    <string name="mb">MB</string>
     <string name="move">Spostando da %1$s a %2$s</string>
     <string name="reboot_required">E' necessario riavviare!</string>
     <string name="refresh">Aggiorna</string>
@@ -49,18 +41,14 @@
     <string name="myapps">Mie applicazioni</string>
     <string name="refreshing">Aggiornando…</string>
     <string name="fs_title">FreeSpace non trovato</string>
-    <string name="fs_msg">S2E può mostrare informazioni dettagliate sull'uso delle partizioni.\n\nPer far ciò devi
-        installare\nFreeSpace o FreeSpace Plus.
-    </string>
+    <string name="fs_msg">S2E può mostrare informazioni dettagliate sull'uso delle partizioni.\n\nPer far ciò devi installare\nFreeSpace o FreeSpace Plus.</string>
     <string name="fs_install">Installa FreeSpace</string>
     <string name="fs_dont">Non chiedere più</string>
     <string name="loading">Caricando…</string>
-
     <!--Alerts-->
     <string name="alert_script_title">Script non installato</string>
     <string name="alert_root">Root e/o busybox non installati o accessibili</string>
     <string name="alert_version">Questa versione di Android non è supportata</string>
-
     <!--Settings-->
     <string name="settings">Impostazioni</string>
     <string name="general_options">Opzioni generali</string>
@@ -73,5 +61,4 @@
     <string name="read_ahead_values_symmary">Il valore di 2MB è la scelta migliore</string>
     <string name="fs_pref">Informazioni avanzate partizioni</string>
     <string name="fs_pref_summary">Avvia FreeSpace invece delle informazioni integrate</string>
-
 </resources>
