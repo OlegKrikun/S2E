@@ -25,25 +25,31 @@ import java.io.InputStream;
 import java.util.List;
 
 class Loader extends AsyncTask<Void, Void, Void> {
-
+    //Path to bin dir
+    private static final String PATH_BIN =
+            "/data/local/bin";
     //Path to installed script
     private static final String PATH_SCRIPT =
             "/data/local/userinit.d/simple2ext";
-    //Path to tune2fs
+    //Path to tune2fs and e2fsck
     private static final String PATH_TUNE2FS =
-            "/data/local/bin/tune2fs";
+            PATH_BIN + "/tune2fs";
+    private static final String PATH_E2FSCK =
+            PATH_BIN + "/e2fsck";
     //Shell command for make userinit dir
     private static final String SHELL_MAKE_USERINIT_DIR =
             "if [ ! -e /data/local/userinit.d ]; then busybox install -m 777 -o 1000 -g 1000 -d /data/local/userinit.d; fi";
     //Shell command for make bin dir
     private static final String SHELL_MAKE_BIN_DIR =
-            "if [ ! -e /data/local/bin ]; then busybox install -m 777 -o 1000 -g 1000 -d /data/local/bin; fi";
+            "busybox install -m 777 -o 1000 -g 1000 -d /data/local/bin";
     //Shell command for copy script from app home to userinit.d
     private static final String SHELL_COPY_SCRIPT_TO_USERINIT_DIR =
             "busybox cp " + Helper.S2E_DIR + "/files/script01.sh " + PATH_SCRIPT;
-    //Shell command for copy tune2fs from app home to bin
+    //Shell commands for copy tune2fs and e2fsck from app home to bin
     private static final String SHELL_COPY_TUNE2FS_TO_BIN_DIR =
             "busybox cp " + Helper.S2E_DIR + "/files/tune2fs " + PATH_TUNE2FS;
+    private static final String SHELL_COPY_E2FSCK_TO_BIN_DIR =
+            "busybox cp " + Helper.S2E_DIR + "/files/e2fsck " + PATH_E2FSCK;
     //Shell command for set permission to script
     private static final String SHELL_SET_PERMISSION =
             "busybox chmod 0777 ";
@@ -88,7 +94,12 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
                     //Installing script
                     copyFileToHome("script01.sh");
-                    copyScriptToUserInit();
+                    //Final actions of script installation
+                    //Check /data/local/userinit.d exists and create this if needed
+                    //Copy script and set permission
+                    Helper.sendShell(SHELL_MAKE_USERINIT_DIR);
+                    Helper.sendShell(SHELL_COPY_SCRIPT_TO_USERINIT_DIR);
+                    Helper.sendShell(SHELL_SET_PERMISSION  + PATH_SCRIPT);
 
                     //Check script, again
                     if (checkScript()) {
@@ -102,10 +113,24 @@ class Loader extends AsyncTask<Void, Void, Void> {
                     app.setScriptInstalled(true);
                 }
 
+                //Check /data/local/bin exists and create this if needed
+                if(!Helper.checkFileExists(PATH_BIN))
+                    Helper.sendShell(SHELL_MAKE_BIN_DIR);
+
                 if (!Helper.checkFileExists(PATH_TUNE2FS)) {
                     //Install tune2fs
                     copyFileToHome("tune2fs");
-                    copyTune2FsToBin();
+                    //Copy tune2fs and set permission
+                    Helper.sendShell(SHELL_COPY_TUNE2FS_TO_BIN_DIR);
+                    Helper.sendShell(SHELL_SET_PERMISSION  + PATH_TUNE2FS);
+                }
+
+                if (!Helper.checkFileExists(PATH_E2FSCK)) {
+                    //Install e2fsck
+                    copyFileToHome("e2fsck");
+                    //Copy e2fsck and set permission
+                    Helper.sendShell(SHELL_COPY_E2FSCK_TO_BIN_DIR);
+                    Helper.sendShell(SHELL_SET_PERMISSION  + PATH_E2FSCK);
                 }
 
                 //Load targets set (sizes, statuses and etc)
@@ -147,14 +172,14 @@ class Loader extends AsyncTask<Void, Void, Void> {
         return checkScriptExists() && checkScriptSum();
     }
 
-    //Final actions of script installation
-    //Check /data/local/userinit.d exists and create this if needed
-    //Copy script and set permission
-    private void copyScriptToUserInit() {
-        Helper.sendShell(SHELL_MAKE_USERINIT_DIR);
-        Helper.sendShell(SHELL_COPY_SCRIPT_TO_USERINIT_DIR);
-        Helper.sendShell(SHELL_SET_PERMISSION  + PATH_SCRIPT);
-    }
+//    //Final actions of script installation
+//    //Check /data/local/userinit.d exists and create this if needed
+//    //Copy script and set permission
+//    private void copyScriptToUserInit() {
+//        Helper.sendShell(SHELL_MAKE_USERINIT_DIR);
+//        Helper.sendShell(SHELL_COPY_SCRIPT_TO_USERINIT_DIR);
+//        Helper.sendShell(SHELL_SET_PERMISSION  + PATH_SCRIPT);
+//    }
 
     //Final actions of tune2fs installation
     //Check /data/local/bin exists and create this if needed

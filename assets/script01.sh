@@ -26,6 +26,15 @@ else
     TUNE2FS="tune2fs"
 fi
 
+if [ -e "/data/local/bin/e2fsck" ];
+then
+    ${LOG} "S2E: Use built-in e2fsck"
+    E2FSCK="/data/local/bin/e2fsck"
+else
+    ${LOG} "S2E: Use system e2fsck"
+    E2FSCK="e2fsck"
+fi
+
 if [ -e "${S2E_CONFIG_DIR}.read_ahead" ];
 then
     ${LOG} "S2E: Setup read_ahead value"
@@ -51,7 +60,7 @@ then
     fi
     ${TUNE2FS} -O extents,uninit_bg,dir_index ${EXTPART}
     ${LOG} "S2E: Checking ext partition..."
-    e2fsck -yf ${EXTPART}
+    ${E2FSCK} -yf ${EXTPART}
     ${LOG} "S2E: Disabling journaling..."
     ${TUNE2FS} -o journal_data_writeback ${EXTPART}
     ${TUNE2FS} -O ^has_journal ${EXTPART}
