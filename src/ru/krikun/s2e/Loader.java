@@ -123,14 +123,14 @@ class Loader extends AsyncTask<Void, Void, Void> {
                 Log.e(Helper.TAG, "Error in dialog.dismiss()");
             }
         }
-        //Exit if OS not supported
-        if (!app.isSupportedOS()) main.showAlert(App.getRes().getString(R.string.alert_version));
-        //Exit if access to root not given or busybox not found
-        else if (!app.isRoot()) main.showAlert(App.getRes().getString(R.string.alert_root));
-        //Exit if script not installed
-        else if (!app.isScriptInstalled()) main.showAlert(App.getRes().getString(R.string.alert_script_title));
-        //Load main view
-        else main.onTaskFinished();
+//        //Exit if OS not supported
+//        if (!app.isSupportedOS()) main.showAlert(App.getRes().getString(R.string.alert_version));
+//        //Exit if access to root not given or busybox not found
+//        else if (!app.isRoot()) main.showAlert(App.getRes().getString(R.string.alert_root));
+//        //Exit if script not installed
+//        else if (!app.isScriptInstalled()) main.showAlert(App.getRes().getString(R.string.alert_script_title));
+//        //Load main view
+//        else main.onTaskFinished();
     }
 
     //Check script exists and control md5
@@ -165,7 +165,7 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
     //Copy tools to bin and set permission
     private void copyFileShell(String fileName, String destinationDir) {
-        Helper.sendShell(SHELL_COPY_FILE + Helper.S2E_DIR + "/files/" + fileName + " " + destinationDir + "/" + fileName);
+        Helper.sendShell(SHELL_COPY_FILE + main.getFilesDir().getAbsolutePath() + "/" + fileName + " " + destinationDir + "/" + fileName);
         Helper.sendShell(SHELL_SET_PERMISSION  + destinationDir + "/" + fileName);
     }
 
