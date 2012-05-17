@@ -18,6 +18,7 @@ package ru.krikun.s2e;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -58,7 +59,7 @@ class Loader extends AsyncTask<Void, Void, Void> {
             "busybox md5sum " + PATH_SCRIPT;
 
     private final App app;
-    private final ProgressDialog dialog;
+    private ProgressDialog dialog;
     private final Main main;
     private final String md5;
 
@@ -156,15 +157,22 @@ class Loader extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         //Close progress dialog
-        if (dialog.isShowing()) dialog.dismiss();
-        //Exit if OS not supported
-        if (!app.isSupportedOS()) main.showAlert(App.getRes().getString(R.string.alert_version));
-        //Exit if access to root not given or busybox not found
-        else if (!app.isRoot()) main.showAlert(App.getRes().getString(R.string.alert_root));
-        //Exit if script not installed
-        else if (!app.isScriptInstalled()) main.showAlert(App.getRes().getString(R.string.alert_script_title));
-        //Load main view
-        else main.onTaskFinished();
+        if (dialog.isShowing()) {
+            try {
+                dialog.dismiss();
+                dialog = null;
+            } catch (Exception e) {
+                Log.e(Helper.TAG, "Error in dialog.dismiss()");
+            }
+        }
+//        //Exit if OS not supported
+//        if (!app.isSupportedOS()) main.showAlert(App.getRes().getString(R.string.alert_version));
+//        //Exit if access to root not given or busybox not found
+//        else if (!app.isRoot()) main.showAlert(App.getRes().getString(R.string.alert_root));
+//        //Exit if script not installed
+//        else if (!app.isScriptInstalled()) main.showAlert(App.getRes().getString(R.string.alert_script_title));
+//        //Load main view
+//        else main.onTaskFinished();
     }
 
     //Check script exists and control md5
