@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2012 OlegKrikun
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+    <!--About-->
+    <string name="about">Mengenai</string>
+    <string name="credits">Penghargaan</string>
+    <string name="credit__summary">Terima kasih banyak untuk CrazyCoder atas dukungan dan kesabarannya</string>
+    <string name="credit__cm_summary">Terima kasih banyak untuk untuk tim CyanogenMod atas ROM yang hebat dan terutama Alexander Hofbauer atas dukungan HTC Legend</string>
+    <string name="credit__pv_summary">Terima kasih banyak untuk Pavel Volkov untuk pengujian S2E</string>
+    <string name="translators">Penerjemah</string>
+    <!--MainScreen-->
+    <string name="apps">Aplikasi</string>
+    <string name="private_apps">Aplikasi Pribadi</string>
+    <string name="app_data">Data Aplikasi</string>
+    <string name="caches">Cache</string>
+    <string name="dalvik_cache">Dalvik cache</string>
+    <string name="download_cache">Unduh cache</string>
+    <string name="location">Lokasi</string>
+    <string name="size">Ukuran</string>
+    <string name="used">Pemakaian</string>
+    <string name="free">Bebas</string>
+    <string name="move">Bergerak dari %1$s ke %2$s</string>
+    <string name="reboot_required">Reboot is required!</string>
+    <string name="refresh">Menyegarkan</string>
+    <string name="info">Informasi</string>
+    <string name="myapps">Aplikasi saya</string>
+    <string name="refreshing">Penyegaran…</string>
+    <string name="fs_title">Ruangan bebas tidak ditemukan</string>
+    <string name="fs_msg">S2E dapat menunjukkan informasi rinci mengenai pemakaian partisi.\n\nUntuk melakukan ini anda perlu memasang\nFreeSpace or FreeSpace Plus.</string>
+    <string name="fs_install">Memasang FreeSpace</string>
+    <string name="fs_dont">Jangan bertanya kembali</string>
+    <string name="loading">Memuat…</string>
+    <!--Alerts-->
+    <string name="alert_script_title">Script tidak terpasang</string>
+    <string name="alert_root">Root, busybox tidak tersedia atau akses tidak diberikan</string>
+    <string name="alert_version">Versi android ini tidak didukung</string>
+    <!--Settings-->
+    <string name="settings">Pengaturan</string>
+    <string name="general_options">Pilihan umum</string>
+    <string name="boot_options">Pilihan boot</string>
+    <string name="setting_mount">Mount sebagai ext4</string>
+    <string name="setting_mount_summary">Mount sd-ext sebagai ext4 tanpa journaling</string>
+    <string name="set_read_ahead">Menetapkan membaca buffer</string>
+    <string name="set_read_ahead_summary">Menetapkan membaca buffer untuk SD card</string>
+    <string name="read_ahead_values">Buffer ukuran</string>
+    <string name="read_ahead_values_symmary">Nilai 2MB adalah praktek yang terbaik</string>
+    <string name="fs_pref">Info partisi extended</string>
+    <string name="fs_pref_summary">Jalankan FreeSpace bukan informasi yang terintegrasi</string>
+</resources>

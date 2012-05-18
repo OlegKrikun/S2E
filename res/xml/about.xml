@@ -63,5 +63,9 @@
                 android:title="Toni Grubisic"
                 android:summary="Croatian"
                 android:enabled="true"/>
+        <Preference
+                android:title="Nizar Lazuardy"
+                android:summary="Indonesian"
+                android:enabled="true"/>
     </PreferenceCategory>
 </PreferenceScreen>
