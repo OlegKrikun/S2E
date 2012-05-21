@@ -19,6 +19,10 @@ package ru.krikun.s2e;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import com.stericson.RootTools.Mount;
+import com.stericson.RootTools.RootTools;
+import com.stericson.RootTools.SanityCheckRootTools;
+import com.stericson.RootTools.Symlink;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -165,8 +169,12 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
     //Copy tools to bin and set permission
     private void copyFileShell(String fileName, String destinationDir) {
-        Helper.sendShell(SHELL_COPY_FILE + main.getFilesDir().getAbsolutePath() + "/" + fileName + " " + destinationDir + "/" + fileName);
-        Helper.sendShell(SHELL_SET_PERMISSION  + destinationDir + "/" + fileName);
+        String src = app.getFilesDir().getAbsolutePath() + "/" + fileName;
+        String dest = destinationDir + "/" + fileName;
+
+        RootTools.copyFile(src, dest, false, false);
+//        Helper.sendShell(SHELL_COPY_FILE + main.getFilesDir().getAbsolutePath() + "/" + fileName + " " + destinationDir + "/" + fileName);
+        Helper.sendShell(SHELL_SET_PERMISSION  + dest);
     }
 
     //Make dir via shell
