@@ -24,7 +24,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.util.Log;
-import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -52,8 +51,7 @@ public class Main extends SherlockPreferenceActivity {
         getSupportActionBar().setTitle(R.string.app_label);
         getSupportActionBar().setSubtitle("DATA: --  EXT: --");
 
-        new Loader(this).execute();
-
+        new Tasks(this).doInitialization();
     }
 
     @Override
@@ -65,8 +63,7 @@ public class Main extends SherlockPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh:
-                Toast.makeText(Main.this, App.getRes().getString(R.string.refreshing), 10).show();
-                refresh();
+                new Tasks(this).doRefresh();
                 break;
             case R.id.info:
                 showInformation();
@@ -95,16 +92,14 @@ public class Main extends SherlockPreferenceActivity {
         return (super.onPrepareOptionsMenu(menu));
     }
 
-    public void onTaskFinished() {
+    void addView() {
         addPreferencesFromResource(R.xml.main);
         setOnPreferenceClick();
-        updateView();
     }
 
-    public void showAlert(String text) {
-        Toast.makeText(this, text, 15).show();
-        Log.e(Helper.TAG, text);
-        this.finish();
+    void updateView() {
+        setTargetsState();
+        setTitle();
     }
 
     private String formatSummaryMoving(String targetPartition, String sourcesPartition) {
@@ -113,7 +108,7 @@ public class Main extends SherlockPreferenceActivity {
     }
 
     private String formatSummaryStatic(String target, String partition) {
-        return App.getRes().getString(R.string.location) + ": " + partition + "/" + target + "\n" +
+        return App.getRes().getString(R.string.location) + ": " + partition + App.SEPARATOR + target + "\n" +
                 App.getRes().getString(R.string.size) + ": " +
                 Helper.convertSize(app.getTargets().get(target).getSize(),
                         App.getRes().getString(R.string.kb),
@@ -167,14 +162,6 @@ public class Main extends SherlockPreferenceActivity {
 
     private void loadExtendedInformationPref() {
         showExtendedInformation = App.getPrefs().getBoolean("show_extended_information", true);
-    }
-
-    private void refresh() {
-        app.getPartitions().update();
-        app.getTargets().updateSizes();
-        app.getTargets().updateStatuses();
-
-        updateView();
     }
 
     private void setOnPreferenceClick() {
@@ -288,10 +275,5 @@ public class Main extends SherlockPreferenceActivity {
         builder.setMessage(message).setCancelable(true);
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
-
-    private void updateView() {
-        setTargetsState();
-        setTitle();
     }
 }

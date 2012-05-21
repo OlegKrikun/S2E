@@ -47,6 +47,8 @@
     <string name="fs_install">Установить FreeSpace</string>
     <string name="fs_dont">Не спрашивать больше</string>
     <string name="loading">Загрузка…</string>
+    <string name="checking">Проверка…</string>
+    <string name="installing">Установка…</string>
     <!--Alerts-->
     <string name="alert_script_title">Скрипт не установлен</string>
     <string name="alert_root">Нету Root или не получен доступ</string>
