@@ -139,7 +139,7 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
     //Check script exists and control md5
     private boolean checkScript() {
-        return Helper.checkFileExists(PATH_USERINIT + "/" + SCRIPT) && checkScriptSum();
+        return Helper.checkFileExists(PATH_USERINIT + Helper.SEPARATOR + SCRIPT) && checkScriptSum();
     }
 
     //Return md5sum of path
@@ -159,7 +159,7 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
     //Install tool to bin dir
     private void installTool(String toolName) {
-        if (!Helper.checkFileExists(PATH_BIN + "/" + toolName)) {
+        if (!Helper.checkFileExists(PATH_BIN + Helper.SEPARATOR + toolName)) {
             //Install tool to home
             copyFileToHome(toolName);
             //Copy tool to bin and set permission
@@ -169,8 +169,8 @@ class Loader extends AsyncTask<Void, Void, Void> {
 
     //Copy tools to bin and set permission
     private void copyFileShell(String fileName, String destinationDir) {
-        String src = app.getFilesDir().getAbsolutePath() + "/" + fileName;
-        String dest = destinationDir + "/" + fileName;
+        String src = app.getFilesDir().getAbsolutePath() + Helper.SEPARATOR + fileName;
+        String dest = destinationDir + Helper.SEPARATOR + fileName;
 
         RootTools.copyFile(src, dest, false, false);
 //        Helper.sendShell(SHELL_COPY_FILE + main.getFilesDir().getAbsolutePath() + "/" + fileName + " " + destinationDir + "/" + fileName);

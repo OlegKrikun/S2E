@@ -37,6 +37,9 @@ public class Helper {
     private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
     //Timeout for shell request
     private static final int SHELL_TIMEOUT = 5000;
+    //Directory-file separator
+    public static final char SEPARATOR = '/';
+
 
     //Send command to shell
     //if return code equals 1, return null
@@ -77,7 +80,7 @@ public class Helper {
     //if status file dir not exists, then create this dir
     public static void createStatusFile(String target) {
         if (!checkFileExists(SCRIPT_STATUS_DIR)) createDir(SCRIPT_STATUS_DIR);
-        createFile(SCRIPT_STATUS_DIR + "/" + target);
+        createFile(SCRIPT_STATUS_DIR + SEPARATOR + target);
     }
 
     //Check config dir exists and create this if needed
