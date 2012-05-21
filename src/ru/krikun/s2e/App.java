@@ -20,6 +20,14 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import com.stericson.RootTools.RootTools;
+import com.stericson.RootTools.RootToolsException;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 public class App extends Application {
 
@@ -32,6 +40,10 @@ public class App extends Application {
 
     //Directory-file separator
     public static final char SEPARATOR = '/';
+    //Tag for logs
+    public static final String TAG = "S2E";
+    //Timeout for shell request
+    private static final int SHELL_TIMEOUT = 10000;
 
     private PartitionsSet partitions;
     private TargetSet targets;
@@ -48,6 +60,41 @@ public class App extends Application {
 
     static Resources getRes() {
         return res;
+    }
+
+    //Send command to shell
+    //if return code equals 1, return null
+    public static List<String> sendShell(String str) {
+        try {
+            List<String> output = RootTools.sendShell(str, SHELL_TIMEOUT);
+            if (!output.get(output.size() - 1).equals("1")) return output;
+            else Log.e(TAG, "Error in shell: " + str + "; return code '1'");
+        } catch (IOException e) {
+            Log.e(TAG, "Error in shell: " + str + "; IOException");
+        } catch (RootToolsException e) {
+            Log.e(TAG, "Error in shell: " + str + "; RootToolsException");
+        } catch (TimeoutException e) {
+            Log.e(TAG, "Error in shell: " + str + "; TimeoutException");
+        }
+        return null;
+    }
+
+    //Dynamical convert size to MB or KB
+    public static String convertSize(int size, String kb, String mb) {
+        if (size == 0) return "--";
+        else if (size >= 1024) return Integer.toString(size / 1024) + mb;
+        else return size + kb;
+    }
+
+    //Check file exists
+    public static boolean checkFileExists(String filePath) {
+        File file = new File(filePath);
+        return file.exists();
+    }
+
+    //Compare sizes of partitions and dir
+    public static boolean compareSizes(int size, int free) {
+        return size != 0 && free != 0 && size < free;
     }
 
     TargetSet getTargets() {

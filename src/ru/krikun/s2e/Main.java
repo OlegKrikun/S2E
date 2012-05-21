@@ -110,29 +110,29 @@ public class Main extends SherlockPreferenceActivity {
     private String formatSummaryStatic(String target, String partition) {
         return App.getRes().getString(R.string.location) + ": " + partition + App.SEPARATOR + target + "\n" +
                 App.getRes().getString(R.string.size) + ": " +
-                Helper.convertSize(app.getTargets().get(target).getSize(),
+                App.convertSize(app.getTargets().get(target).getSize(),
                         App.getRes().getString(R.string.kb),
                         App.getRes().getString(R.string.mb));
     }
 
     private String getPartitionString(Partition partition) {
         return "\n\t" + App.getRes().getString(R.string.size) + ": " +
-                Helper.convertSize(partition.getSize(),
+                App.convertSize(partition.getSize(),
                         App.getRes().getString(R.string.kb),
                         App.getRes().getString(R.string.mb)) +
                 "\n\t" + App.getRes().getString(R.string.used) + ": " +
-                Helper.convertSize(partition.getUsed(),
+                App.convertSize(partition.getUsed(),
                         App.getRes().getString(R.string.kb),
                         App.getRes().getString(R.string.mb)) +
                 "\n\t" + App.getRes().getString(R.string.free) + ": " +
-                Helper.convertSize(partition.getFree(),
+                App.convertSize(partition.getFree(),
                         App.getRes().getString(R.string.kb),
                         App.getRes().getString(R.string.mb));
     }
 
     private boolean checkFreeSpace(Target target, Partition partition, int sizeToPartition) {
         int freeSpace = (partition.getFree() - sizeToPartition - 1024);
-        return Helper.compareSizes(target.getSize(), freeSpace);
+        return App.compareSizes(target.getSize(), freeSpace);
     }
 
     private boolean checkInformationProvider(Intent intent) {
@@ -150,12 +150,12 @@ public class Main extends SherlockPreferenceActivity {
 
             if (target.getStatus() == Target.TARGET_MOVE_TO_EXT) {
                 sizeToExt += target.getSize();
-                Log.d(Helper.TAG, "Found target: " + target.getTargetName() + " for move to EXT; Target size: "
+                Log.d(App.TAG, "Found target: " + target.getTargetName() + " for move to EXT; Target size: "
                         + String.valueOf(target.getSize()) + "; All size to EXT: " + String.valueOf(sizeToExt));
             }
             if (target.getStatus() == Target.TARGET_MOVE_TO_DATA)
                 sizeToData += target.getSize();
-            Log.d(Helper.TAG, "Found target: " + target.getTargetName() + " for move to DATA; Target size: "
+            Log.d(App.TAG, "Found target: " + target.getTargetName() + " for move to DATA; Target size: "
                     + String.valueOf(target.getSize()) + "; All size to EXT: " + String.valueOf(sizeToData));
         }
     }
@@ -213,11 +213,11 @@ public class Main extends SherlockPreferenceActivity {
 
     private void setTitle() {
         String label =
-                "DATA: " + Helper.convertSize(
+                "DATA: " + App.convertSize(
                         app.getPartitions().get("data").getFree(),
                         App.getRes().getString(R.string.kb),
                         App.getRes().getString(R.string.mb)
-                ) + "  " + "EXT: " + Helper.convertSize(
+                ) + "  " + "EXT: " + App.convertSize(
                         app.getPartitions().get("sd-ext").getFree(),
                         App.getRes().getString(R.string.kb),
                         App.getRes().getString(R.string.mb)

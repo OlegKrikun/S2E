@@ -23,6 +23,7 @@ import android.util.Log;
 import android.widget.Toast;
 import com.stericson.RootTools.RootTools;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,6 +44,12 @@ class Tasks {
     private static final String SHELL_SET_PERMISSION = "busybox chmod 0777 ";
     //Shell command for get md5 sum
     private static final String SHELL_GET_MD5 = "busybox md5sum " + PATH_USERINIT + App.SEPARATOR + SCRIPT;
+    //App home dir
+    public static final String S2E_DIR = "/data/data/ru.krikun.s2e";
+    //Path to S2E config dir (for ReadAhead and Mount feature)
+    private static final String S2E_CONFIG_DIR = "/data/local/s2e_config";
+    //Path to dir with status files
+    private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
 
     private final App app;
     private ProgressDialog dialog;
@@ -72,6 +79,7 @@ class Tasks {
     }
 
     private class Checker extends AsyncTask<Void, Void, Void> {
+
         @Override
         protected Void doInBackground(Void... voids) {
             //Check API
@@ -113,8 +121,8 @@ class Tasks {
             else new Loader().execute();
         }
     }
-
     private class Installer extends AsyncTask<Void, Void, Void> {
+
         @Override
         protected Void doInBackground(Void... voids) {
             if (!scriptInstalled) {
@@ -152,8 +160,8 @@ class Tasks {
             else new Loader().execute();
         }
     }
-
     private class Loader extends AsyncTask<Void, Void, Void> {
+
         @Override
         protected Void doInBackground(Void... voids) {
             //Load targets set (sizes, statuses and etc)
@@ -177,8 +185,8 @@ class Tasks {
             main.updateView();
         }
     }
-
     private class Refresher extends AsyncTask<Void, Void, Void> {
+
         @Override
         protected Void doInBackground(Void... voids) {
             app.getPartitions().update();
@@ -200,7 +208,7 @@ class Tasks {
             main.updateView();
         }
     }
-    
+
     // Check Api
     private boolean loadAPI() {
         if (android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.GINGERBREAD
@@ -218,6 +226,7 @@ class Tasks {
     private boolean loadShell() {
         return RootTools.isAccessGiven() && isBusyboxAvailable();
     }
+
     //Get busybox available
     private boolean isBusyboxAvailable() {
         if(App.getPrefs().contains(App.PREFERENCE_NAME_BUSYBOX)) {
@@ -228,14 +237,14 @@ class Tasks {
             return isBusyboxAvailable;
         }
     }
-
     //Check script exists and control md5
     private boolean checkScript() {
-        return Helper.checkFileExists(PATH_USERINIT + App.SEPARATOR + SCRIPT) && checkScriptSum();
+        return App.checkFileExists(PATH_USERINIT + App.SEPARATOR + SCRIPT) && checkScriptSum();
     }
+
     //Return md5sum of path
     private String getSum() {
-        List<String> output = Helper.sendShell(SHELL_GET_MD5);
+        List<String> output = App.sendShell(SHELL_GET_MD5);
         if (output != null) {
             if (output.get(0).length() >= 32) return output.get(0).substring(0, 32);
         }
@@ -246,11 +255,10 @@ class Tasks {
         String tmp_md5 = getSum();
         return tmp_md5 != null && tmp_md5.equals(md5);
     }
-
     //Check tools exists
     private boolean toolsExists(){
-        return  Helper.checkFileExists(PATH_BIN + App.SEPARATOR + TUNE2FS) &&
-                Helper.checkFileExists(PATH_BIN + App.SEPARATOR + E2FSCK);
+        return  App.checkFileExists(PATH_BIN + App.SEPARATOR + TUNE2FS) &&
+                App.checkFileExists(PATH_BIN + App.SEPARATOR + E2FSCK);
     }
 
     //Install tool to bin dir
@@ -260,17 +268,18 @@ class Tasks {
         //Copy tool to bin and set permission
         installFile(toolName, PATH_BIN);
     }
+
     //Copy and set permission
     private void installFile(String fileName, String destinationDir) {
         String src = app.getFilesDir().getAbsolutePath() + App.SEPARATOR + fileName;
         String dest = destinationDir + App.SEPARATOR + fileName;
         RootTools.copyFile(src, dest, false, false);
-        Helper.sendShell(SHELL_SET_PERMISSION  + dest);
+        App.sendShell(SHELL_SET_PERMISSION + dest);
     }
     //Make dir via shell
     private void makeDirShell(String dirPath) {
-        if(!Helper.checkFileExists(dirPath))
-            Helper.sendShell(SHELL_MAKE_DIR + dirPath);
+        if(!App.checkFileExists(dirPath))
+            App.sendShell(SHELL_MAKE_DIR + dirPath);
     }
     //Extract file and copy to app home dir
     private void extractFile(String fileName) {
@@ -289,24 +298,89 @@ class Tasks {
             throw new RuntimeException(e);
         }
     }
-
     private void exit(String reason) {
         closeProgressDialog();
         showAlert(reason);
         main.finish();
     }
+
     private void closeProgressDialog() {
         if (dialog.isShowing()) {
             try {
                 dialog.dismiss();
                 dialog = null;
             } catch (Exception e) {
-                Log.e(Helper.TAG, "Error in dialog.dismiss()");
+                Log.e(App.TAG, "Error in dialog.dismiss()");
             }
         }
     }
     private void showAlert(String reason) {
         Toast.makeText(main, reason, 15).show();
-        Log.e(Helper.TAG, reason);
+        Log.e(App.TAG, reason);
+    }
+    //Create status file
+    //if status file dir not exists, then create this dir
+    public static void createStatusFile(String target) {
+        if (!App.checkFileExists(SCRIPT_STATUS_DIR)) createDir(SCRIPT_STATUS_DIR);
+        createFile(SCRIPT_STATUS_DIR + App.SEPARATOR + target);
+    }
+
+    //Check config dir exists and create this if needed
+    public static boolean checkConfigDir() {
+        if (!App.checkFileExists(S2E_CONFIG_DIR)) {
+            createDir(S2E_CONFIG_DIR);
+            return App.checkFileExists(S2E_CONFIG_DIR);
+        } else return true;
+    }
+
+    //Create mount file
+    public static void createMountFile() {
+        createFile(S2E_CONFIG_DIR + "/.mounts_ext4");
+    }
+
+    //Delete mount file
+    public static void deleteMountFile() {
+        deleteFile(S2E_CONFIG_DIR + "/.mounts_ext4");
+    }
+
+    //Create ReadAhead file
+    public static void createReadAheadFile() {
+        createFile(S2E_CONFIG_DIR + "/.read_ahead");
+    }
+
+    //Delete ReadAhead file
+    public static void deleteReadAheadFile() {
+        deleteFile(S2E_CONFIG_DIR + "/.read_ahead");
+    }
+
+    //Write value to ReadAhead file
+    public static void writeReadAheadValue(String value) {
+        writeToFile(S2E_CONFIG_DIR + "/.read_ahead", value);
+    }
+
+    //Check status file
+    public static boolean checkStatusFileExists(String target) {
+        File status = new File(SCRIPT_STATUS_DIR, target);
+        return status.exists();
+    }
+
+    //Create file
+    private static void createFile(String filePath) {
+        App.sendShell("busybox touch " + filePath);
+    }
+
+    //Delete file if file exists
+    private static void deleteFile(String filePath) {
+        if (App.checkFileExists(filePath)) App.sendShell("busybox rm " + filePath);
+    }
+
+    //Write to file if file exists
+    private static void writeToFile(String filePath, String string) {
+        if (App.checkFileExists(filePath)) App.sendShell("busybox echo " + string + " > " + filePath);
+    }
+
+    //Create dir
+    private static void createDir(String path) {
+        App.sendShell("busybox mkdir " + path);
     }
 }

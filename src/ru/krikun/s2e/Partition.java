@@ -75,12 +75,12 @@ class Partition {
             free = (statFs.getAvailableBlocks() * blockSize) / 1024;
             used = size - free;
         } catch (IllegalArgumentException er) {
-            Log.e(Helper.TAG, "IllegalArgumentException");
+            Log.e(App.TAG, "IllegalArgumentException");
         }
     }
 
     private void loadOverShell() {
-        List<String> output = Helper.sendShell("busybox df " + path);
+        List<String> output = App.sendShell("busybox df " + path);
 
         if (output != null) {
             String[] array = output.get(1).split("\\s+");

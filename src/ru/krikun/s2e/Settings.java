@@ -33,9 +33,9 @@ public class Settings extends SherlockPreferenceActivity {
     }
 
     private void setMountState(boolean mounts_mode) {
-        if (Helper.checkConfigDir()) {
-            if (mounts_mode) Helper.createMountFile();
-            else Helper.deleteMountFile();
+        if (Tasks.checkConfigDir()) {
+            if (mounts_mode) Tasks.createMountFile();
+            else Tasks.deleteMountFile();
         }
     }
 
@@ -73,16 +73,16 @@ public class Settings extends SherlockPreferenceActivity {
     }
 
     private void setReadAhead(boolean ReadAhead) {
-        if (Helper.checkConfigDir()) {
+        if (Tasks.checkConfigDir()) {
             if (ReadAhead) {
-                Helper.createReadAheadFile();
+                Tasks.createReadAheadFile();
                 String value = App.getPrefs().getString("read_ahead_values", null);
-                if (value != null) Helper.writeReadAheadValue(value);
-            } else Helper.deleteReadAheadFile();
+                if (value != null) Tasks.writeReadAheadValue(value);
+            } else Tasks.deleteReadAheadFile();
         }
     }
 
     private void setReadAheadValue(String read_ahead_value) {
-        if (Helper.checkConfigDir()) Helper.writeReadAheadValue(read_ahead_value);
+        if (Tasks.checkConfigDir()) Tasks.writeReadAheadValue(read_ahead_value);
     }
 }
