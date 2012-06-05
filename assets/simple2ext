@@ -2,7 +2,9 @@
 
 # Initialization, checks and mounts
 BB="busybox"
+DELETE="busybox rm -rf"
 LOG="busybox echo"
+LOGFILE="/data/local/s2e.log"
 
 # Initialization
 ${LOG} "######################"
@@ -13,45 +15,80 @@ if [ "${SD_EXT_DIRECTORY}" = "" ];
 then
     SD_EXT_DIRECTORY=/sd-ext
 fi
+if [ -e ${LOGFILE} ];
+then
+    ${DELETE} ${LOGFILE}
+    ${BB} touch ${LOGFILE}
+else
+    ${BB} touch ${LOGFILE}
+fi
 
-S2E_CONFIG_DIR='/data/local/s2e_config/'
-EXTPART='/dev/block/mmcblk0p2'
+S2E_CONFIG_DIR=/data/local/s2e_config/
+
+# Checking for ext partitions
+for NUM in `seq 0 9`;
+do
+    TYPE=`cat /sys/block/mmcblk${NUM}/device/type`
+    if [ "${TYPE}" = "SD" ];
+    then
+        EXTPART=/dev/block/mmcblk${NUM}p2
+        SD_FOUND="1"
+        break
+    fi
+done
+if [ "${SD_FOUND}" = "1" ];
+then
+    ${LOG} "S2E: Ext partition found: ${EXTPART}"
+    ${LOG} "Ext partition found: ${EXTPART}" >> ${LOGFILE}
+else
+    ${LOG} "S2E: Ext partition not found... Exit!"
+    ${LOG} "Ext partition not found... Exit!" >> ${LOGFILE}
+    exit
+fi
 
 if [ -e "/data/local/bin/tune2fs" ];
 then
     ${LOG} "S2E: Use built-in tune2fs"
+    ${LOG} "Use built-in tune2fs" >> ${LOGFILE}
     TUNE2FS="/data/local/bin/tune2fs"
 else
     ${LOG} "S2E: Use system tune2fs"
+    ${LOG} "Use system tune2fs" >> ${LOGFILE}
     TUNE2FS="tune2fs"
 fi
 
 if [ -e "/data/local/bin/e2fsck" ];
 then
     ${LOG} "S2E: Use built-in e2fsck"
+    ${LOG} "Use built-in e2fsck" >> ${LOGFILE}
     E2FSCK="/data/local/bin/e2fsck"
 else
     ${LOG} "S2E: Use system e2fsck"
+    ${LOG} "Use system e2fsck" >> ${LOGFILE}
     E2FSCK="e2fsck"
 fi
 
 if [ -e "${S2E_CONFIG_DIR}.read_ahead" ];
 then
     ${LOG} "S2E: Setup read_ahead value"
+    ${LOG} "Setup read_ahead value" >> ${LOGFILE}
     ${BB} cat ${S2E_CONFIG_DIR}.read_ahead > /sys/devices/virtual/bdi/179:0/read_ahead_kb
 fi
 
 if [ -e "${S2E_CONFIG_DIR}.mounts_ext4" ];
 then
     ${LOG} "S2E: Start mounting ext partition as ext4"
+    ${LOG} "Start mounting ext partition as ext4" >> ${LOGFILE}
     if [ "`${BB} egrep -q ${SD_EXT_DIRECTORY} /proc/mounts; ${BB} echo $?`" = "0" ];
     then
         ${LOG} "S2E: Unmount ext"
+        ${LOG} "Unmount ext" >> ${LOGFILE}
         ${BB} umount ${SD_EXT_DIRECTORY}
     fi
     if [ ! -e ${SD_EXT_DIRECTORY} ];
     then
-        ${LOG} "S2E: ${SD_EXT_DIRECTORY} not exists, making..."
+        ${LOG} "S2E: ${SD_EXT_DIRECTORY} not exists! Making..."
+        ${LOG} "${SD_EXT_DIRECTORY} not exists! Making..." >> ${LOGFILE}
         ${BB} mount -o remount,rw /
         ${BB} mkdir ${SD_EXT_DIRECTORY}
         ${BB} chown system:system ${SD_EXT_DIRECTORY}
@@ -60,20 +97,25 @@ then
     fi
     ${TUNE2FS} -O extents,uninit_bg,dir_index ${EXTPART}
     ${LOG} "S2E: Checking ext partition..."
+    ${LOG} "Checking ext partition..." >> ${LOGFILE}
     ${E2FSCK} -yf ${EXTPART}
     ${LOG} "S2E: Disabling journaling..."
+    ${LOG} "Disabling journaling..." >> ${LOGFILE}
     ${TUNE2FS} -o journal_data_writeback ${EXTPART}
     ${TUNE2FS} -O ^has_journal ${EXTPART}
     ${LOG} "S2E: Mounting ext partition..."
+    ${LOG} "Mounting ext partition..." >> ${LOGFILE}
     ${BB} mount -t ext4 -o commit=19,barrier=0,nobh,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev,data=writeback ${EXTPART} ${SD_EXT_DIRECTORY}
 fi
 
 if [ "`${BB} egrep -q ${SD_EXT_DIRECTORY} /proc/mounts; ${BB} echo $?`" != "0" ];
 then
     ${LOG} "S2E: Ext partition not mounted... Exit!"
+    ${LOG} "Ext partition not mounted... Exit!" >> ${LOGFILE}
     exit
 else
     ${LOG} "S2E: Ext partition successfully mounted!"
+    ${LOG} "Ext partition successfully mounted!" >> ${LOGFILE}
 fi
 
 if [ -e '/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml' ];
@@ -81,38 +123,37 @@ then
     S2E_PREF='/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
     S2E_STATUS='/data/data/ru.krikun.s2e/status'
     ${LOG} "S2E: Config found on /data/data"
+    ${LOG} "Config found on /data/data" >> ${LOGFILE}
 else
     if [ -e '/sd-ext/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml' ];
     then
         S2E_PREF='/sd-ext/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
         S2E_STATUS='/sd-ext/data/ru.krikun.s2e/status'
         ${LOG} "S2E: Config found on /sd-ext/data"
+        ${LOG} "Config found on /sd-ext/data" >> ${LOGFILE}
     else
         ${LOG} "S2E: Config not found... Exit!"
+        ${LOG} "Config not found... Exit!" >> ${LOGFILE}
         exit
     fi
 fi
 
 if [ ! -e ${S2E_STATUS} ];
 then
-    ${LOG} "S2E: Not found status dir, create..."
+    ${LOG} "S2E: Status dir not found! Create..."
+    ${LOG} "Status dir not found! Create..." >> ${LOGFILE}
     ${BB} mkdir  ${S2E_STATUS}
 else
-    ${LOG} "S2E: Status dir exists!"
-fi
-if [ ! -L ${S2E_STATUS} ];
-then
-    ${LOG} "S2E: Status dir not empty, erase..."
-    ${BB} rm -rf ${S2E_STATUS}/*
-else
-    ${LOG} "S2E: Status dir empty!"
+    ${LOG} "S2E: Status dir found! Erase..."
+    ${LOG} "Status dir found! Erase..." >> ${LOGFILE}
+    ${DELETE} ${S2E_STATUS}/*
 fi
 
 # Working
 ${LOG} "######################"
 ${LOG} "S2E: Working..."
 ${LOG} "######################"
-
+${LOG} "" >> ${LOGFILE}
 # Apps and Private Apps
 for dir in app app-private;
 do
@@ -127,11 +168,11 @@ do
                 ${BB} chown system:system ${SD_EXT_DIRECTORY}/${dir}
                 ${BB} chmod 0771 ${SD_EXT_DIRECTORY}/${dir}
             fi
-            if [ -L "/data/${dir}" ];
-            then
-                ${BB} chown system:system /data/${dir}
-                ${BB} chmod 0771 /data/${dir}
-            fi
+            #if [ -L "/data/${dir}" ];
+            #then
+            #    ${BB} chown system:system /data/${dir}
+            #    ${BB} chmod 0771 /data/${dir}
+            #fi
             for app in `${BB} find "/data/${dir}" -type f -iname "*.apk" -o -iname "*.zip"`;
             do
                 ${BB} mv ${app} ${SD_EXT_DIRECTORY}/${dir}/
@@ -142,26 +183,29 @@ do
             if [ "`${BB} egrep -q \"/data/${dir}\" /proc/mounts; ${BB} echo $?`" = "0" ];
             then
                 ${LOG} "S2E: ${SD_EXT_DIRECTORY}/${dir} mount as /data/${dir}"
+                ${LOG} "${SD_EXT_DIRECTORY}/${dir} mount as /data/${dir}" >> ${LOGFILE}
                 ${BB} touch ${S2E_STATUS}/${dir}
             else
                 ${LOG} "S2E: ${SD_EXT_DIRECTORY}/${dir} not mount..."
+                ${LOG} "${SD_EXT_DIRECTORY}/${dir} not mount..." >> ${LOGFILE}
             fi
         else
             ${LOG} "S2E: ${SD_EXT_DIRECTORY}/${dir} already mount..."
+            ${LOG} "${SD_EXT_DIRECTORY}/${dir} already mount..." >> ${LOGFILE}
         fi
     else
         if [ -e "${SD_EXT_DIRECTORY}/${dir}" ];
         then
-            if [ ! -L "${SD_EXT_DIRECTORY}/${dir}" ];
+            #if [ ! -L "${SD_EXT_DIRECTORY}/${dir}" ];
+            if [ "$(ls ${SD_EXT_DIRECTORY}/${dir})" ];
             then
                 for app in `${BB} find "${SD_EXT_DIRECTORY}/${dir}" -type f -iname "*.apk" -o -iname "*.zip"`;
                 do
                     ${BB} mv ${app} /data/${dir}/
                 done
-            fi
-            if [ -L "${SD_EXT_DIRECTORY}/${dir}" ];
-            then
-                ${BB} rm -rf ${SD_EXT_DIRECTORY}/${dir}
+                ${DELETE} ${SD_EXT_DIRECTORY}/${dir}
+            else
+                ${DELETE} ${SD_EXT_DIRECTORY}/${dir}
             fi
         fi
     fi
@@ -179,39 +223,45 @@ then
             ${BB} chown system:system ${SD_EXT_DIRECTORY}/data
             ${BB} chmod 0771 ${SD_EXT_DIRECTORY}/data
         fi
-        if [ ! -L "/data/data" ];
+        #if [ ! -L "/data/data" ];
+        if [ "$(ls /data/data)" ];
         then
             ${BB} mv /data/data/* ${SD_EXT_DIRECTORY}/data
-            ${BB} rm -rf /data/data/*
+            ${DELETE} /data/data/*
         fi
 
-        ${BB} chown system:system /data/data
-        ${BB} chmod 0771 /data/data
+        #${BB} chown system:system /data/data
+        #${BB} chmod 0771 /data/data
         ${BB} mount -o bind ${SD_EXT_DIRECTORY}/data/ /data/data
 
         if [ "`${BB} egrep -q \"/data/data\" /proc/mounts; ${BB} echo $?`" = "0" ];
         then
             ${LOG} "S2E: ${SD_EXT_DIRECTORY}/data mount as /data/data"
+            ${LOG} "${SD_EXT_DIRECTORY}/data mount as /data/data" >> ${LOGFILE}
             ${BB} touch ${S2E_STATUS}/data
         else
             ${LOG} "S2E: ${SD_EXT_DIRECTORY}/data not mount..."
+            ${LOG} "${SD_EXT_DIRECTORY}/data not mount..." >> ${LOGFILE}
         fi
     else
         ${LOG} "S2E: ${SD_EXT_DIRECTORY}/data already mount..."
+        ${LOG} "${SD_EXT_DIRECTORY}/data already mount..." >> ${LOGFILE}
     fi
 else
     if [ -e "${SD_EXT_DIRECTORY}/data" ];
     then
-        if [ ! -L "${SD_EXT_DIRECTORY}/data" ];
+        #if [ ! -L "${SD_EXT_DIRECTORY}/data" ];
+        if [ "$(ls ${SD_EXT_DIRECTORY}/data)" ];
         then
             ${BB} mv ${SD_EXT_DIRECTORY}/data/* /data/data/
-            ${BB} rm -rf ${SD_EXT_DIRECTORY}/data
+            ${DELETE} ${SD_EXT_DIRECTORY}/data
         fi
         if [ -e '/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml' ];
         then
             S2E_PREF='/data/data/ru.krikun.s2e/shared_prefs/ru.krikun.s2e_preferences.xml'
             S2E_STATUS='/data/data/ru.krikun.s2e/status'
             ${LOG} "S2E: Config now on /data/data"
+            ${LOG} "Config now on /data/data" >> ${LOGFILE}
         fi
     fi
 fi
@@ -225,33 +275,35 @@ then
         if [ ! -e "${SD_EXT_DIRECTORY}/dalvik-cache" ];
         then
             ${BB} mkdir ${SD_EXT_DIRECTORY}/dalvik-cache
+            ${BB} chown system:system ${SD_EXT_DIRECTORY}/dalvik-cache
+            ${BB} chmod 0771 ${SD_EXT_DIRECTORY}/dalvik-cache
         fi
-        if [ ! -L "/data/dalvik-cache" ];
+        #if [ ! -L "/data/dalvik-cache" ];
+        if [ "$(ls /data/dalvik-cache)" ];
         then
-            ${BB} rm -rf /data/dalvik-cache
-            ${BB} mkdir /data/dalvik-cache
+            ${DELETE} /data/dalvik-cache/*
+            #${BB} mkdir /data/dalvik-cache
         fi
-        ${BB} chown system:system ${SD_EXT_DIRECTORY}/dalvik-cache
-        ${BB} chmod 0771 ${SD_EXT_DIRECTORY}/dalvik-cache
-        ${BB} chown system:system /data/dalvik-cache
-        ${BB} chmod 0771 /data/dalvik-cache
 
         ${BB} mount -o bind ${SD_EXT_DIRECTORY}/dalvik-cache/ /data/dalvik-cache
 
         if [ "`${BB} egrep -q \"/data/dalvik-cache\" /proc/mounts; ${BB} echo $?`" = "0" ];
         then
             ${LOG} "S2E: ${SD_EXT_DIRECTORY}/dalvik-cache mount as /data/dalvik-cache"
+            ${LOG} "${SD_EXT_DIRECTORY}/dalvik-cache mount as /data/dalvik-cache" >> ${LOGFILE}
             ${BB} touch ${S2E_STATUS}/dalvik-cache
         else
             ${LOG} "S2E: ${SD_EXT_DIRECTORY}/dalvik-cache not mount..."
+            ${LOG} "${SD_EXT_DIRECTORY}/dalvik-cache not mount..." >> ${LOGFILE}
         fi
     else
         ${LOG} "S2E: ${SD_EXT_DIRECTORY}/dalvik-cache already mount..."
+        ${LOG} "${SD_EXT_DIRECTORY}/dalvik-cache already mount..." >> ${LOGFILE}
     fi
 else
     if [ -e "${SD_EXT_DIRECTORY}/dalvik-cache" ];
     then
-        ${BB} rm -rf ${SD_EXT_DIRECTORY}/dalvik-cache
+        ${DELETE} ${SD_EXT_DIRECTORY}/dalvik-cache
     fi
 fi
 
@@ -262,35 +314,35 @@ then
     if [ "`${BB} egrep -q \"/cache/download\" /proc/mounts; ${LOG} $?`" = "0" ];
     then
         ${BB} umount /cache/download
-        ${LOG} "S2E: unmount /cache/download..."
+        ${LOG} "S2E: Unmount /cache/download..."
+        ${LOG} "Unmount /cache/download..." >> ${LOGFILE}
     fi
     if [ ! -e "${SD_EXT_DIRECTORY}/download" ];
     then
         ${BB} mkdir ${SD_EXT_DIRECTORY}/download
+        ${BB} chown system:cache ${SD_EXT_DIRECTORY}/download
+        ${BB} chmod 0777 ${SD_EXT_DIRECTORY}/download
     fi
-    if [ ! -L "/cache/download" ];
+    if [ "$(ls /cache/download)" ];
     then
-        ${BB} rm -rf /cache/download
-        ${BB} mkdir /cache/download
+        ${DELETE} /cache/download/*
     fi
-    ${BB} chown system:cache ${SD_EXT_DIRECTORY}/download
-    ${BB} chmod 0777 ${SD_EXT_DIRECTORY}/download
-    ${BB} chown system:cache /cache/download
-    ${BB} chmod 0777 /cache/download
 
     ${BB} mount -o bind ${SD_EXT_DIRECTORY}/download/ /cache/download
 
     if [ "`${BB} egrep -q \"/cache/download\" /proc/mounts; ${BB} echo $?`" = "0" ];
     then
         ${LOG} "S2E: ${SD_EXT_DIRECTORY}/download mount as /cache/download"
+        ${LOG} "${SD_EXT_DIRECTORY}/download mount as /cache/download" >> ${LOGFILE}
         ${BB} touch ${S2E_STATUS}/download
     else
         ${LOG} "S2E: ${SD_EXT_DIRECTORY}/download not mount..."
+        ${LOG} "${SD_EXT_DIRECTORY}/download not mount..." >> ${LOGFILE}
     fi
 else
     if [ -e "${SD_EXT_DIRECTORY}/download" ];
     then
-        ${BB} rm -rf ${SD_EXT_DIRECTORY}/download
+        ${DELETE} ${SD_EXT_DIRECTORY}/download
     fi
 fi
 
