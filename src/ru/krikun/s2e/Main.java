@@ -130,9 +130,9 @@ public class Main extends SherlockPreferenceActivity {
                         App.getRes().getString(R.string.mb));
     }
 
-    private boolean checkFreeSpace(Target target, Partition partition, long sizeToPartition) {
-        long freeSpace = (partition.getFree() - sizeToPartition - 1024L);
-        return App.compareSizes(target.getSize(), freeSpace);
+    private boolean checkFreeSpace(long targetSize, long partitionFree, long sizeToPartition) {
+        long freeSpace = (partitionFree - sizeToPartition - 1024L);
+        return App.compareSizes(targetSize, freeSpace);
     }
 
     private boolean checkInformationProvider(Intent intent) {
@@ -193,11 +193,11 @@ public class Main extends SherlockPreferenceActivity {
                     break;
                 case Target.TARGET_ON_EXT:
                     pref.setSummary(formatSummaryStatic(target.getTargetName(), target.getExternal()));
-                    pref.setEnabled(checkFreeSpace(target, app.getPartitions().get("data"), sizeToData));
+                    pref.setEnabled(checkFreeSpace(target.getSize(), app.getPartitions().get("data").getFree(), sizeToData));
                     break;
                 case Target.TARGET_ON_DATA:
                     pref.setSummary(formatSummaryStatic(target.getTargetName(), target.getInternal()));
-                    pref.setEnabled(checkFreeSpace(target, app.getPartitions().get("sd-ext"), sizeToExt));
+                    pref.setEnabled(checkFreeSpace(target.getSize(), app.getPartitions().get("sd-ext").getFree(), sizeToExt));
                     break;
                 case Target.TARGET_ON_CACHE:
                     pref.setSummary(formatSummaryStatic(target.getTargetName(), target.getInternal()));

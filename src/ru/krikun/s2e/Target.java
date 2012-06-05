@@ -97,7 +97,13 @@ class Target {
         List<String> output = App.sendShell("busybox du -s " + path);
         if (output != null) {
             String[] array = output.get(0).split("\\s");
-            if (!array[0].equals("")) return Integer.parseInt(array[0]);
+            if (!array[0].equals("")) {
+                try {
+                    return Integer.parseInt(array[0]);
+                } catch (NumberFormatException e) {
+                    return 0;
+                }
+            }
         }
         return 0;
     }
