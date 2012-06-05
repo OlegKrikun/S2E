@@ -43,7 +43,7 @@ public class App extends Application {
     //Tag for logs
     public static final String TAG = "S2E";
     //Timeout for shell request
-    private static final int SHELL_TIMEOUT = 10000;
+    private static final int SHELL_TIMEOUT = 60000;
 
     private PartitionsSet partitions;
     private TargetSet targets;
