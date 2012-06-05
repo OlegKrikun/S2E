@@ -80,9 +80,9 @@ public class App extends Application {
     }
 
     //Dynamical convert size to MB or KB
-    public static String convertSize(int size, String kb, String mb) {
+    public static String convertSize(long size, String kb, String mb) {
         if (size == 0) return "--";
-        else if (size >= 1024) return Integer.toString(size / 1024) + mb;
+        else if (size >= 1024) return Long.toString(size / 1024L) + mb;
         else return size + kb;
     }
 
@@ -93,7 +93,7 @@ public class App extends Application {
     }
 
     //Compare sizes of partitions and dir
-    public static boolean compareSizes(int size, int free) {
+    public static boolean compareSizes(long size, long free) {
         return size != 0 && free != 0 && size < free;
     }
 

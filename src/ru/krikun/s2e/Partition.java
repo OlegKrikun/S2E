@@ -27,19 +27,19 @@ class Partition {
 
     private boolean root;
 
-    private int size = 0;
-    private int free = 0;
-    private int used = 0;
+    private long size = 0;
+    private long free = 0;
+    private long used = 0;
 
-    int getFree() {
+    long getFree() {
         return free;
     }
 
-    int getSize() {
+    long getSize() {
         return size;
     }
 
-    int getUsed() {
+    long getUsed() {
         return used;
     }
 
@@ -70,9 +70,9 @@ class Partition {
         try {
             StatFs statFs = new StatFs(path);
 
-            int blockSize = statFs.getBlockSize();
-            size = (statFs.getBlockCount() * blockSize) / 1024;
-            free = (statFs.getAvailableBlocks() * blockSize) / 1024;
+            long blockSize = statFs.getBlockSize();
+            size = (statFs.getBlockCount() * blockSize) / 1024L;
+            free = (statFs.getAvailableBlocks() * blockSize) / 1024L;
             used = size - free;
         } catch (IllegalArgumentException er) {
             Log.e(App.TAG, "IllegalArgumentException");
@@ -86,8 +86,8 @@ class Partition {
             String[] array = output.get(1).split("\\s+");
             if (array.length == 6) {
                 // 1 - Size; 2 - Used; 3 - Free
-                size = Integer.parseInt(array[1]);
-                free = Integer.parseInt(array[3]);
+                size = Long.parseLong(array[1]);
+                free = Long.parseLong(array[3]);
                 used = size - free;
             }
         }

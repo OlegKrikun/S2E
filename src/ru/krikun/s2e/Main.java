@@ -130,8 +130,8 @@ public class Main extends SherlockPreferenceActivity {
                         App.getRes().getString(R.string.mb));
     }
 
-    private boolean checkFreeSpace(Target target, Partition partition, int sizeToPartition) {
-        int freeSpace = (partition.getFree() - sizeToPartition - 1024);
+    private boolean checkFreeSpace(Target target, Partition partition, long sizeToPartition) {
+        long freeSpace = (partition.getFree() - sizeToPartition - 1024L);
         return App.compareSizes(target.getSize(), freeSpace);
     }
 
