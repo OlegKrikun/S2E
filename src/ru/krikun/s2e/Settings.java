@@ -19,6 +19,7 @@ package ru.krikun.s2e;
 import android.os.Bundle;
 import android.preference.Preference;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 public class Settings extends SherlockPreferenceActivity {
 
@@ -27,9 +28,19 @@ public class Settings extends SherlockPreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.setting);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setOnPreferenceChange();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setMountState(boolean mounts_mode) {

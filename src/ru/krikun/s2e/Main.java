@@ -43,15 +43,14 @@ public class Main extends SherlockPreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_screen);
+
+        new Tasks(this).doInitialization();
 
         app = App.getInstance();
 
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        setContentView(R.layout.main_screen);
         getSupportActionBar().setTitle(R.string.app_label);
         getSupportActionBar().setSubtitle("DATA: --  EXT: --");
-
-        new Tasks(this).doInitialization();
     }
 
     @Override
@@ -62,11 +61,11 @@ public class Main extends SherlockPreferenceActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.refresh:
-                new Tasks(this).doRefresh();
-                break;
             case R.id.info:
                 showInformation();
+                break;
+            case R.id.refresh:
+                new Tasks(this).doRefresh();
                 break;
             case R.id.settings:
                 Intent prefSettings = new Intent(getBaseContext(), Settings.class);
@@ -272,7 +271,9 @@ public class Main extends SherlockPreferenceActivity {
                         "\n\nCACHE:" + getPartitionString(app.getPartitions().get("cache"));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message).setCancelable(true);
+        builder.setMessage(message)
+                .setTitle(R.string.info)
+                .setCancelable(true);
         AlertDialog dialog = builder.create();
         dialog.show();
     }

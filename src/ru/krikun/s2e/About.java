@@ -18,6 +18,7 @@ package ru.krikun.s2e;
 
 import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 
 public class About extends SherlockPreferenceActivity {
@@ -33,7 +34,17 @@ public class About extends SherlockPreferenceActivity {
                 App.getRes().getString(R.string.app_version)
         );
         getSupportActionBar().setSubtitle(R.string.app_by);
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
