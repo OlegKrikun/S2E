@@ -64,6 +64,10 @@ public class Main extends SherlockPreferenceActivity {
             case R.id.info:
                 showInformation();
                 break;
+            case R.id.viewlog:
+                Intent logViewer = new Intent(getBaseContext(), LogViewer.class);
+                startActivity(logViewer);
+                break;
             case R.id.refresh:
                 new Tasks(this).doRefresh();
                 break;

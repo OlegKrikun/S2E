@@ -38,6 +38,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="LogViewer"
+                  android:label="@string/lv_title" />
+
         <activity android:name="Settings"
                   android:label="@string/settings" />
 

@@ -65,4 +65,8 @@
     <string name="read_ahead_values_symmary">A value of 2MB is the best practice</string>
     <string name="fs_pref">Extended partitions info</string>
     <string name="fs_pref_summary">Launch FreeSpace instead of integrated information</string>
+    <!--LogViewer-->
+    <string name="viewlog">View BootLog</string>
+    <string name="lv_title">Last ВootLog</string>
+    <string name="lv_share">Share log</string>
 </resources>

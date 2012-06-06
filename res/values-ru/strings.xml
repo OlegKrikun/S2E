@@ -65,4 +65,8 @@
     <string name="fs_pref">Расширенная информация</string>
     <string name="fs_pref_summary">Запускать FreeSpace вместо показа встроенной информации</string>
     <string name="boot_options">Настройки загрузки</string>
+    <!--LogViewer-->
+    <string name="viewlog">Просмотреть лог</string>
+    <string name="lv_title">Последняя загрузка</string>
+    <string name="lv_share">Поделиться логом</string>
 </resources>
