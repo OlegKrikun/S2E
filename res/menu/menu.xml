@@ -22,7 +22,9 @@
           android:title="@string/info"
           android:showAsAction="ifRoom|withText" />
     <item android:id="@+id/refresh"
-          android:title="@string/refresh"/>
+          android:title="@string/refresh"
+          android:icon="@drawable/ic_action_refresh"
+          android:showAsAction="ifRoom|withText"/>
     <item android:id="@+id/settings"
           android:title="@string/settings"/>
     <item android:id="@+id/myapps"
