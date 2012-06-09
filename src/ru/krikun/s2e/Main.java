@@ -276,8 +276,12 @@ public class Main extends SherlockPreferenceActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
-                .setTitle(R.string.info)
-                .setCancelable(true);
+                .setCancelable(true)
+                .setNeutralButton(App.getRes().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
         AlertDialog dialog = builder.create();
         dialog.show();
     }
