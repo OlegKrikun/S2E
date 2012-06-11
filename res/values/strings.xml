@@ -65,6 +65,8 @@
     <string name="read_ahead_values_symmary">A value of 2MB is the best practice</string>
     <string name="fs_pref">Extended partitions info</string>
     <string name="fs_pref_summary">Launch FreeSpace instead of integrated information</string>
+    <string name="setting_themes">Themes</string>
+    <string name="setting_themes_summary">Change theme of application</string>
     <!--LogViewer-->
     <string name="viewlog">View BootLog</string>
     <string name="lv_title">Last ВootLog</string>

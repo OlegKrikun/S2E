@@ -18,6 +18,7 @@ package ru.krikun.s2e;
 
 import android.os.Bundle;
 import android.preference.Preference;
+import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
 
@@ -78,6 +79,15 @@ public class Settings extends SherlockPreferenceActivity {
             public boolean onPreferenceChange(Preference preference, Object object) {
                 String value = object.toString();
                 setReadAheadValue(value);
+                return true;
+            }
+        });
+
+        Preference settingsTheme = findPreference("setting_themes");
+        settingsTheme.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+            public boolean onPreferenceChange(Preference preference, Object object) {
+                Toast.makeText(Settings.this, "Restart app!!!", 10).show();
                 return true;
             }
         });

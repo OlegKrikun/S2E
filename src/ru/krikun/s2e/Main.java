@@ -42,9 +42,11 @@ public class Main extends SherlockPreferenceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        App.setActivityTheme(this);
 
         new Tasks(this).doInitialization();
+
+        super.onCreate(savedInstanceState);
 
         app = App.getInstance();
 

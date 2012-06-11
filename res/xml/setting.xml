@@ -38,6 +38,13 @@
                 android:entryValues="@array/read_ahead_Values"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/general_options">
+        <ListPreference
+                android:title="@string/setting_themes"
+                android:summary="@string/setting_themes_summary"
+                android:defaultValue="dark"
+                android:key="setting_themes"
+                android:entries="@array/themes"
+                android:entryValues="@array/themes_Values"/>
         <CheckBoxPreference
                 android:title="@string/fs_pref"
                 android:defaultValue="true"

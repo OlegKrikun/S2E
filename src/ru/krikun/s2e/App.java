@@ -17,6 +17,7 @@
 package ru.krikun.s2e;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
@@ -33,6 +34,10 @@ public class App extends Application {
 
     static final String PREFERENCE_NAME_EXTENDED_INFORMATION = "show_extended_information";
     static final String PREFERENCE_NAME_BUSYBOX = "busybox";
+    static final String PREFERENCE_NAME_THEME = "setting_themes";
+
+    static final String THEME_DARK = "dark";
+    static final String THEME_LIGHT = "light";
 
     private static App instance;
     private static SharedPreferences prefs;
@@ -137,5 +142,12 @@ public class App extends Application {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(namePreference, valuePreference);
         editor.commit();
+    }
+
+    //Set theme from settings
+    static void setActivityTheme(Context activity) {
+        if (prefs.getString(PREFERENCE_NAME_THEME, THEME_DARK).equals(THEME_LIGHT)) {
+            activity.setTheme(R.style.Theme_Sherlock_Light_DarkActionBar_ForceOverflow);
+        }
     }
 }

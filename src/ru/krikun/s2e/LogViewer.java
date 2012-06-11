@@ -36,6 +36,7 @@ public class LogViewer extends SherlockActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        App.setActivityTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lv_screen);
 
