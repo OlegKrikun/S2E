@@ -1,0 +1,24 @@
+#!/system/bin/sh
+
+LOG="busybox echo"
+LOGFILE="/data/local/s2e.log"
+
+if [ "$2" == "s" ];
+then
+	${LOG} "S2E: $1"
+elif [ "$2" == "l" ];
+then
+	${LOG} "$1" >> ${LOGFILE}
+elif [ "$2" == "b" ];
+then
+	${LOG} "" >> ${LOGFILE}
+elif [ "$2" == "lb" ];
+then
+	${LOG} "$1" >> ${LOGFILE}
+	${LOG} "" >> ${LOGFILE}
+else
+	${LOG} "S2E: $1"
+	${LOG} "$1" >> ${LOGFILE}
+fi
+
+ 
