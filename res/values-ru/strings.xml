@@ -25,6 +25,7 @@
     <string name="translators">Переводчики</string>
     <!--MainScreen-->
     <string name="apps">Приложения</string>
+    <string name="paid_apps">Приобретённые</string>
     <string name="private_apps">Приватные приложения</string>
     <string name="app_data">Данные приложений</string>
     <string name="caches">Кэшы</string>

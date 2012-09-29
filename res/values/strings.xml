@@ -25,6 +25,7 @@
     <string name="translators">Translators</string>
     <!--MainScreen-->
     <string name="apps">Applications</string>
+    <string name="paid_apps">Paid apps</string>
     <string name="private_apps">Private apps</string>
     <string name="app_data">Application Data</string>
     <string name="caches">Caches</string>

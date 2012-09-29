@@ -135,7 +135,7 @@ else
 fi
 
 # Apps and Private Apps
-for dir in app app-private;
+for dir in app app-asec app-private;
 do
     CONFIG=`${BB} grep -q "name=\"${dir}\" value=\"true\"" ${S2E_PREF}; ${BB} echo $?`
     if [ "${CONFIG}" = "0" ];
