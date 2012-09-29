@@ -38,6 +38,7 @@ class Tasks {
     private static final String SCRIPT = "simple2ext";
     private static final String TUNE2FS = "tune2fs";
     private static final String E2FSCK = "e2fsck";
+    private static final String LOGGER = "logger";
     //Shell command templates for make dir
     private static final String SHELL_MAKE_DIR = "busybox install -m 777 -o 1000 -g 1000 -d ";
     //Shell command templates for set permission to script
@@ -83,7 +84,7 @@ class Tasks {
         @Override
         protected Void doInBackground(Void... voids) {
             //Check API
-            if (loadAPI()) {
+//            if (loadAPI()) {
                 supportedOS = true;
                 //Check shell
                 if (loadShell()) {
@@ -93,7 +94,7 @@ class Tasks {
                     //Check tools
                     if (toolsExists()) toolsInstalled = true;
                 }
-            }
+//            }
             return null;
         }
         @Override
@@ -143,6 +144,8 @@ class Tasks {
                 installTool(TUNE2FS);
                 //Install e2fsck to home, copy to bin and set permission
                 installTool(E2FSCK);
+                //Install logger to home, copy to bin and set permission
+                installTool(LOGGER);
             }
             return null;
         }
@@ -258,7 +261,8 @@ class Tasks {
     //Check tools exists
     private boolean toolsExists(){
         return  App.checkFileExists(PATH_BIN + App.SEPARATOR + TUNE2FS) &&
-                App.checkFileExists(PATH_BIN + App.SEPARATOR + E2FSCK);
+                App.checkFileExists(PATH_BIN + App.SEPARATOR + E2FSCK) &&
+                App.checkFileExists(PATH_BIN + App.SEPARATOR + LOGGER);
     }
 
     //Install tool to bin dir
