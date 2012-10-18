@@ -96,12 +96,16 @@ class Target {
     private int loadSize() {
         List<String> output = App.getShell().run("busybox du -s " + path);
         if (output != null) {
-            String[] array = output.get(0).split("\\s");
-            if (!array[0].equals("")) {
-                try {
-                    return Integer.parseInt(array[0]);
-                } catch (NumberFormatException e) {
-                    return 0;
+            for (String s : output) {
+                if (s.contains(path)) {
+                    String[] array = s.split("\\s");
+                    if (!array[0].equals("")) {
+                        try {
+                            return Integer.parseInt(array[0]);
+                        } catch (NumberFormatException e) {
+                            return 0;
+                        }
+                    }
                 }
             }
         }

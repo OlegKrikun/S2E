@@ -83,15 +83,19 @@ class Partition {
         List<String> output = App.getShell().run("busybox df " + path);
 
         if (output != null) {
-            String[] array = output.get(1).split("\\s+");
-            if (array.length == 6) {
-                try {
-                    // 1 - Size; 2 - Used; 3 - Free
-                    size = Long.parseLong(array[1]);
-                    free = Long.parseLong(array[3]);
-                    used = size - free;
-                } catch (NumberFormatException er) {
-                    Log.e(App.TAG, "NumberFormatException in loadOverShell");
+            for (String s : output) {
+                if (s.contains(path)) {
+                    String[] array = s.split("\\s+");
+                    if (array.length == 6) {
+                        try {
+                            // 1 - Size; 2 - Used; 3 - Free
+                            size = Long.parseLong(array[1]);
+                            free = Long.parseLong(array[3]);
+                            used = size - free;
+                        } catch (NumberFormatException er) {
+                            Log.e(App.TAG, "NumberFormatException in loadOverShell");
+                        }
+                    }
                 }
             }
         }
