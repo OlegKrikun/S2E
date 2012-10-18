@@ -148,11 +148,6 @@ do
                 ${BB} chown system:system ${SD_EXT_DIRECTORY}/${dir}
                 ${BB} chmod 0771 ${SD_EXT_DIRECTORY}/${dir}
             fi
-            #if [ -L "/data/${dir}" ];
-            #then
-            #    ${BB} chown system:system /data/${dir}
-            #    ${BB} chmod 0771 /data/${dir}
-            #fi
             for app in `${BB} find "/data/${dir}" -type f -iname "*.apk" -o -iname "*.zip"`;
             do
                 ${BB} mv ${app} ${SD_EXT_DIRECTORY}/${dir}/
@@ -173,7 +168,6 @@ do
     else
         if [ -e "${SD_EXT_DIRECTORY}/${dir}" ];
         then
-            #if [ ! -L "${SD_EXT_DIRECTORY}/${dir}" ];
             if [ "$(ls ${SD_EXT_DIRECTORY}/${dir})" ];
             then
                 for app in `${BB} find "${SD_EXT_DIRECTORY}/${dir}" -type f -iname "*.apk" -o -iname "*.zip"`;
@@ -189,7 +183,6 @@ do
 done
 
 # Paid Apps
-
 CONFIG=`${BB} grep -q "name=\"app-asec\" value=\"true\"" ${S2E_PREF}; ${BB} echo $?`
 if [ "${CONFIG}" = "0" ];
 then
@@ -246,15 +239,12 @@ then
             ${BB} chown system:system ${SD_EXT_DIRECTORY}/data
             ${BB} chmod 0771 ${SD_EXT_DIRECTORY}/data
         fi
-        #if [ ! -L "/data/data" ];
         if [ "$(ls /data/data)" ];
         then
             ${BB} mv /data/data/* ${SD_EXT_DIRECTORY}/data
             ${DELETE} /data/data/*
         fi
 
-        #${BB} chown system:system /data/data
-        #${BB} chmod 0771 /data/data
         ${BB} mount -o bind ${SD_EXT_DIRECTORY}/data/ /data/data
 
         if [ "`${BB} egrep -q \"/data/data\" /proc/mounts; ${BB} echo $?`" = "0" ];
@@ -270,7 +260,6 @@ then
 else
     if [ -e "${SD_EXT_DIRECTORY}/data" ];
     then
-        #if [ ! -L "${SD_EXT_DIRECTORY}/data" ];
         if [ "$(ls ${SD_EXT_DIRECTORY}/data)" ];
         then
             ${BB} mv ${SD_EXT_DIRECTORY}/data/* /data/data/
@@ -297,11 +286,9 @@ then
             ${BB} chown system:system ${SD_EXT_DIRECTORY}/dalvik-cache
             ${BB} chmod 0771 ${SD_EXT_DIRECTORY}/dalvik-cache
         fi
-        #if [ ! -L "/data/dalvik-cache" ];
         if [ "$(ls /data/dalvik-cache)" ];
         then
             ${DELETE} /data/dalvik-cache/*
-            #${BB} mkdir /data/dalvik-cache
         fi
 
         ${BB} mount -o bind ${SD_EXT_DIRECTORY}/dalvik-cache/ /data/dalvik-cache
