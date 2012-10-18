@@ -233,8 +233,8 @@ class Tasks {
     //Return md5sum of path
     private String getSum() {
         List<String> output = App.getShell().run(App.SHELL_GET_MD5);
-        if (output != null) {
-            if (output.get(0).length() >= 32) return output.get(0).substring(0, 32);
+        for (String s : output) {
+            if (s.length() >= 32) return s.substring(0, 32);
         }
         return null;
     }
