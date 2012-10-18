@@ -48,8 +48,9 @@
     <string name="fs_install">Установить FreeSpace</string>
     <string name="fs_dont">Не спрашивать больше</string>
     <string name="loading">Загрузка…</string>
-    <string name="checking">Проверка…</string>
     <string name="installing">Установка…</string>
+    <string name="checking_api">Проверка версии Android…</string>
+    <string name="checking_root">Проверка ROOT…</string>
     <!--Alerts-->
     <string name="alert_script_title">Скрипт не установлен</string>
     <string name="alert_root">Нету Root или не получен доступ</string>
@@ -66,6 +67,9 @@
     <string name="fs_pref">Расширенная информация</string>
     <string name="fs_pref_summary">Запускать FreeSpace вместо показа встроенной информации</string>
     <string name="boot_options">Настройки загрузки</string>
+    <string name="setting_themes">Тема</string>
+    <string name="setting_themes_summary">Изменить тему приложения</string>
+    <string name="setting_themes_summary_toast">Тема изменена! Перезапустите приложение.</string>
     <!--LogViewer-->
     <string name="viewlog">Просмотреть лог</string>
     <string name="lv_title">Последняя загрузка</string>

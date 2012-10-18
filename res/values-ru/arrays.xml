@@ -26,4 +26,9 @@
         <item>3 МБ</item>
         <item>4 МБ</item>
     </string-array>
+
+    <string-array name="themes">
+        <item>Тёмная</item>
+        <item>Светлая</item>
+    </string-array>
 </resources>
