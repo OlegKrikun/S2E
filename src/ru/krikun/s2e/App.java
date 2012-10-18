@@ -21,42 +21,65 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
-import android.util.Log;
-import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.RootToolsException;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeoutException;
 
 public class App extends Application {
 
-    static final String PREFERENCE_NAME_EXTENDED_INFORMATION = "show_extended_information";
-    static final String PREFERENCE_NAME_BUSYBOX = "busybox";
-    static final String PREFERENCE_NAME_THEME = "setting_themes";
+    //Path to userinit dir
+    static final String PATH_USERINIT = "/data/local/userinit.d";
+    //Path to bin dir
+    static final String PATH_BIN = "/data/local/bin";
+    //Files names of script, tune2fs and e2fsck
+    static final String SCRIPT = "simple2ext";
+    static final String TUNE2FS = "tune2fs";
+    static final String E2FSCK = "e2fsck";
+    static final String LOGGER = "logger";
+    //Shell command templates for make dir
+    static final String SHELL_MAKE_DIR = "busybox install -m 777 -o 1000 -g 1000 -d ";
+    //Shell command templates for set permission to script
+    static final String SHELL_SET_PERMISSION = "busybox chmod 0777 ";
+    //Shell command for get md5 sum
+    static final String SHELL_GET_MD5 = "busybox md5sum " + PATH_USERINIT + App.SEPARATOR + SCRIPT;
+    //App home dir
+    private static final String S2E_DIR = "/data/data/ru.krikun.s2e";
+    //Path to S2E config dir (for ReadAhead and Mount feature)
+    private static final String S2E_CONFIG_DIR = "/data/local/s2e_config";
+    //Path to dir with status files
+    private static final String SCRIPT_STATUS_DIR = S2E_DIR + "/status";
 
-    static final String THEME_DARK = "dark";
-    static final String THEME_LIGHT = "light";
+    static final String PREFERENCE_NAME_EXTENDED_INFORMATION = "show_extended_information";
+    private static final String PREFERENCE_NAME_THEME = "setting_themes";
+
+    private static final String THEME_DARK = "dark";
+    private static final String THEME_LIGHT = "light";
 
     private static App instance;
     private static SharedPreferences prefs;
     private static Resources res;
 
+    private static Shell shell = null;
+
     //Directory-file separator
     public static final char SEPARATOR = '/';
     //Tag for logs
     public static final String TAG = "S2E";
-    //Timeout for shell request
-    private static final int SHELL_TIMEOUT = 60000;
 
     private PartitionsSet partitions;
     private TargetSet targets;
 
-    private boolean ice;
+    private boolean ice = false;
 
     static App getInstance() {
         return instance;
+    }
+
+    static Shell getShell() {
+        return shell;
+    }
+
+    public static void setShell(Shell shell) {
+        App.shell = shell;
     }
 
     static SharedPreferences getPrefs() {
@@ -67,22 +90,7 @@ public class App extends Application {
         return res;
     }
 
-    //Send command to shell
-    //if return code equals 1, return null
-    public static List<String> sendShell(String str) {
-        try {
-            List<String> output = RootTools.sendShell(str, SHELL_TIMEOUT);
-            if (!output.get(output.size() - 1).equals("1")) return output;
-            else Log.e(TAG, "Error in shell: " + str + "; return code '1'");
-        } catch (IOException e) {
-            Log.e(TAG, "Error in shell: " + str + "; IOException");
-        } catch (RootToolsException e) {
-            Log.e(TAG, "Error in shell: " + str + "; RootToolsException");
-        } catch (TimeoutException e) {
-            Log.e(TAG, "Error in shell: " + str + "; TimeoutException");
-        }
-        return null;
-    }
+//    }
 
     //Dynamical convert size to MB or KB
     public static String convertSize(long size, String kb, String mb) {
@@ -149,5 +157,71 @@ public class App extends Application {
         if (prefs.getString(PREFERENCE_NAME_THEME, THEME_DARK).equals(THEME_LIGHT)) {
             activity.setTheme(R.style.Theme_Sherlock_Light_DarkActionBar_ForceOverflow);
         }
+    }
+
+    //Create status file
+    //if status file dir not exists, then create this dir
+    public static void createStatusFile(String target) {
+        if (!App.checkFileExists(SCRIPT_STATUS_DIR)) createDir(SCRIPT_STATUS_DIR);
+        createFile(SCRIPT_STATUS_DIR + App.SEPARATOR + target);
+    }
+
+    //Check config dir exists and create this if needed
+    public static boolean checkConfigDir() {
+        if (!App.checkFileExists(S2E_CONFIG_DIR)) {
+            createDir(S2E_CONFIG_DIR);
+            return App.checkFileExists(S2E_CONFIG_DIR);
+        } else return true;
+    }
+
+    //Create mount file
+    public static void createMountFile() {
+        createFile(S2E_CONFIG_DIR + "/.mounts_ext4");
+    }
+
+    //Delete mount file
+    public static void deleteMountFile() {
+        delFile(S2E_CONFIG_DIR + "/.mounts_ext4");
+    }
+
+    //Create ReadAhead file
+    public static void createReadAheadFile() {
+        createFile(S2E_CONFIG_DIR + "/.read_ahead");
+    }
+
+    //Delete ReadAhead file
+    public static void deleteReadAheadFile() {
+        delFile(S2E_CONFIG_DIR + "/.read_ahead");
+    }
+
+    //Write value to ReadAhead file
+    public static void writeReadAheadValue(String value) {
+        writeToFile(S2E_CONFIG_DIR + "/.read_ahead", value);
+    }
+
+    //Check status file
+    public static boolean checkStatusFileExists(String target) {
+        File status = new File(SCRIPT_STATUS_DIR, target);
+        return status.exists();
+    }
+
+    //Create file
+    private static void createFile(String filePath) {
+        shell.run("busybox touch " + filePath);
+    }
+
+    //Delete file if file exists
+    private static void delFile(String filePath) {
+        if (checkFileExists(filePath)) shell.run("busybox rm " + filePath);
+    }
+
+    //Write to file if file exists
+    private static void writeToFile(String filePath, String string) {
+        if (checkFileExists(filePath)) shell.run("busybox echo " + string + " > " + filePath);
+    }
+
+    //Create dir
+    private static void createDir(String path) {
+        shell.run("busybox mkdir " + path);
     }
 }

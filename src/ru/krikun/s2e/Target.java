@@ -90,11 +90,11 @@ class Target {
     }
 
     private boolean isDisplaced() {
-        return Tasks.checkStatusFileExists(targetName);
+        return App.checkStatusFileExists(targetName);
     }
 
     private int loadSize() {
-        List<String> output = App.sendShell("busybox du -s " + path);
+        List<String> output = App.getShell().run("busybox du -s " + path);
         if (output != null) {
             String[] array = output.get(0).split("\\s");
             if (!array[0].equals("")) {

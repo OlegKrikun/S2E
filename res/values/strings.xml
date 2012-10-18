@@ -50,6 +50,8 @@
     <string name="loading">Loading…</string>
     <string name="checking">Checking…</string>
     <string name="installing">Installing…</string>
+    <string name="checking_api">Checking Android version…</string>
+    <string name="checking_root">Checking ROOT...</string>
     <!--Alerts-->
     <string name="alert_script_title">Script not installed</string>
     <string name="alert_root">Root, busybox not available or access not given</string>
@@ -68,6 +70,7 @@
     <string name="fs_pref_summary">Launch FreeSpace instead of integrated information</string>
     <string name="setting_themes">Themes</string>
     <string name="setting_themes_summary">Change theme of application</string>
+    <string name="setting_themes_summary_toast">Theme changed! Restart application.</string>
     <!--LogViewer-->
     <string name="viewlog">View BootLog</string>
     <string name="lv_title">Last ВootLog</string>

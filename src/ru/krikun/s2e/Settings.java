@@ -45,9 +45,9 @@ public class Settings extends SherlockPreferenceActivity {
     }
 
     private void setMountState(boolean mounts_mode) {
-        if (Tasks.checkConfigDir()) {
-            if (mounts_mode) Tasks.createMountFile();
-            else Tasks.deleteMountFile();
+        if (App.checkConfigDir()) {
+            if (mounts_mode) App.createMountFile();
+            else App.deleteMountFile();
         }
     }
 
@@ -87,23 +87,23 @@ public class Settings extends SherlockPreferenceActivity {
         settingsTheme.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
             public boolean onPreferenceChange(Preference preference, Object object) {
-                Toast.makeText(Settings.this, "Restart app!!!", 10).show();
+                Toast.makeText(Settings.this, App.getRes().getString(R.string.setting_themes_summary_toast), 10).show();
                 return true;
             }
         });
     }
 
     private void setReadAhead(boolean ReadAhead) {
-        if (Tasks.checkConfigDir()) {
+        if (App.checkConfigDir()) {
             if (ReadAhead) {
-                Tasks.createReadAheadFile();
+                App.createReadAheadFile();
                 String value = App.getPrefs().getString("read_ahead_values", null);
-                if (value != null) Tasks.writeReadAheadValue(value);
-            } else Tasks.deleteReadAheadFile();
+                if (value != null) App.writeReadAheadValue(value);
+            } else App.deleteReadAheadFile();
         }
     }
 
     private void setReadAheadValue(String read_ahead_value) {
-        if (Tasks.checkConfigDir()) Tasks.writeReadAheadValue(read_ahead_value);
+        if (App.checkConfigDir()) App.writeReadAheadValue(read_ahead_value);
     }
 }

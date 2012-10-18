@@ -23,7 +23,7 @@ public class PartitionsSet extends HashMap<String, Partition> {
     //Load partitions to set
     public void loadPartitions(String[] list, boolean isICS) {
         for (String name : list) {
-            //For ext partition use shell request (if not ICS) 
+            //For ext partition use shell request (if not ICS)
             if (name.equals("sd-ext") && !isICS) {
                 this.put(name, new Partition(name, true));
             } else {

@@ -25,7 +25,7 @@ class Partition {
 
     private final String path;
 
-    private boolean root;
+    private boolean root = false;
 
     private long size = 0;
     private long free = 0;
@@ -80,11 +80,12 @@ class Partition {
     }
 
     private void loadOverShell() {
-        List<String> output = App.sendShell("busybox df " + path);
+        List<String> output = App.getShell().run("busybox df " + path);
 
         if (output != null) {
             String[] array = output.get(1).split("\\s+");
             if (array.length == 6) {
+                Log.e(App.TAG, "0 = " + array[0] + "; 1 = " + array[1] + "; 2 = " + array[2] + "; 3 = " + array[2] + "; 4 = " + array[4] + "; 5 = " + array[5]);
                 // 1 - Size; 2 - Used; 3 - Free
                 size = Long.parseLong(array[1]);
                 free = Long.parseLong(array[3]);
