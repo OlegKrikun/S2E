@@ -135,7 +135,7 @@ else
 fi
 
 # Apps and Private Apps
-for dir in app app-asec app-private;
+for dir in app app-private;
 do
     CONFIG=`${BB} grep -q "name=\"${dir}\" value=\"true\"" ${S2E_PREF}; ${BB} echo $?`
     if [ "${CONFIG}" = "0" ];
@@ -187,6 +187,52 @@ do
         fi
     fi
 done
+
+# Paid Apps
+
+CONFIG=`${BB} grep -q "name=\"app-asec\" value=\"true\"" ${S2E_PREF}; ${BB} echo $?`
+if [ "${CONFIG}" = "0" ];
+then
+	if [ "`${BB} egrep -q \"/data/app-asec\" /proc/mounts; ${BB} echo $?`" != "0" ];
+	then
+		if [ ! -e "${SD_EXT_DIRECTORY}/app-asec" ];
+		then
+			${BB} mkdir ${SD_EXT_DIRECTORY}/app-asec
+			${BB} chown root:root ${SD_EXT_DIRECTORY}/app-asec
+			${BB} chmod 0700 ${SD_EXT_DIRECTORY}/app-asec
+		fi
+		for app in `${BB} find "/data/app-asec" -type f -iname "*.asec" -o -iname "*.zip"`;
+		do
+			${BB} mv ${app} ${SD_EXT_DIRECTORY}/app-asec/
+		done
+
+		${BB} mount -o bind ${SD_EXT_DIRECTORY}/app-asec/ /data/app-asec
+
+		if [ "`${BB} egrep -q \"/data/app-asec\" /proc/mounts; ${BB} echo $?`" = "0" ];
+		then
+			${LOGGER} "${SD_EXT_DIRECTORY}/app-asec mount as /data/app-asec"
+			${BB} touch ${S2E_STATUS}/app-asec
+		else
+			${LOGGER} "${SD_EXT_DIRECTORY}/app-asec not mount..."
+		fi
+	else
+		${LOGGER} "${SD_EXT_DIRECTORY}/app-asec already mount..."
+	fi
+else
+	if [ -e "${SD_EXT_DIRECTORY}/app-asec" ];
+	then
+		if [ "$(ls ${SD_EXT_DIRECTORY}/app-asec)" ];
+		then
+			for app in `${BB} find "${SD_EXT_DIRECTORY}/app-asec" -type f -iname "*.asec" -o -iname "*.zip"`;
+			do
+				${BB} mv ${app} /data/app-asec/
+			done
+			${DELETE} ${SD_EXT_DIRECTORY}/app-asec
+		else
+			${DELETE} ${SD_EXT_DIRECTORY}/app-asec
+		fi
+	fi
+fi
 
 # Data
 CONFIG=`${BB} grep -q "name=\"data\" value=\"true\"" ${S2E_PREF}; ${BB} echo $?`
