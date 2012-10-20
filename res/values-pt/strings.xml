@@ -16,16 +16,6 @@
   -->
 
 <resources>
-    <string name="abs__action_bar_home_description">Navegar para o início</string>
-    <string name="abs__action_bar_up_description">Navegar para cima</string>
-    <string name="abs__action_menu_overflow_description">Mais opções</string>
-    <string name="abs__action_mode_done">Feito</string>
-    <string name="abs__activity_chooser_view_see_all">Ver todas...</string>
-    <string name="abs__activity_chooser_view_dialog_title_default">Selecionar atividade</string>
-    <string name="abs__share_action_provider_share_with">Partilhar com...</string>
-    <string name="abs__activitychooserview_choose_application">Escolher uma aplicação</string>
-    <string name="abs__shareactionprovider_share_with">Partilhar com</string>
-    <string name="abs__shareactionprovider_share_with_application">Partilhar com %s</string>
     <string name="app_name">S2E</string>
     <string name="app_label">simple2ext</string>
     <string name="app_version">3.0.2</string>
@@ -38,7 +28,7 @@
     <string name="credit__cm_summary">Muito obrigado a equipa CyanogenMod por esta fantástica ROM e especialmente a Alexander Hofbauer pelo suporte ao HTC Legend</string>
     <string name="credit__pv_summary">Muito obrigado a Pavel Volkov por testar S2E</string>
     <string name="translators">Tradutores</string>
-	<!--MainScreen-->
+  <!--MainScreen-->
     <string name="apps">Aplicações</string>
     <string name="paid_apps">Aplicações pagas</string>
     <string name="private_apps">Aplicações privadas</string>
@@ -66,16 +56,16 @@
     <string name="installing">A instalar…</string>
     <string name="checking_api">A verificar a versão do Android…</string>
     <string name="checking_root">A verificar ROOT…</string>
-	<!--Alerts-->
+  <!--Alerts-->
     <string name="alert_script_title">Script não instalado</string>
     <string name="alert_root">Root não disponível ou acesso não dado</string>
     <string name="alert_version">Esta versão do Android não é suportada</string>
-	<!--Settings-->
+  <!--Settings-->
     <string name="settings">Definições</string>
     <string name="general_options">Opções gerais</string>
     <string name="boot_options">Opções de arranque</string>
     <string name="setting_mount">Montar como ext4</string>
-    <string name="setting_mount_summary">Montar sd-ext como ext4 sem</string>
+    <string name="setting_mount_summary">Montar sd-ext como ext4 sem journaling</string>
     <string name="set_read_ahead">Definir buffer de leitura</string>
     <string name="set_read_ahead_summary">Definir buffer de leitura do cartão SD</string>
     <string name="read_ahead_values">Tamanho do buffer</string>
@@ -85,7 +75,7 @@
     <string name="setting_themes">Temas</string>
     <string name="setting_themes_summary">Alterar o tema da aplicação</string>
     <string name="setting_themes_summary_toast">Tema alterado! Reinicie a aplicação.</string>
-	<!--LogViewer-->
+  <!--LogViewer-->
     <string name="viewlog">Ver BootLog</string>
     <string name="lv_title">Último ВootLog</string>
     <string name="lv_share">Partilhar log</string>
