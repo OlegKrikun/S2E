@@ -32,7 +32,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/translators">
         <Preference
-                android:title="AntonioPT"
+                android:title="AntonioPT &amp; kr0m"
                 android:summary="Portuguese"
                 android:enabled="true"/>
         <Preference
