@@ -16,22 +16,67 @@
   -->
 
 <resources>
-    <!--About-->
+    <string name="app_name">S2E</string>
+    <string name="app_label">simple2ext</string>
+    <string name="app_version">3.0.2</string>
+    <string name="app_by">©2012 OlegKrikun</string>
+    <string name="script_md5">0570f09df59ebb03b4fed0c77b99ad9a</string>
+  <!--About-->
     <string name="about">Sobre</string>
     <string name="credits">Créditos</string>
-    <string name="credit__summary">Muito obrigado CrazyCoder pela ajuda e pela paciência</string>
-    <!--MainScreen-->
+    <string name="credit__summary">Muito obrigado a CrazyCoder pela ajuda e pela paciência</string>
+    <string name="credit__cm_summary">Muito obrigado a equipa CyanogenMod por esta fantástica ROM e especialmente a Alexander Hofbauer pelo suporte ao HTC Legend</string>
+    <string name="credit__pv_summary">Muito obrigado a Pavel Volkov por testar S2E</string>
+    <string name="translators">Tradutores</string>
+  <!--MainScreen-->
     <string name="apps">Aplicações</string>
+    <string name="paid_apps">Aplicações pagas</string>
     <string name="private_apps">Aplicações privadas</string>
+    <string name="app_data">Dados das Aplicações</string>
+    <string name="caches">Caches</string>
     <string name="dalvik_cache">Cache Dalvik</string>
     <string name="download_cache">Cache de downloads</string>
     <string name="location">Localização</string>
     <string name="size">Tamanho</string>
     <string name="used">Usado</string>
     <string name="free">Livre</string>
-    <!--Alerts-->
+    <string name="kb">KB</string>
+    <string name="mb">MB</string>
+    <string name="move">Mover de %1$s para %2$s</string>
+    <string name="reboot_required">É necessário reiniciar!</string>
+    <string name="refresh">Atualizar</string>
+    <string name="info">Informação</string>
+    <string name="myapps">As minhas aplicações</string>
+    <string name="refreshing">A atualizar…</string>
+    <string name="fs_title">FreeSpace não encontrado</string>
+    <string name="fs_msg">"S2E pode mostrar informações detalhadas sobre o uso das partições. Para fazer isso você precisa instalar FreeSpace ou FreeSpace Plus."</string>
+    <string name="fs_install">Instalar FreeSpace</string>
+    <string name="fs_dont">"Não perguntar mais"</string>
+    <string name="loading">A carregar ...</string>
+    <string name="installing">A instalar…</string>
+    <string name="checking_api">A verificar a versão do Android…</string>
+    <string name="checking_root">A verificar ROOT…</string>
+  <!--Alerts-->
     <string name="alert_script_title">Script não instalado</string>
-    <!--Settings-->
+    <string name="alert_root">Root não disponível ou acesso não dado</string>
+    <string name="alert_version">Esta versão do Android não é suportada</string>
+  <!--Settings-->
     <string name="settings">Definições</string>
+    <string name="general_options">Opções gerais</string>
+    <string name="boot_options">Opções de arranque</string>
     <string name="setting_mount">Montar como ext4</string>
+    <string name="setting_mount_summary">Montar sd-ext como ext4 sem journaling</string>
+    <string name="set_read_ahead">Definir buffer de leitura</string>
+    <string name="set_read_ahead_summary">Definir buffer de leitura do cartão SD</string>
+    <string name="read_ahead_values">Tamanho do buffer</string>
+    <string name="read_ahead_values_symmary">Um valor de 2 MB é a melhor prática</string>
+    <string name="fs_pref">Informação das partições estendidas</string>
+    <string name="fs_pref_summary">Lançar FreeSpace em vez de informação integrada</string>
+    <string name="setting_themes">Temas</string>
+    <string name="setting_themes_summary">Alterar o tema da aplicação</string>
+    <string name="setting_themes_summary_toast">Tema alterado! Reinicie a aplicação.</string>
+  <!--LogViewer-->
+    <string name="viewlog">Ver BootLog</string>
+    <string name="lv_title">Último ВootLog</string>
+    <string name="lv_share">Partilhar log</string>
 </resources>
