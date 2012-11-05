@@ -74,4 +74,7 @@
     <string name="viewlog">View BootLog</string>
     <string name="lv_title">Last ВootLog</string>
     <string name="lv_share">Share log</string>
+    <!--themes-->
+    <string name="dark_theme">Dark</string>
+    <string name="light_theme">Light</string>
 </resources>
