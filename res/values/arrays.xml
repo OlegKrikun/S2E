@@ -53,8 +53,8 @@
     </string-array>
 
     <string-array name="themes">
-        <item>Dark</item>
-        <item>Light</item>
+        <item>@string/dark_theme</item>
+        <item>@string/light_theme</item>
     </string-array>
 
     <string-array name="themes_Values" translatable="false">

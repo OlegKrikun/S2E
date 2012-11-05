@@ -22,7 +22,7 @@
     <string name="credit__summary">感謝CrazyCoder的支持與忍耐</string>
     <string name="credit__cm_summary">感謝CyanogenMod開發團隊的精心制作.特別感激 Alexander Hofbauer 對 HTC Legend開發和支援的貢獻</string>
     <string name="credit__pv_summary">感謝 Pavel Volkov 協助測試</string>
-    <string name="translators">介面翻譯者</string>
+    <string name="translators">翻譯者</string>
     <!--MainScreen-->
     <string name="apps">應用程序</string>
     <string name="private_apps">專用程序</string>
@@ -41,9 +41,12 @@
     <string name="myapps">其他作品</string>
     <string name="refreshing">刷新中…</string>
     <string name="fs_title">FreeSpace 未安裝</string>
-    <string name="fs_msg">S2E 可顯示分區使用詳細資料.\n\n使用相關功能需要安裝\nFreeSpace 或 FreeSpace Plus.</string>
+    <string name="fs_msg">S2E 可顯示儲存裝置分區的詳細資料.\n\n使用相關功能需要安裝\nFreeSpace 或 FreeSpace Plus.</string>
     <string name="fs_install">安裝 FreeSpace</string>
     <string name="fs_dont">不要深究了</string>
+    <string name="loading">載入中…</string>
+    <string name="checking">檢查中…</string>
+    <string name="installing">正在安裝…</string>
     <!--Alerts-->
     <string name="alert_script_title">運行程序未安裝到SD卡上</string>
     <string name="alert_root">未取得ROOT權限</string>
@@ -60,4 +63,13 @@
     <string name="read_ahead_values_symmary">建議使用2MB(能獲得最佳效能)</string>
     <string name="fs_pref">EXT 分區訊息</string>
     <string name="fs_pref_summary">使用Freespace代替內置功能</string>
+    <!--LogViewer-->
+    <string name="viewlog">检视装置启动记录</string>
+    <string name="lv_title">上一次启动记录</string>
+    <string name="lv_share">分享记录</string>
+    <!--themes-->
+    <string name="setting_themes">主题</string>
+    <string name="setting_themes_summary">更改程序使用者介面主题</string>
+    <string name="dark_theme">暗黑</string>
+    <string name="light_theme">明亮</string>
 </resources>

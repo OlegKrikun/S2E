@@ -41,9 +41,12 @@
     <string name="myapps">其它作品</string>
     <string name="refreshing">刷新中…</string>
     <string name="fs_title">FreeSpace 未安装</string>
-    <string name="fs_msg">S2E 可显示分区使用详细数据.\n\n使用相关功能需要安装\nFreeSpace 或 FreeSpace Plus.</string>
+    <string name="fs_msg">S2E S2E 可显示储存装置分区的详细数据.\n\n使用相关功能需要安装\nFreeSpace 或 FreeSpace Plus.</string>
     <string name="fs_install">安装 FreeSpace</string>
     <string name="fs_dont">不要深究了</string>
+    <string name="loading">载入中…</string>
+    <string name="checking">检查中…</string>
+    <string name="installing">正在安装…</string>
     <!--Alerts-->
     <string name="alert_script_title">运行程序未安装到SD卡上</string>
     <string name="alert_root">未取得ROOT权限</string>
@@ -60,4 +63,13 @@
     <string name="read_ahead_values_symmary">推荐使用2MB(能获得最佳性能)</string>
     <string name="fs_pref">EXT 分区消息</string>
     <string name="fs_pref_summary">使用Freespace代替内置功能</string>
+    <!--LogViewer-->
+    <string name="viewlog">檢視裝置啟動記錄</string>
+    <string name="lv_title">上一次啟動記錄</string>
+    <string name="lv_share">分享記錄</string>
+    <!--themes-->
+    <string name="setting_themes">主題</string>
+    <string name="setting_themes_summary">更改程序使用者介面主題</string>
+    <string name="dark_theme">暗黑</string>
+    <string name="light_theme">明亮</string>
 </resources>
