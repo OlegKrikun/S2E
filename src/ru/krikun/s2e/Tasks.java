@@ -69,7 +69,8 @@ class Tasks {
                 supportedOS = true;
             } else if (android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.ICE_CREAM_SANDWICH
                     || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1
-                    || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.JELLY_BEAN) {
+                    || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.JELLY_BEAN
+                    || android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 app.setIce(true);
                 supportedOS = true;
             }
