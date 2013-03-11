@@ -68,7 +68,7 @@
     <string name="fs_pref">Informazioni avanzate partizioni</string>
     <string name="fs_pref_summary">Avvia FreeSpace invece delle informazioni integrate</string>
     <string name="setting_themes">Temi</string>
-    <string name="setting_themes_summary">Cambia il tema dell'applicazione</string>
+    <string name="setting_themes_summary">Cambia il tema dell\'applicazione</string>
     <string name="setting_themes_summary_toast">Tema cambiato! Riavvia l\'applicazione.</string>
     <!--LogViewer-->
     <string name="viewlog">Guarda il BootLog</string>
