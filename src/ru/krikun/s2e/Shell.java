@@ -16,7 +16,8 @@
 
 package ru.krikun.s2e;
 
-import com.stericson.RootTools.Command;
+import com.stericson.RootTools.exceptions.RootDeniedException;
+import com.stericson.RootTools.execution.Command;
 import com.stericson.RootTools.RootTools;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeoutException;
 
 class Shell {
 
-    private static com.stericson.RootTools.Shell shell = null;
+    private static com.stericson.RootTools.execution.Shell shell = null;
     private static boolean root;
 
     //Timeout for shell request
@@ -44,6 +45,8 @@ class Shell {
             } catch (TimeoutException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (RootDeniedException e) {
                 e.printStackTrace();
             }
         }
