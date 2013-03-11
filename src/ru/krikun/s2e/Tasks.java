@@ -305,7 +305,7 @@ class Tasks {
     }
 
     private void showAlert(String reason) {
-        Toast.makeText(main, reason, 15).show();
+        Toast.makeText(main.getApplicationContext(), reason, 15).show();
         Log.e(App.TAG, reason);
     }
 }

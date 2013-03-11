@@ -87,7 +87,7 @@ public class Settings extends SherlockPreferenceActivity {
         settingsTheme.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
             public boolean onPreferenceChange(Preference preference, Object object) {
-                Toast.makeText(Settings.this, App.getRes().getString(R.string.setting_themes_summary_toast), 10).show();
+                Toast.makeText(getApplicationContext(), App.getRes().getString(R.string.setting_themes_summary_toast), 10).show();
                 return true;
             }
         });

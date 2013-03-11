@@ -28,11 +28,15 @@ public class About extends SherlockPreferenceActivity {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.about);
-        getSupportActionBar().setTitle(
-                App.getRes().getString(R.string.app_name) + ": " +
-                App.getRes().getString(R.string.app_label) + " - " +
-                App.getRes().getString(R.string.app_version)
-        );
+
+        StringBuilder stringBuilder = new StringBuilder()
+                .append(App.getRes().getString(R.string.app_name))
+                .append(": ")
+                .append(App.getRes().getString(R.string.app_label))
+                .append(" - ")
+                .append(App.getRes().getString(R.string.app_version));
+
+        getSupportActionBar().setTitle(stringBuilder);
         getSupportActionBar().setSubtitle(R.string.app_by);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

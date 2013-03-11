@@ -34,10 +34,8 @@ import java.util.List;
 public class Main extends SherlockPreferenceActivity {
 
     private App app;
-
     private int sizeToExt;
     private int sizeToData;
-
     private boolean showExtendedInformation;
 
     @Override
@@ -107,32 +105,63 @@ public class Main extends SherlockPreferenceActivity {
         setTitle();
     }
 
-    private String formatSummaryMoving(String targetPartition, String sourcesPartition) {
-        return String.format(App.getRes().getString(R.string.move), sourcesPartition, targetPartition) + "\n" +
-                App.getRes().getString(R.string.reboot_required);
+    //Dynamical convert size to MB or KB
+    private StringBuilder convertSize(long size) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (size == 0) {
+
+            stringBuilder.append("--");
+
+        } else if (size >= 1024) {
+
+            stringBuilder.append(size / 1024L);
+            stringBuilder.append(App.getRes().getString(R.string.mb));
+
+        } else {
+
+            stringBuilder.append(size);
+            stringBuilder.append(App.getRes().getString(R.string.kb));
+        }
+
+        return stringBuilder;
     }
 
-    private String formatSummaryStatic(String target, String partition) {
-        return App.getRes().getString(R.string.location) + ": " + partition + App.SEPARATOR + target + "\n" +
-                App.getRes().getString(R.string.size) + ": " +
-                App.convertSize(app.getTargets().get(target).getSize(),
-                        App.getRes().getString(R.string.kb),
-                        App.getRes().getString(R.string.mb));
+    private StringBuilder formatSummaryMoving(String targetPartition, String sourcesPartition) {
+        return new StringBuilder()
+                .append(String.format(App.getRes().getString(R.string.move), sourcesPartition, targetPartition))
+                .append("\n")
+                .append(App.getRes().getString(R.string.reboot_required));
     }
 
-    private String getPartitionString(Partition partition) {
-        return "\n\t" + App.getRes().getString(R.string.size) + ": " +
-                App.convertSize(partition.getSize(),
-                        App.getRes().getString(R.string.kb),
-                        App.getRes().getString(R.string.mb)) +
-                "\n\t" + App.getRes().getString(R.string.used) + ": " +
-                App.convertSize(partition.getUsed(),
-                        App.getRes().getString(R.string.kb),
-                        App.getRes().getString(R.string.mb)) +
-                "\n\t" + App.getRes().getString(R.string.free) + ": " +
-                App.convertSize(partition.getFree(),
-                        App.getRes().getString(R.string.kb),
-                        App.getRes().getString(R.string.mb));
+    private StringBuilder formatSummaryStatic(String target, String partition) {
+        return new StringBuilder()
+                .append(App.getRes().getString(R.string.location))
+                .append(": ")
+                .append(partition)
+                .append(App.SEPARATOR)
+                .append(target)
+                .append("\n")
+                .append(App.getRes().getString(R.string.size))
+                .append(": ")
+                .append(convertSize(app.getTargets().get(target).getSize()));
+    }
+
+    private StringBuilder getPartitionString(Partition partition) {
+        return new StringBuilder()
+                .append("\n\t")
+                .append(App.getRes().getString(R.string.size))
+                .append(": ")
+                .append(convertSize(partition.getSize()))
+                .append("\n\t")
+                .append(App.getRes().getString(R.string.used))
+                .append(": ")
+                .append(convertSize(partition.getUsed()))
+                .append("\n\t")
+                .append(App.getRes().getString(R.string.free))
+                .append(": ")
+                .append(convertSize(partition.getFree()));
     }
 
     private boolean checkFreeSpace(long targetSize, long partitionFree, long sizeToPartition) {
@@ -151,17 +180,39 @@ public class Main extends SherlockPreferenceActivity {
         sizeToData = 0;
 
         for (Target target : app.getTargets().values()) {
+
             target.updateStatus();
 
-            if (target.getStatus() == Target.TARGET_MOVE_TO_EXT) {
-                sizeToExt += target.getSize();
-                Log.d(App.TAG, "Found target: " + target.getTargetName() + " for move to EXT; Target size: "
-                        + String.valueOf(target.getSize()) + "; All size to EXT: " + String.valueOf(sizeToExt));
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Found target: ");
+            stringBuilder.append(target.getTargetName());
+
+            switch (target.getStatus()) {
+
+                case Target.TARGET_MOVE_TO_EXT:
+
+                    sizeToExt += target.getSize();
+
+                    stringBuilder.append(" for move to EXT; Target size: ");
+                    stringBuilder.append(target.getSize());
+                    stringBuilder.append("; All size to EXT: ");
+                    stringBuilder.append(sizeToExt);
+
+                    break;
+
+                case Target.TARGET_MOVE_TO_DATA:
+
+                    sizeToData += target.getSize();
+
+                    stringBuilder.append(" for move to DATA; Target size: ");
+                    stringBuilder.append(String.valueOf(target.getSize()));
+                    stringBuilder.append("; All size to EXT: ");
+                    stringBuilder.append(String.valueOf(sizeToData));
+
+                    break;
             }
-            if (target.getStatus() == Target.TARGET_MOVE_TO_DATA)
-                sizeToData += target.getSize();
-            Log.d(App.TAG, "Found target: " + target.getTargetName() + " for move to DATA; Target size: "
-                    + String.valueOf(target.getSize()) + "; All size to EXT: " + String.valueOf(sizeToData));
+
+            Log.d(App.TAG, stringBuilder.toString());
         }
     }
 
@@ -217,17 +268,13 @@ public class Main extends SherlockPreferenceActivity {
     }
 
     private void setTitle() {
-        String label =
-                "DATA: " + App.convertSize(
-                        app.getPartitions().get("data").getFree(),
-                        App.getRes().getString(R.string.kb),
-                        App.getRes().getString(R.string.mb)
-                ) + "  " + "EXT: " + App.convertSize(
-                        app.getPartitions().get("sd-ext").getFree(),
-                        App.getRes().getString(R.string.kb),
-                        App.getRes().getString(R.string.mb)
-                );
 
+        StringBuilder label = new StringBuilder()
+                .append("DATA: ")
+                .append(convertSize(app.getPartitions().get("data").getFree()))
+                .append("  ")
+                .append("EXT: ")
+                .append(convertSize(app.getPartitions().get("sd-ext").getFree()));
         getSupportActionBar().setSubtitle(label);
     }
 
@@ -271,10 +318,13 @@ public class Main extends SherlockPreferenceActivity {
     }
 
     private void showPartitionsSpaces() {
-        String message =
-                "DATA:" + getPartitionString(app.getPartitions().get("data")) +
-                        "\n\nSD-EXT:" + getPartitionString(app.getPartitions().get("sd-ext")) +
-                        "\n\nCACHE:" + getPartitionString(app.getPartitions().get("cache"));
+        StringBuilder message = new StringBuilder()
+                .append("DATA:")
+                .append(getPartitionString(app.getPartitions().get("data")))
+                .append("\n\nSD-EXT:")
+                .append(getPartitionString(app.getPartitions().get("sd-ext")))
+                .append("\n\nCACHE:")
+                .append(getPartitionString(app.getPartitions().get("cache")));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)

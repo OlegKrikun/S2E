@@ -92,13 +92,6 @@ public class App extends Application {
 
 //    }
 
-    //Dynamical convert size to MB or KB
-    public static String convertSize(long size, String kb, String mb) {
-        if (size == 0) return "--";
-        else if (size >= 1024) return Long.toString(size / 1024L) + mb;
-        else return size + kb;
-    }
-
     //Check file exists
     public static boolean checkFileExists(String filePath) {
         File file = new File(filePath);
