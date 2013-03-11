@@ -155,7 +155,7 @@ public class App extends Application {
     //Set theme from settings
     static void setActivityTheme(Context activity) {
         if (prefs.getString(PREFERENCE_NAME_THEME, THEME_DARK).equals(THEME_LIGHT)) {
-            activity.setTheme(R.style.Theme_Sherlock_Light_DarkActionBar_ForceOverflow);
+            activity.setTheme(R.style.Theme_Sherlock_Light_DarkActionBar);
         }
     }
 
