@@ -17,22 +17,45 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/info"
-          android:icon="@drawable/info"
-          android:title="@string/info"
-          android:showAsAction="ifRoom|withText" />
-    <item android:id="@+id/refresh"
-          android:title="@string/refresh"
-          android:icon="@drawable/ic_action_refresh"
-          android:showAsAction="ifRoom|withText"/>
-    <item android:id="@+id/viewlog"
-          android:icon="@drawable/ic_action_log"
-          android:title="@string/viewlog"
-          android:showAsAction="ifRoom|withText"/>
-    <item android:id="@+id/settings"
-          android:title="@string/settings"/>
-    <item android:id="@+id/myapps"
-          android:title="@string/myapps"/>
-    <item android:id="@+id/about"
-          android:title="@string/about"/>
+
+    <item
+        android:id="@+id/info"
+        android:icon="@drawable/info"
+        android:title="@string/info"
+        android:showAsAction="ifRoom|withText"/>
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:showAsAction="ifRoom|withText"/>
+    <item
+        android:id="@+id/viewlog"
+        android:icon="@drawable/ic_action_log"
+        android:title="@string/viewlog"
+        android:showAsAction="ifRoom|withText"/>
+
+    <item
+        android:id="@+id/more"
+        android:icon="@android:drawable/ic_menu_more"
+        android:showAsAction="ifRoom">
+
+        <menu>
+
+            <item
+                android:id="@+id/settings"
+                android:title="@string/settings"
+                android:showAsAction="never"/>
+            <item
+                android:id="@+id/myapps"
+                android:title="@string/myapps"
+                android:showAsAction="never"/>
+            <item
+                android:id="@+id/about"
+                android:title="@string/about"
+                android:showAsAction="never"/>
+
+        </menu>
+
+    </item>
+
 </menu>
