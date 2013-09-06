@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2012 OlegKrikun
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/boot_options">
+        <CheckBoxPreference
+                android:title="@string/setting_mount"
+                android:defaultValue="false"
+                android:summary="@string/setting_mount_summary"
+                android:key="mounts_ext4"/>
+        <CheckBoxPreference
+                android:title="@string/set_read_ahead"
+                android:defaultValue="false"
+                android:summary="@string/set_read_ahead_summary"
+                android:key="set_read_ahead"/>
+        <ListPreference
+                android:title="@string/read_ahead_values"
+                android:summary="@string/read_ahead_values_symmary"
+                android:dependency="set_read_ahead"
+                android:defaultValue="2048"
+                android:key="read_ahead_values"
+                android:entries="@array/read_ahead"
+                android:entryValues="@array/read_ahead_Values"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/general_options">
+        <ListPreference
+                android:title="@string/setting_themes"
+                android:summary="@string/setting_themes_summary"
+                android:defaultValue="dark"
+                android:key="setting_themes"
+                android:entries="@array/themes"
+                android:entryValues="@array/themes_Values"/>
+        <CheckBoxPreference
+                android:title="@string/fs_pref"
+                android:defaultValue="true"
+                android:summary="@string/fs_pref_summary"
+                android:key="show_extended_information"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
