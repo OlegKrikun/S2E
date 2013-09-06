@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2012 OlegKrikun
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+    <!--About-->
+    <string name="about">Hakkında</string>
+    <string name="credits">Katkıda bulunanlar</string>
+    <string name="credit__summary">Desteği ve sabrı için CrazyCoder'a çok teşekkür ederim</string>
+    <string name="credit__cm_summary">CyanogenMod takımına harika ROM için ve özellikle Alexander Hofbauer'a HTC Legend desteği için çok teşekkür ederim</string>
+    <string name="credit__pv_summary">Pavel Volkov'a S2E'yi test ettiği için çok teşekkür ederim</string>
+    <string name="translators">Çevirmenler</string>
+    <!--MainScreen-->
+    <string name="apps">Uygulamalar</string>
+    <string name="paid_apps">Ücretli uygulamalar</string>
+    <string name="private_apps">Özel uygulamalar</string>
+    <string name="app_data">Uygulama Verisi</string>
+    <string name="caches">Caches</string>
+    <string name="dalvik_cache">Dalvik cache</string>
+    <string name="download_cache">İndirme cache'i</string>
+    <string name="location">Konum</string>
+    <string name="size">Boyut</string>
+    <string name="used">Kullanılan</string>
+    <string name="free">Boş</string>
+    <string name="kb">KB</string>
+    <string name="mb">MB</string>
+    <string name="move">%1$s konumundan %2$s konumuna taşınıyor</string>
+    <string name="reboot_required">Yeniden başlatmak gerekiyor!</string>
+    <string name="refresh">Yenile</string>
+    <string name="info">Bilgi</string>
+    <string name="myapps">Benim Uygulamalarım</string>
+    <string name="refreshing">Yenileniyor…</string>
+    <string name="fs_title">FreeSpace bulunamadı</string>
+    <string name="fs_msg">S2E bölümlerin kullanımı hakkında ayrıntılı bilgi gösterebilir.\n\nBunu yapmak için\nFreeSpace ya da FreeSpace Plus'ı yüklemelisiniz.</string>
+    <string name="fs_install">FreeSpace'i yükle</string>
+    <string name="fs_dont">Tekrar sorma</string>
+    <string name="loading">Bekleyiniz…</string>
+    <string name="installing">Yükleniyor…</string>
+    <string name="checking_api">Android versiyonu kontrol ediliyor…</string>
+    <string name="checking_root">ROOT durumu kontrol ediliyor…</string>
+    <!--Alerts-->
+    <string name="alert_script_title">Script yüklü değil</string>
+    <string name="alert_root">Root uygun değil ya da izin verilmedi</string>
+    <string name="alert_version">Bu android versiyonu desteklenmiyor</string>
+    <!--Settings-->
+    <string name="settings">Ayarlar</string>
+    <string name="general_options">Genel tercihler</string>
+    <string name="boot_options">Boot tercihleri</string>
+    <string name="setting_mount">Ext4 olarak mount et</string>
+    <string name="setting_mount_summary">Günlük oluşturmadan sd-ext'i ext4 olarak mount et</string>
+    <string name="set_read_ahead">Okuma geçici belleğini ayarla</string>
+    <string name="set_read_ahead_summary">Okuma geçici belleğini SD kart için ayarla</string>
+    <string name="read_ahead_values">Geçici bellek boyutu</string>
+    <string name="read_ahead_values_symmary">2MB değeri en iyi yöntemdir</string>
+    <string name="fs_pref">Extended bölüm bilgisi</string>
+    <string name="fs_pref_summary">Bütünlenmiş bilgiler yerine FreeSpace'i çalıştırın</string>
+    <string name="setting_themes">Temalar</string>
+    <string name="setting_themes_summary">Uygulama temasını değiştir</string>
+    <string name="setting_themes_summary_toast">Tema değişti! Uygulamayı yeniden başlat.</string>
+    <!--LogViewer-->
+    <string name="viewlog">BootLog'u gör</string>
+    <string name="lv_title">Son ВootLog</string>
+    <string name="lv_share">Log'u paylaş</string>
+    <!--themes-->
+    <string name="dark_theme">Dark</string>
+    <string name="light_theme">Light</string>
+</resources>
