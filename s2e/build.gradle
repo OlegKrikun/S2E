@@ -16,6 +16,16 @@ dependencies {
 
 android {
 
+    signingConfigs {
+
+        debugKey {
+            storeFile file("debug.jks")
+            storePassword "debugkey"
+            keyAlias "debugkey"
+            keyPassword "debugkey"
+        }
+    }
+
     buildTypes {
         release {
             runProguard true
@@ -26,6 +36,7 @@ android {
             debuggable true
             zipAlign true
             packageNameSuffix ".debug"
+            signingConfig signingConfigs.debugKey
         }
     }
 
