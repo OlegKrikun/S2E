@@ -7,6 +7,7 @@ repositories {
 dependencies {
     compile 'com.android.support:support-v4:18.0.0'
     compile 'com.android.support:appcompat-v7:18.0.0'
+    compile 'com.google.guava:guava:15.0'
     compile files('../libraries/RootTools.jar')
 }
 
@@ -37,7 +38,7 @@ android {
     }
 
     compileSdkVersion 18
-    buildToolsVersion "18.0.1"
+    buildToolsVersion "18.1.1"
 
     compileOptions.encoding = "UTF-8"
 
