@@ -1,9 +1,5 @@
 apply plugin: 'android'
 
-tasks.withType(Compile) {
-    options.encoding = "UTF-8"
-}
-
 repositories {
     mavenCentral()
 }
@@ -42,6 +38,8 @@ android {
 
     compileSdkVersion 18
     buildToolsVersion "18.0.1"
+
+    compileOptions.encoding = "UTF-8"
 
     defaultConfig {
         minSdkVersion 9
