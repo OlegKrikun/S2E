@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ru.krikun.s2e;
+package ru.krikun.s2e.old;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -27,6 +27,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import ru.krikun.s2e.R;
 
 class Tasks {
 

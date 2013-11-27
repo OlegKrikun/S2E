@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package ru.krikun.s2e;
+package ru.krikun.s2e.old;
 
 import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
+
+import ru.krikun.s2e.R;
 
 
 public class About extends SherlockPreferenceActivity {

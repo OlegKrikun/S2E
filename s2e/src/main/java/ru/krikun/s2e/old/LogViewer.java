@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ru.krikun.s2e;
+package ru.krikun.s2e.old;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +29,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+
+import ru.krikun.s2e.R;
 
 public class LogViewer extends SherlockActivity {
 

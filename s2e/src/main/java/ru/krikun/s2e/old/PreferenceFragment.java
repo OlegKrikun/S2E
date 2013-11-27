@@ -5,7 +5,7 @@
  * http://forum.xda-developers.com/showthread.php?t=1363906
  */
 
-package ru.krikun.s2e;
+package ru.krikun.s2e.old;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +25,8 @@ import android.widget.ListView;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+
+import ru.krikun.s2e.R;
 
 abstract class PreferenceFragment extends ListFragment {
 

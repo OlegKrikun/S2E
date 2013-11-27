@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ru.krikun.s2e;
+package ru.krikun.s2e.old;
 
 import com.stericson.RootTools.exceptions.RootDeniedException;
 import com.stericson.RootTools.execution.Command;

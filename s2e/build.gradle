@@ -1,16 +1,5 @@
 apply plugin: 'android'
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile 'com.android.support:support-v4:18.0.0'
-    compile 'com.android.support:appcompat-v7:18.0.0'
-    compile 'com.google.guava:guava:15.0'
-    compile files('../libraries/RootTools.jar')
-}
-
 android {
 
     signingConfigs {
@@ -37,13 +26,29 @@ android {
         }
     }
 
-    compileSdkVersion 18
-    buildToolsVersion "18.1.1"
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
 
     compileOptions.encoding = "UTF-8"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 18
+        targetSdkVersion 19
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:19.0.0'
+    compile 'com.android.support:appcompat-v7:19.0.0'
+    compile 'com.google.guava:guava:15.0'
+    compile files('../libraries/RootTools.jar')
 }
